@@ -4,14 +4,14 @@ rvcstats
 Reef Visual Census statistical package in R
 -------------------------------------------
 
-### Description:
+### Description
 This project contains two R packages: rvcstats and testrvcstats. 
   * rvcstats contains sets of functions for producing summary statistics and graphs from analysis ready
   data files from the South Florida Reef Visual Census (RVC), which are kept and maintained by the Southeast
   Fisheries Science Center (SEFSC). 
   * testrvcstats is a package containing functions and data intended to test the rvcstats package. 
 
-### Guidelines for Developers:
+### Guidelines for Developers
 General information on how to write R extenstions can be found at http://cran.r-project.org/doc/manuals/r-release/R-exts.html
 
 ### Specific Guidelines For This Project
