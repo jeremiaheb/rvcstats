@@ -14,7 +14,7 @@ This project contains two R packages: rvcstats and testrvcstats.
 ### Guidelines for Developers:
 General information on how to write R extenstions can be found at http://cran.r-project.org/doc/manuals/r-release/R-exts.html
 
-### Specific Guidelines for this project are listed below:
+### Specific Guidelines For This Project
 1.) Function names should: 
   * Contain full words and not abbreviations (e.g. density not dens)
   * Not use periods to seperate words (e.g. densityPlot not density.plot)
@@ -35,12 +35,12 @@ General information on how to write R extenstions can be found at http://cran.r-
   * use periods to seperate multiple words (e.g. gear.type not gearType)
   * not be made up of more than three words, excepting two letter words (e.g. is.habitat.class not habitat.class.fits.with)
 
-4.) Local variables names should (declared within methods or loops)
+4.) Local variables names should (declared within methods or loops):
   *  be entirely lowercase
   *  be abbreviations (can be formed however makes most sense)
   *  be no longer than 6 characters
 
-5.) Static variable names should
+5.) Static variable names should:
   * be entirely uppercase
   * be abbreviations 
   * be no longer than 8 characters
@@ -53,15 +53,15 @@ General information on how to write R extenstions can be found at http://cran.r-
   * For procedures: Should start with 'Does:' and include the type of input, if applicable (e.g. Does: a plot
   of a time series given a numeric vector of densities, 'density', and a factor vector of years, 'year')
 
-7.) Comments within methods
-  * Should be whole sentences
+7.) Comments within methods should:
+  * be whole sentences
 
-8.) Help Documentation:
+8.) Help Documentation
   * Should follow the format of standard help documentation for base R package
   * Please include links to relevant functions
   * Make sure to include useful examples
 
-### Other Guidelines:
+### Other Guidelines
 1.) Write help files and specifications for a function before writing the function
 
 2.) It would be great if everyone wrote the test for a function in testrvcstats before writing the actual function in
