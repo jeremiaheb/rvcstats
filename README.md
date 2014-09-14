@@ -70,3 +70,5 @@ General information on how to write R extenstions can be found at http://cran.r-
 3.) Remember to FETCH current branch before PUSHING any changes 
 
 4.) When in doubt, make a new branch
+
+5.) Remember to compile and load rvcstats before loading testrvcstats
