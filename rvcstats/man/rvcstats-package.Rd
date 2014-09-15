@@ -3,39 +3,37 @@
 \alias{rvcstats}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+A statistical package for South Florida's Reef Visual Census
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+rvcstats takes assesment ready data available from the Southeast Fisheries Science Center (SEFSC) and produces density data and graphs using standardized methodologies approved by the SEFSC and its partners to help fisheries managers and scientists answer questions relevant to the state of South FLorida's reef fish community
 }
 \details{
 \tabular{ll}{
 Package: \tab rvcstats\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.0.1 \cr
 Date: \tab 2014-09-14\cr
-License: \tab What license is it under?\cr
+License: \tab GPLv3\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+%ToDo: Add overview of how to use package and its most important functions
 }
 \author{
-Who wrote it
+Harry Ganz 
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Harry Ganz \href{mailto:hganz@rsmas.miami.edu}{hganz@rsmas.miami.edu}
 }
 \references{
-~~ Literature or other references for background information ~~
+National Park Service (2009). "A Cooperative Multi-Agency Reef Fish Monitoring Protocol for the Florida Keys Coral Reef Ecosystem". Natural Resources Report NPS/SFCN/NRR -- 2009/150 \href{http://dep.state.fl.us/coastal/programs/coral/documents/2012/FIM/04-13/FLKeys_Reef_Fish_monitoring_protocol.pdf}{http://dep.state.fl.us/coastal/programs/coral/documents/2012/FIM/04-13/FLKeys_Reef_Fish_monitoring_protocol.pdf}
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
-\keyword{ package }
+\keyword{
+package
+rvc
+rvcstats
+}
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+% ToDo: Optional links to other man pages, e.g.
 }
 \examples{
-~~ simple examples of the most important functions ~~
+  % ToDo: simple examples of the most important functions 
 }
