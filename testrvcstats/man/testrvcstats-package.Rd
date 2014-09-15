@@ -3,39 +3,39 @@
 \alias{testrvcstats}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+Tests rvcstats package
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Has functions designed to test corresponding functions in rvcstats package
 }
 \details{
 \tabular{ll}{
 Package: \tab testrvcstats\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.0.1\cr
 Date: \tab 2014-09-14\cr
-License: \tab What license is it under?\cr
+License: \tab GPLv3\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+% ToDo: List of important test functions
 }
 \author{
-Who wrote it
+Harry Ganz
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Harry Ganz \href{hganz@rsmas.miami.edu}{mailto:hganz@rsmas.miami.edu}
+
 }
 \references{
-~~ Literature or other references for background information ~~
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
-\keyword{ package }
+
+\keyword{ 
+package
+rvc
+rvcstats
+testrvcstats
+}
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+\link{rvcstats}
 }
 \examples{
-~~ simple examples of the most important functions ~~
+%ToDo examples of test functions
 }
