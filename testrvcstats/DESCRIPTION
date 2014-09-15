@@ -4,7 +4,7 @@ Title: Tests rvcstats package
 Version: 0.0.1
 Date: 2014-09-14
 Author: Harry Ganz
-Maintainer: Harry Ganz <hganz@rsmas.miami.edu
+Maintainer: Harry Ganz <hganz@rsmas.miami.edu>
 Description: Has functions designed to test corresponding functions in rvcstats package
 License: GPLv3
 Depends: rvcstats
