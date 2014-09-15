@@ -1,9 +1,10 @@
 Package: rvcstats
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
+Title: A statistical package for South Florida's Reef Visual Census
+Version: 0.0.1
 Date: 2014-09-14
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Harry Ganz
+Maintainer: Harry Ganz <hganz@rsmas.miami.edu>
+Description: Provides fisheries managers and scientists with dataframes and plots of
+  Reef Visual Census data for South Florida using standard statistical procedures.
+License: GPLv3
