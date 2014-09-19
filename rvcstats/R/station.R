@@ -8,8 +8,13 @@ Station$accessors(c("num", "len", "species_nr", "time_seen", "station_nr",
                     "depth", "underwater_visibility"))
 Station$methods(
   ## Init: Initializes required fields, other fields are initialized as NULL
+<<<<<<< HEAD
   initialize = function(num, len, species_nr, station_nr, time_seen, depth = numeric(0), 
                         underwater_visibility = numeric(0)){
+=======
+  initialize = function(num, len, species_nr, station_nr, time_seen, depth = NULL, 
+                        underwater_visibility = NULL){
+>>>>>>> origin/master
     setNum(num); setLen(len); setSpecies_nr(species_nr); setTime_seen(time_seen);
     setStation_nr(station_nr); setDepth(depth);
     setUnderwater_visibility(underwater_visibility)
