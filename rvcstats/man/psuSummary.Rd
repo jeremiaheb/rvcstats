@@ -40,7 +40,7 @@ A data.frame containing the analysis ready sample data. Should include as column
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
-A data.frame with columns corresponding to the year (YEAR), species code (SPECIES_CD), primary sample unit (PRIMARY_SAMPLE_UNIT), stratum (STRAT), the number of stations within the primary sampling unit (m), whether there was a replicate secondary sampling unit within the primary sampling unit (rp = 1 if TRUE and 0 if FALSE), the average density within each primary sampling unit (avg.dens), and the variance amongst secondary sampling units within each primary unit. 
+A data.frame with columns corresponding to the year (YEAR), species code (SPECIES_CD), primary sample unit (PRIMARY_SAMPLE_UNIT), stratum (STRAT), the number of stations within the primary sampling unit (m), whether there was a replicate secondary sampling unit within the primary sampling unit (rp = 1 if TRUE and 0 if FALSE), the average density within each primary sampling unit (avg.dens), and the standard deviation amongst secondary sampling units (s2) within each primary unit. 
 }
 
 \author{

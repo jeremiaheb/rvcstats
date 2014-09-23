@@ -1,5 +1,5 @@
 ## Returns: data.frame with number of secondary samples (m), avg density (avg.dens),
-## variance in density (s2), and if there was a replicate (rp: 1 if TRUE),
+## sd in density (s2), and if there was a replicate (rp: 1 if TRUE),
 ## for  species in given species, years, and strata, from
 ## provided sample.data
 psuSummary = function(species, years, strata, sample.data, ssu.area = 177){
@@ -47,10 +47,10 @@ psuSummary = function(species, years, strata, sample.data, ssu.area = 177){
    FUN = list
  )$NUM
  
- ## Calculate variance among SSUs 
+ ## Calculate sd among SSUs 
  s2 = NULL
  for (i in 1:length(counts)){
-   s2[i] = sum((counts[[i]]-psu$avg.dens[i])^2)/(psu$m[i]-1)
+   s2[i] = sqrt(sum((counts[[i]]-psu$avg.dens[i])^2)/(psu$m[i]-1))
  }
  
  ## Code to correct for divide by zeroes
