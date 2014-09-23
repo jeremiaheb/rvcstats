@@ -21,7 +21,7 @@ License: \tab GPLv3\cr
 \author{
 Harry Ganz 
 
-Maintainer: Harry Ganz \href{mailto:hganz@rsmas.miami.edu}{hganz@rsmas.miami.edu}
+Maintainer: Harry Ganz \href{mailto:harry.ganz@noaa.gov}{harry.ganz@noaa.gov}
 }
 \references{
 National Park Service (2009). "A Cooperative Multi-Agency Reef Fish Monitoring Protocol for the Florida Keys Coral Reef Ecosystem". Natural Resources Report NPS/SFCN/NRR -- 2009/150 \href{http://dep.state.fl.us/coastal/programs/coral/documents/2012/FIM/04-13/FLKeys_Reef_Fish_monitoring_protocol.pdf}{http://dep.state.fl.us/coastal/programs/coral/documents/2012/FIM/04-13/FLKeys_Reef_Fish_monitoring_protocol.pdf}
