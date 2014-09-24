@@ -59,8 +59,6 @@ A lower level function. Intended to be called by other functions in the rvcstats
 
 ## Can also set the ssu.area 
 #ssuDensity(LutGris2012, ssu.area = 176.7146)
-{
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
