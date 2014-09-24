@@ -1,7 +1,5 @@
 \name{psuDensity}
 \alias{psuDensity}
-\alias{ssuDensity}
-\alias{rvcData}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -67,4 +65,4 @@ Harry Ganz
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{psuDensity}
-\keyword{sampling}% __ONLY ONE__ keyword per line
+% __ONLY ONE__ keyword per line

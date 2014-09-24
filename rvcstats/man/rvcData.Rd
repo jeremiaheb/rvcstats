@@ -1,7 +1,5 @@
 \name{rvcData}
 \alias{rvcData}
-\alias{psuDensity}
-\alias{ssuDensity}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
