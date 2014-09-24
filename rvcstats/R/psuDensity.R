@@ -2,7 +2,7 @@
 ## an RVC object
 psuDensity = function(rvcObject, ...){
   ## Get ssu densities
-  ssu = ssuDensity(rvcObject)
+  ssu = ssuDensity(rvcObject, ...)
   ## Reclass ssu so aggregate can worl
   class(ssu) = "list"
   ## Number of stations at a PSU

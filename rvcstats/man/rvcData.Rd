@@ -1,6 +1,7 @@
 \name{rvcData}
 \alias{rvcData}
-\alias{RVC}
+\alias{psuDensity}
+\alias{ssuDensity}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
@@ -60,6 +61,8 @@ Intended to be used as part of other functions within the package, but can be us
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{psuDensity}}
+\code{\link{ssuDensity}}
 
 }
 \examples{

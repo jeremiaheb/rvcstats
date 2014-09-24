@@ -54,11 +54,14 @@ A lower level function. Intended to be called by other functions in the rvcstats
 #LutGris2012 = rvcData(species = "lut gris", years = 2012, strata = "HRRF", data = fk2012)
 
 ## Then use in ssuDensity to add density variable
-## ssuDensity(LutGris2012)
+#ssuDensity(LutGris2012)
+
+## Can also set the ssu.area 
+#ssuDensity(LutGris2012, ssu.area = 176.7146)
 {
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ssuDensity}
+\keyword{ssu}% __ONLY ONE__ keyword per line
