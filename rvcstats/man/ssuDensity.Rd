@@ -48,6 +48,7 @@ A lower level function. Intended to be called by other functions in the rvcstats
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 \code{\link{rvcData}}
+\code{\link{psuDensity}}
 }
 \examples{
 ## First create an RVC object with rvcData
