@@ -3,8 +3,6 @@
 psuDensity = function(rvcObject, ...){
   ## Get ssu densities
   ssu = ssuDensity(rvcObject, ...)
-  ## Reclass ssu so aggregate can worl
-  class(ssu) = "list"
   ## Number of stations at a PSU
   psu = aggregate(STATION_NR ~ SPECIES_CD + YEAR + STRAT + PRIMARY_SAMPLE_UNIT,
                 data = ssu, FUN = max)
