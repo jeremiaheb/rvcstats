@@ -24,8 +24,13 @@ rvcData = function(species, years, strata, data){
   ## Subset data based on arguments
   newData = subset(
     data,
-    subset = SPECIES_CD %in% species & YEAR %in% years & STRAT %in% strata,
-    select = reqd
+    subset = SPECIES_CD %in% species & YEAR %in% years & STRAT %in% strata
+    )
+  ## Combine Data from all length classes
+  newData = aggregate(
+    NUM ~ SPECIES_CD + YEAR + STRAT + PRIMARY_SAMPLE_UNIT + STATION_NR,
+    data = newData,
+    FUN = sum
     )
   class(newData) <- "RVC"
   return(newData)
