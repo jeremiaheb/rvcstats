@@ -36,6 +36,6 @@ rvcData = function(species, years, strata, data){
   return(newData)
   ## ToDo: Add functionality for user to set variable names(??)
   ## ToDo: Allow users to enter in full sci name and produce species cd from that
-  ## ToD0: Change select as more functionality added to package (e.g. length)
+  ## ToD0: Change select as more functionality added to package (e.g. length, procteted status)
   ## ToDo: Change so it accepts CSVs directly(??)
 }
