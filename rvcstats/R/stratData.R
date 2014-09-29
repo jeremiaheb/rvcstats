@@ -1,33 +1,44 @@
 ## Returns: a STRAT object with weights (wh) for each stratum and year
-## Given selected strata and years and a data.frame containing the years,
-## names, and NTOT (total possible PSUs) in each stratum
-## by default strata and years are set to "all", which selects
-## for all years and strata within data
-stratData = function(data, strata = "all", years = "all"){
+## Given selected years (defualt = "all") and strata (default = "all").
+## If includes.protected then substrata with protected status will be 
+## searched for in data with the variable name PROT
+stratData = function(data, years = "all", strata = "all", includes.protected = FALSE){
   ## Check to make sure required variables are present 
   names(data) = toupper(names(data))
   reqd = c("YEAR", "STRAT", "NTOT")
   inList("Required Variable", reqd, names(data))
+  
   ## If strata set to all, select all strata
   if (strata == "all"){
     strata = unique(data$STRAT)
   }
+  
   ## If years set to all select all years
   if (years == "all"){
     years = unique(data$YEAR)
   }
-  ## Subset and aggregate (if neccessary) by strata and years 
-  newData = aggregate(NTOT ~ YEAR + STRAT,
-    data,
-    subset = YEAR %in% years & STRAT %in% strata,
-    FUN = sum
+  
+  ## Select variables to aggregate by
+  agg.by = c("YEAR", "STRAT")
+  
+  ## If includes.protected is TRUE add includes protected to agg.by
+  if (includes.protected){
+    inList("protection status variable", "PROT", names(data))
+    agg.by = c(agg.by, "PROT")
+  }
+  
+  ## Subset and aggregate (if neccessary) by agg.by variables
+  agg.by = as.list(data[agg.by])
+  newData = aggregate(data$NTOT, by = agg.by, FUN = sum
     )
+  names(newData)[length(names(newData))] = "NTOT"
+  
   ## Calculate weighting
   tot = sum(newData$NTOT)
   newData$wh = newData$NTOT/tot
+  
   ## Change class to STRAT
   class(newData) = "STRAT"
   
   return(newData)
-  ## ToDo: Fix to include substrata if desired (e.g. protected)
 }
