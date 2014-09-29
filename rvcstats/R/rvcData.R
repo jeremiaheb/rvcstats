@@ -1,15 +1,6 @@
 ## Subsets data from data by selected species, year, and strata,
 ## Returns s3 object of class RVC which can then be utilized by other functions
-rvcData = function(species, years, strata, data){
-  ## Helper function to produce errors if parameter par composed of x is not in list y
-  inList = function(par,x,y){
-    d = setdiff(x,y)
-    if (length(d)>0){
-      diff = paste(d, collapse = ", ")
-      stop(paste(par,diff, "not found in data"))
-    }
-  } 
-  
+rvcData = function(species, years, strata, data){  
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
   reqd = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR", "NUM")
