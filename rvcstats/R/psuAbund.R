@@ -5,22 +5,20 @@ psuAbund = function(rvcObj){
   if (!inherits(rvcObj, "RVC")){
     stop("rvcObj must be of class RVC. Type ?rvcData for more information")
   }
-  ## Convert rvc obj to data.frame
+  ## Convert rvc obj to list
   class(rvcObj) = "list"
-  rvcObj = as.data.frame(rvcObj)
+  ## Set the variables by which to aggregate
+  agg.by = rvcObj[names(rvcObj) %w/o% c("STATION_NR", "NUM")]
   ## Avg. counts by PSU
-  psu = aggregate(NUM ~ SPECIES_CD + YEAR + STRAT + PRIMARY_SAMPLE_UNIT,
-                  data = rvcObj, FUN = mean)
+  psu = aggregate(rvcObj$NUM, by = agg.by, FUN = mean)
   names(psu)[length(names(psu))] = "avg.abun"
   ## Variance in counts by PSU
-  psu$vari = aggregate(NUM ~ SPECIES_CD + YEAR + STRAT + PRIMARY_SAMPLE_UNIT,
-                      data = rvcObj,
+  psu$vari = aggregate(rvcObj$NUM, by = agg.by,
                       FUN = function(x){
                         ifelse(is.na(var(x)),0,var(x))
-                      })$NUM
+                      })$x
   ## Number of SSUs per PSU
-  psu$m = aggregate(NUM ~ SPECIES_CD + YEAR + STRAT + PRIMARY_SAMPLE_UNIT,
-                    data = rvcObj, FUN = length)$NUM
+  psu$m = aggregate(rvcObj$NUM, by = agg.by, FUN = length)$x
   ## Replicate status
   psu$np.freq = ifelse(psu$m>1,1,0)
   
