@@ -7,6 +7,8 @@ rvcData = function(data, species, years = "all", strata = "all",
     
   }
   
+  ##ToDo: Figure out strata from data if STRAT variable not present
+  
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
   reqd = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR", "NUM")
@@ -31,7 +33,7 @@ rvcData = function(data, species, years = "all", strata = "all",
   inList("strata", strata, data$STRAT)
   
   ## list of variables to aggregate by
-  vars = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR")
+  agg.by = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR")
   
   ## ToDO: If length.classes is not all, include in vars, and sum by 
   ## the specified classes
@@ -39,18 +41,16 @@ rvcData = function(data, species, years = "all", strata = "all",
   ## If seperate.protected add to vars and subset by protected status
   if (seperate.protected){
     data$PROT = ifelse(data$MPA_NR > 0, 1,0)
-    vars = c(vars, "PROT")
+    agg.by = c(agg.by, "PROT")
   }
   
   ## Subset and combine Data from all length classes
-  vars = as.list(data[vars])
+  agg.by = as.list(data[agg.by])
   newData = aggregate(
-      data$NUM, by = vars, FUN = sum
+      data$NUM, by = agg.by, FUN = sum
     )
   names(newData)[length(names(newData))] = "NUM"
   
   class(newData) <- "RVC"
   return(newData)
-  ## ToDo: Add functionality for user to set variable names(??)
-  ## ToDo: Allow users to enter in full sci name and produce species cd from that
 }
