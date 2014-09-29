@@ -22,7 +22,7 @@ psuDensity = function(rvcObj){
                       })$x
   
   ## Number of SSUs per PSU
-  psu$m = aggregate(rvcObj$NUM, by = agg.by, FUN = length)$x
+  psu$m = aggregate(rvcObj$STATION_NR, by = agg.by, FUN = max)$x
   
   ## Replicate status
   psu$np.freq = ifelse(psu$m>1,1,0)
