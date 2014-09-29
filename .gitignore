@@ -1,6 +1,6 @@
 *.Rhistory
 *.RData
 *.Rcheck/
-*.tar.gz
+*.gz
 .Rproj.user
 rvcstats/data/
