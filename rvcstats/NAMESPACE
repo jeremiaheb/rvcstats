@@ -1,1 +1,3 @@
-exportPattern("^[[:alpha:]]+")
+# Exports all without .
+exportPattern("^[^\\.]")
+#exportPattern("^[[:alpha:]]+")

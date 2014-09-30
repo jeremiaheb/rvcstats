@@ -1,7 +1,7 @@
 ## Returns: the avg. counts (dbar), variance in counts (vari), 
 ## number of SSUs (m), and replicate status (np.freq) for each PSU.
 ## Given an RVC object
-psuDensity = function(rvcObj){
+.psuDensity = function(rvcObj){
   ## Check type
   if (!inherits(rvcObj, "RVC")){
     stop("rvcObj must be of class RVC. Type ?rvcData for more information")
