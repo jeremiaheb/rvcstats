@@ -2,12 +2,10 @@
 rvcData = function(data, species, years = "all", strata = "all",
                    length.classes = "all", seperate.protected = FALSE,
                    specify.variables = FALSE){  
-  ## ToDo: Allow user to specify variables
+  ## ToDo: Allow user to specify variables??
   if (specify.variables){
     
   }
-  
-  ##ToDo: Figure out strata from data if STRAT variable not present
   
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
@@ -31,6 +29,12 @@ rvcData = function(data, species, years = "all", strata = "all",
   .inList("year(s)", years, data$YEAR)
   strata = toupper(strata)
   .inList("strata", strata, data$STRAT)
+  
+  ## subset data by species, year, and strata
+  data = subset(
+    data,
+    subset = YEAR %in% years & STRAT %in% strata & SPECIES_CD %in% species
+  )
   
   ## list of variables to aggregate by
   agg.by = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR")
