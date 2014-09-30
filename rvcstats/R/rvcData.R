@@ -12,7 +12,7 @@ rvcData = function(data, species, years = "all", strata = "all",
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
   reqd = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR", "NUM")
-  inList("required variables", reqd, names(data))
+  .inList("required variables", reqd, names(data))
   
   ##ToDo: Add parser to full scientific names are trucated to SPECIES_CD
   
@@ -27,10 +27,10 @@ rvcData = function(data, species, years = "all", strata = "all",
   
   ## Check that species, year, and strata are in data
   species = toupper(species)
-  inList("species", species, data$SPECIES_CD)
-  inList("year(s)", years, data$YEAR)
+  .inList("species", species, data$SPECIES_CD)
+  .inList("year(s)", years, data$YEAR)
   strata = toupper(strata)
-  inList("strata", strata, data$STRAT)
+  .inList("strata", strata, data$STRAT)
   
   ## list of variables to aggregate by
   agg.by = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR")

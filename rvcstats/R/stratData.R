@@ -6,7 +6,7 @@ stratData = function(data, years = "all", strata = "all", includes.protected = F
   ## Check to make sure required variables are present 
   names(data) = toupper(names(data))
   reqd = c("YEAR", "STRAT", "NTOT")
-  inList("Required Variable", reqd, names(data))
+  .inList("Required Variable", reqd, names(data))
   
   ## If strata set to all, select all strata
   if (strata == "all"){
@@ -23,7 +23,7 @@ stratData = function(data, years = "all", strata = "all", includes.protected = F
   
   ## If includes.protected is TRUE add includes protected to agg.by
   if (includes.protected){
-    inList("protection status variable", "PROT", names(data))
+    .inList("protection status variable", "PROT", names(data))
     agg.by = c(agg.by, "PROT")
   }
   
