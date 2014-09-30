@@ -33,7 +33,7 @@ stratDensity = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000) {
   }
   
   ## Calculate PSU densities
-  psu = psuDensity(rvcObj)
+  psu = .psuDensity(rvcObj)
   
   ## Set the variables by which to aggregate
   agg.by = psu[names(psu) %w/o% c("PRIMARY_SAMPLE_UNIT", "NUM",
