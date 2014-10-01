@@ -12,7 +12,8 @@ rvcData = function(data, species, years = "all", strata = "all",
   reqd = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR", "NUM")
   .inList("required variables", reqd, names(data))
   
-  ##ToDo: Add parser to full scientific names are trucated to SPECIES_CD
+  ##Parse full scientific names are trucated to SPECIES_CD
+  species = .toSpcCd(species)
   
   ## If years is "all" set to all years in data
   if (years == "all"){
@@ -24,7 +25,6 @@ rvcData = function(data, species, years = "all", strata = "all",
   }
   
   ## Check that species, year, and strata are in data
-  species = toupper(species)
   .inList("species", species, data$SPECIES_CD)
   .inList("year(s)", years, data$YEAR)
   strata = toupper(strata)
