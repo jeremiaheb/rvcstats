@@ -34,9 +34,9 @@ stratData = function(data, years = "all", strata = "all", includes.protected = F
   names(newData)[length(names(newData))] = "NTOT"
   
   ## Calculate weighting
-  tot = sum(newData$NTOT)
-  newData$wh = newData$NTOT/tot
-  
+  tot = aggregate(NTOT ~ YEAR, data = data, FUN = sum)
+  xx = merge(newData,tot, by = "YEAR") 
+  newData$wh = xx$NTOT.x/xx$NTOT.y
   ## Change class to STRAT
   class(newData) = "STRAT"
   
