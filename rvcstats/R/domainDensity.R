@@ -4,6 +4,12 @@
 ## to stratDensity
 domainDensity = function(rvcObj, stratObj, ...){
   strat = stratDensity(rvcObj, stratObj, ...)
+  ## If strat density includes protected areas, reweight by protected status
+  if ("PROT" %in% names(strat)){
+    TOTprot = sum(strat$NTOT[strat$PROT == 1])
+    TOTnotp = sum(strat$NTOT[strat$PROT == 0])
+    strat$wh = ifelse(strat$PROT == 1, strat$NTOT/TOTprot,strat$NTOT/TOTnotp)
+  }
   ## Select aggregate by variables
   agg.by = as.list(strat[names(strat) %w/o% c("NTOT","STRAT", "wh", "dbar", "mbar", "n",
                                       "v1", "v2", "nm", "v2", "vbar", "NMTOT")])
