@@ -6,9 +6,13 @@ domainDensity = function(rvcObj, stratObj, ...){
   strat = stratDensity(rvcObj, stratObj, ...)
   ## If strat density includes protected areas, reweight by protected status
   if ("PROT" %in% names(strat)){
-    TOTprot = sum(strat$NTOT[strat$PROT == 1])
-    TOTnotp = sum(strat$NTOT[strat$PROT == 0])
-    strat$wh = ifelse(strat$PROT == 1, strat$NTOT/TOTprot,strat$NTOT/TOTnotp)
+    xx = aggregate(NTOT ~ YEAR + PROT, data = unique(strat[c("NTOT","YEAR","PROT")]), FUN = sum)
+    strat$id = 1:nrow(strat) #save order of strat
+    xx = merge(strat,xx, by = c("YEAR","PROT"))
+    xx = xx[order(xx$id),] ## Retrieve order of of strat
+    strat$wh = xx$NTOT.x/xx$NTOT.y
+    ## Clean Up
+    strat = strat[names(strat) %w/o% "id"]
   }
   ## Select aggregate by variables
   agg.by = as.list(strat[names(strat) %w/o% c("NTOT","STRAT", "wh", "dbar", "mbar", "n",
