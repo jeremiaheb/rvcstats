@@ -1,6 +1,6 @@
 ## Returns: an RVC object from data as a data.frame subsetted by given parameters
 rvcData = function(data, species, years = "all", strata = "all",
-                   length.classes = "all", seperate.protected = FALSE,
+                   length.classes = "all", includes.protected = FALSE,
                    specify.variables = FALSE){  
   ## ToDo: Allow user to specify variables??
   if (specify.variables){
@@ -42,8 +42,8 @@ rvcData = function(data, species, years = "all", strata = "all",
   ## ToDO: If length.classes is not all, include in vars, and sum by 
   ## the specified classes
   
-  ## If seperate.protected add to vars and subset by protected status
-  if (seperate.protected){
+  ## If includes.protected add to vars and subset by protected status
+  if (includes.protected){
     data$PROT = ifelse(data$MPA_NR > 0, 1,0)
     agg.by = c(agg.by, "PROT")
   }

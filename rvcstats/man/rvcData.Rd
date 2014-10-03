@@ -9,13 +9,13 @@ Reef Visual Census Data Object
 Subsets input data by specified parameters and outputs an object of class "RVC" which can be used by the other functions within the rvcstats package.  
 }
 \usage{
-rvcData(data, species, years = "all", strata = "all", length.classes = "all", seperate.protected = FALSE, specify.variables = FALSE)
+rvcData(data, species, years = "all", strata = "all", length.classes = "all", includes.protected = FALSE, specify.variables = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
 %%     ~~Describe \code{data} here~~
-A data.frame or list containing analysis ready data. Data must include columns for species code (SPECIES_CD), year (YEAR), primary sample unit (PRIMARY_SAMPLE_UNIT), station (STATION_NR), stratum (STRAT), and number counted (NUM). Other variables such as protected status (MPA_NR) or length (LEN) are needed if seperate.protected or length.classes are anything other than the defaults. 
+A data.frame or list containing analysis ready data. Data must include columns for species code (SPECIES_CD), year (YEAR), primary sample unit (PRIMARY_SAMPLE_UNIT), station (STATION_NR), stratum (STRAT), and number counted (NUM). Other variables such as protected status (MPA_NR) or length (LEN) are needed if includes.protected or length.classes are anything other than the defaults. 
 }
   \item{species}{
 %%     ~~Describe \code{species} here~~
@@ -33,9 +33,9 @@ A character vector of the four letter designations indicating the stratum or str
 %%     ~~Describe \code{length.classes} here~~
 NOT YET IMPLEMENTED: A numeric vector of length class breakpoints in cm for which density is to be calculated seperately (e.g. c(24,32) will create three length classes: <24cm, 24-32cm, >32cm)
 }
-  \item{seperate.protected}{
-%%     ~~Describe \code{seperate.protected} here~~
-A boolean indicating whether or not to analyze protected areas seperately from unprotected areas. Default value is FALSE. 
+  \item{includes.protected}{
+%%     ~~Describe \code{includes.protected} here~~
+A boolean indicating whether or not to analyze protected areas separately from unprotected areas. Default value is FALSE. 
 }
   \item{specify.variables}{
 %%     ~~Describe \code{specify.variables} here~~
