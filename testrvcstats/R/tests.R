@@ -1,0 +1,1 @@
+testpackage = function(){test_dir("tests")}
