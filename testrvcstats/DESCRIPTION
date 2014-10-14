@@ -7,4 +7,4 @@ Author: Harry Ganz
 Maintainer: Harry Ganz <hganz@rsmas.miami.edu>
 Description: Has functions designed to test corresponding functions in rvcstats package
 License: GPLv3
-Depends: rvcstats
+Depends: rvcstats, testthat
