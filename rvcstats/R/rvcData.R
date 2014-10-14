@@ -36,7 +36,7 @@ rvcData = function(data, species, years = "all", strata = "all",
   
   ## ToDO: If length.classes is not all, include in vars, and sum by 
   ## the specified classes
-  
+
   ## If includes.protected add to vars and subset by protected status
   if (includes.protected){
     .inList("required variable", "MPA_NR", names(data))
@@ -44,7 +44,7 @@ rvcData = function(data, species, years = "all", strata = "all",
     agg.by = c(agg.by, "PROT")
   }
   
-  ## Subset and combine Data from all length classes
+  ## Aggregate data by selected pars
   agg.by = as.list(data[agg.by])
   newData = aggregate(
       data$NUM, by = agg.by, FUN = sum
