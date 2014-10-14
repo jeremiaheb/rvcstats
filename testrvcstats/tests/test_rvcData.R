@@ -16,6 +16,14 @@ expect_error(rvcData(test1N1, "NOT FISH"), "required variables YEAR not found in
 expect_error(rvcData(test1N2, "NOT FISH", includes.protected = TRUE), "required variable MPA_NR not found in data")
 expect_error(rvcData(test1N3, "NOT FISH"), "required variables YEAR, STRAT not found in data")
 
+context(" testing missing species/years/strata")
+expect_error(rvcData(test1, species = "DOESN'T EXIST"), "species DOE EXIS not found in data")
+expect_that(rvcData(test1, species = "NOT FISH", years = 2012), throws_error())
+expect_error(rvcData(test1, "NOT FISH", strata = "NOTSTRAT"), "strata NOTSTRAT not found in data")
+
+context(" testing class")
+expect_is(rvcData(test1, "NOT FISH"), "RVC")
+
 
 
 
