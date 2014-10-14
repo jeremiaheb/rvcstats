@@ -28,8 +28,9 @@ stratData = function(data, years = "all", strata = "all", includes.protected = F
   }
   
   ## Subset and aggregate (if neccessary) by agg.by variables
-  agg.by = as.list(data[agg.by])
-  newData = aggregate(data$NTOT, by = agg.by, FUN = sum)
+  sub = subset(data, YEAR %in% years & STRAT %in% strata)
+  agg.by = as.list(sub[agg.by])
+  newData = aggregate(sub$NTOT, by = agg.by, FUN = sum)
   names(newData)[length(names(newData))] = "NTOT"
   
   ## Calculate weighting
