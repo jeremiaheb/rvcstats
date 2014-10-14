@@ -44,6 +44,7 @@ rvcData = function(data, species, years = "all", strata = "all",
   
   ## If includes.protected add to vars and subset by protected status
   if (includes.protected){
+    .inList("required variable", "MPA_NR", names(data))
     data$PROT = ifelse(data$MPA_NR > 0, 1,0)
     agg.by = c(agg.by, "PROT")
   }
