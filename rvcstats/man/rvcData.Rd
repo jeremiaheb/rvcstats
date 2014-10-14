@@ -9,7 +9,7 @@ Reef Visual Census Data Object
 Subsets input data by specified parameters and outputs an object of class "RVC" which can be used by the other functions within the rvcstats package.  
 }
 \usage{
-rvcData(data, species, years = "all", strata = "all", length.classes = "all", includes.protected = FALSE, specify.variables = FALSE)
+rvcData(data, species, years = "all", strata = "all", length.classes = "all", includes.protected = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -37,10 +37,7 @@ NOT YET IMPLEMENTED: A numeric vector of length class breakpoints in cm for whic
 %%     ~~Describe \code{includes.protected} here~~
 A boolean indicating whether or not to analyze protected areas separately from unprotected areas. Default value is FALSE. 
 }
-  \item{specify.variables}{
-%%     ~~Describe \code{specify.variables} here~~
-NOT YET IMPLEMENTED: A list of variable names to use instead of the defaults. 
-}
+
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

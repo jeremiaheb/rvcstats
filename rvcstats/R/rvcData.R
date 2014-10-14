@@ -1,11 +1,6 @@
 ## Returns: an RVC object from data as a data.frame subsetted by given parameters
 rvcData = function(data, species, years = "all", strata = "all",
-                   length.classes = "all", includes.protected = FALSE,
-                   specify.variables = FALSE){  
-  ## ToDo: Allow user to specify variables??
-  if (specify.variables){
-    
-  }
+                   length.classes = "all", includes.protected = FALSE){  
   
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
