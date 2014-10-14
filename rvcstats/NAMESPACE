@@ -1,3 +1,4 @@
-#exportPattern("^[^\\.]")
-exportPattern("^[[:alpha:]]+")
+## Development
+exportPattern("^[[:alpha:]+[:punct:]+]")
+## Production
 #export("domainDensity", "rvcData", "stratData", "stratDensity")
