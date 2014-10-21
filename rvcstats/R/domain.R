@@ -33,6 +33,7 @@ domain = function(rvcObj, stratObj, ...){
   domain$variance = with(strat, aggregate(wh^2*vbar, by = agg.by, FUN = sum)$x)
   domain$se = sqrt(domain$variance)
   domain$cv = with(domain, (se/yi)*100)
+  domain$n = with(strat, aggregate(n, by = agg.by, FUN = sum)$x)
   domain$nm = with(strat, aggregate(nm, by = agg.by, FUN = sum)$x)
   
   return(domain)
