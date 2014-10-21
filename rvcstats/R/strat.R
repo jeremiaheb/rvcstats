@@ -1,11 +1,11 @@
-## Returns: a data.frame of avg. counts (dbar), total stratum variance (vbar)
+## Returns: a data.frame of avg. counts/ occurence (yi), total stratum variance (vbar)
 ## variance among PSUs (v1), variance among SSUs (v2), 
 ## avg. SSUs per PSU (mbar), number of PSUs (n), number of SSUs (nm),
 ## total number of possible PSUs (NTOT), and total number of possible
 ## SSUs (NMTOT), and stratum weighting factor (wh) per Stratum
 ## Given an RVC object, a STRAT obj, and SSU and PSU areas
 ## 177m^2 and 40000m^2, by default
-stratDensity = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000) {
+strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, ...) {
   ## Make sure stratObj is of class STRAT
   if (!inherits(stratObj, "STRAT")){
     stop("stratObj must be of class STRAT, type ?stratData for more info")
@@ -32,21 +32,21 @@ stratDensity = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000) {
     }
   }
   
-  ## Calculate PSU densities
-  psu = .psuDensity(rvcObj)
+  ## Calculate PSU densities/occurrences
+  psu = .psu(rvcObj, ...)
   
   ## Set the variables by which to aggregate
   agg.by = psu[names(psu) %w/o% c("PRIMARY_SAMPLE_UNIT", "NUM",
-                                  "dbar", "vari", "m", "np.freq")]
-  ## Calculate dbar
-  strat = aggregate(psu$dbar, by = agg.by, FUN = mean)
-  names(strat)[length(names(strat))] = "dbar"
+                                  "yi", "vari", "m", "np.freq")]
+  ## Calculate average density/occurrence
+  strat = aggregate(psu$yi, by = agg.by, FUN = mean)
+  names(strat)[length(names(strat))] = "yi"
   ## Calculate mbar
   strat$mbar = aggregate(psu$m, by = agg.by, FUN = mean)$x
   ## Calculate n
   strat$n = aggregate(psu$m, by = agg.by, FUN = length)$x
   ## Calculate v1
-  strat$v1 = aggregate(psu$dbar, by = agg.by, FUN = var)$x
+  strat$v1 = aggregate(psu$yi, by = agg.by, FUN = var)$x
   ## Calculate nm, v2, and np
   strat$nm = aggregate(psu$m, by = agg.by, FUN = sum)$x
   np = aggregate(psu$np.freq, by = agg.by, FUN = sum)$x
