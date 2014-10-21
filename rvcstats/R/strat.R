@@ -2,10 +2,10 @@
 ## variance among PSUs (v1), variance among SSUs (v2), 
 ## avg. SSUs per PSU (mbar), number of PSUs (n), number of SSUs (nm),
 ## total number of possible PSUs (NTOT), and total number of possible
-## SSUs (NMTOT), and stratum weighting factor (wh) per Stratum
+## SSUs (NMTOT) per Stratum
 ## Given an RVC object, a STRAT obj, and SSU and PSU areas
 ## 177m^2 and 40000m^2, by default
-strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, ...) {
+strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, calculate.density = TRUE) {
   ## Make sure stratObj is of class STRAT
   if (!inherits(stratObj, "STRAT")){
     stop("stratObj must be of class STRAT, type ?stratData for more info")
@@ -33,7 +33,7 @@ strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, ...) {
   }
   
   ## Calculate PSU densities/occurrences
-  psu = .psu(rvcObj, ...)
+  psu = .psu(rvcObj, calculate.density)
   
   ## Set the variables by which to aggregate
   agg.by = psu[names(psu) %w/o% c("PRIMARY_SAMPLE_UNIT", "NUM",
