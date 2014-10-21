@@ -7,6 +7,9 @@
   if (!inherits(rvcObj, "RVC")){
     stop("rvcObj must be of class RVC. Type ?rvcData for more information")
   }
+  ## if it exists, drop the length.frequncy table from rvcObj
+  if (!is.null(rvcObj$length.frequency)){rvcObj = rvcObj[names(rvcObj) %w/o% "length.frequency"]}
+  
   ## Convert rvc obj to list
   class(rvcObj) = "list"
   
