@@ -1,6 +1,6 @@
 ## Returns: an RVC object from data as a data.frame subsetted by given parameters
 rvcData = function(data, species, years = "all", strata = "all",
-                   length.classes = "all", includes.protected = FALSE){  
+                   includes.length.frequency = FALSE, includes.protected = FALSE){  
   
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
@@ -34,14 +34,17 @@ rvcData = function(data, species, years = "all", strata = "all",
   ## list of variables to aggregate by
   agg.by = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR")
   
-  ## ToDO: If length.classes is not all, include in vars, and sum by 
-  ## the specified classes
 
   ## If includes.protected add to vars and subset by protected status
   if (includes.protected){
     .inList("required variable", "MPA_NR", names(data))
     data$PROT = ifelse(data$MPA_NR > 0, 1,0)
     agg.by = c(agg.by, "PROT")
+  }
+  
+  ## if includes.length.frequency is TRUE calculate the length frequecies
+  if (includes.length.frequency){
+    lenf = .lengthFreq(data, includes.protected)
   }
   
   ## Aggregate data by selected pars
@@ -52,5 +55,8 @@ rvcData = function(data, species, years = "all", strata = "all",
   names(newData)[length(names(newData))] = "NUM"
   
   class(newData) <- "RVC"
+  
+  if (includes.length.frequency){newData$length.frequency = lenf}
+  
   return(newData)
 }
