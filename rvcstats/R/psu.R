@@ -7,8 +7,6 @@
   if (!inherits(rvcObj, "RVC")){
     stop("rvcObj must be of class RVC. Type ?rvcData for more information")
   }
-  ## if it exists, drop the length.frequncy table from rvcObj
-  if (!is.null(rvcObj$length.frequency)){rvcObj = rvcObj[names(rvcObj) %w/o% "length.frequency"]}
   
   ## Convert rvc obj to list
   class(rvcObj) = "list"
@@ -17,7 +15,7 @@
   agg.by = rvcObj[names(rvcObj) %w/o% c("STATION_NR", "NUM")]
   
   ## Number of SSUs per PSU
-  psu= aggregate(rvcObj$STATION_NR, by = agg.by, FUN = length) #max) #these two functions
+  psu= aggregate(rvcObj$STATION_NR, by = agg.by, FUN = length)# these two functions
   ## should produce the same results, but they don't
   names(psu)[length(names(psu))] = "m"
   
