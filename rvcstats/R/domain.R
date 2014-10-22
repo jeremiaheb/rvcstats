@@ -35,6 +35,7 @@ domain = function(rvcObj, stratObj, ...){
   domain$cv = with(domain, (se/yi)*100)
   domain$n = with(strat, aggregate(n, by = agg.by, FUN = sum)$x)
   domain$nm = with(strat, aggregate(nm, by = agg.by, FUN = sum)$x)
+  domain$NMTOT = with(strat, aggregate(NMTOT, by = agg.by, FUN = sum)$x)
   
   return(domain)
 }
