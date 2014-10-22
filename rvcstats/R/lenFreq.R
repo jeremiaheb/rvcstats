@@ -39,10 +39,9 @@ lenFreq = function(data, species, years = "all", strata = "all",
   ## Total for each grouping
   xx = aggregate(data$NUM, by = as.list(data[agg.by]), FUN = sum)
   names(xx)[length(names(xx))] = "TOTAL"
-  
+
   ## Add LEN to agg.by variables
   agg.by = c(agg.by, "LEN")
-  
   ## Total for each length class within each grouping
   yy = aggregate(data$NUM, by = as.list(data[agg.by]), FUN = sum)
   names(yy)[length(names(yy))] = "COUNT"
@@ -53,7 +52,7 @@ lenFreq = function(data, species, years = "all", strata = "all",
   rm(xx,yy)
   
   ## Calculate and return length frequencies
-  zz$frequency = zz$COUNT/zz$TOTAL
+  zz$frequency = ifelse(zz$TOTAL !=0, zz$COUNT/zz$TOTAL,0)
   zz = zz[names(zz) %w/o% c("COUNT", "TOTAL")]
   return(zz)
   
