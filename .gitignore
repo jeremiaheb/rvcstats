@@ -3,4 +3,3 @@
 *.Rcheck/
 *.gz
 .Rproj.user
-rvcstats/data/
