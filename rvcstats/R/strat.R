@@ -10,6 +10,12 @@ strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, calculate.d
   if (!inherits(stratObj, "STRAT")){
     stop("stratObj must be of class STRAT, type ?stratData for more info")
   }
+  ## TODO: Add wrapper so these checks becomes unneccessary
+  ## Check to make sure both include or exclude protected status
+  if (!is.null(rvcObj$PROT) & is.null(stratObj$PROT) || 
+        is.null(rvcObj$PROT) & !is.null(stratObj$PROT)){
+    stop("rvcObj and stratObj must have matching arguments for includes.protected")
+  }
   ## Make sure years and strata in rvcObj and stratObj match
   rvcYrs =  unique(rvcObj$YEAR)
   strYrs = unique(stratObj$YEAR)
