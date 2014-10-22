@@ -1,7 +1,6 @@
 ## Returns: an RVC object from data as a data.frame subsetted by given parameters
 rvcData = function(data, species, years = "all", strata = "all",
-                   includes.length.frequency = FALSE, includes.protected = FALSE){  
-  
+                   includes.protected = FALSE){  
   ## Check to make sure variable names are correct in data
   names(data) = toupper(names(data))
   reqd = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR", "NUM")
@@ -10,41 +9,30 @@ rvcData = function(data, species, years = "all", strata = "all",
   ##Parse full scientific names are trucated to SPECIES_CD
   species = .toSpcCd(species)
   
-  ## If years is "all" set to all years in data
-  if (years == "all"){
-    years = unique(data$YEAR)
+  ## If years is not "all", check that years are in data and subset by years
+  if (years != "all"){
+    .inList("year(s)", years, data$YEAR)
+    data = subset(data, YEAR %in% years)
   }
-  ## If strata is "all" set to all strata in data
-  if (strata == "all"){
-    strata = unique(data$STRAT)
+  ## If strata is not "all" check that strata are in data and subset by strata
+  if (strata != "all"){
+    strata = toupper(strata)
+    .inList("strata", strata, data$STRAT)
+    data = subset(data, STRAT %in% strata)
   }
-  
-  ## Check that species, year, and strata are in data
+  ## Check that species are in data, and subset by species
   .inList("species", species, data$SPECIES_CD)
-  .inList("year(s)", years, data$YEAR)
-  strata = toupper(strata)
-  .inList("strata", strata, data$STRAT)
-  
-  ## subset data by species, year, and strata
-  data = subset(
-    data,
-    subset = YEAR %in% years & STRAT %in% strata & SPECIES_CD %in% species
-  )
-  
+  data = subset(data, SPECIES_CD %in% species)
+
   ## list of variables to aggregate by
   agg.by = c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR")
   
 
-  ## If includes.protected add to vars and subset by protected status
+  ## If includes.protected is TRUE add to vars and code for protected status
   if (includes.protected){
     .inList("required variable", "MPA_NR", names(data))
     data$PROT = ifelse(data$MPA_NR > 0, 1,0)
     agg.by = c(agg.by, "PROT")
-  }
-  
-  ## if includes.length.frequency is TRUE calculate the length frequecies
-  if (includes.length.frequency){
-    lenf = .lengthFreq(data, includes.protected)
   }
   
   ## Aggregate data by selected pars
@@ -55,8 +43,6 @@ rvcData = function(data, species, years = "all", strata = "all",
   names(newData)[length(names(newData))] = "NUM"
   
   class(newData) <- "RVC"
-  
-  if (includes.length.frequency){newData$length.frequency = lenf}
   
   return(newData)
 }
