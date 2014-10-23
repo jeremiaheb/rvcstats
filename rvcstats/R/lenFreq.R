@@ -54,6 +54,7 @@ lenFreq = function(data, species, years = "all", strata = "all",
   ## Calculate and return length frequencies
   zz$frequency = ifelse(zz$TOTAL !=0, zz$COUNT/zz$TOTAL,0)
   zz = zz[names(zz) %w/o% c("COUNT", "TOTAL")]
+  #class(zz) <- "LFRQ"
   return(zz)
   
 }
