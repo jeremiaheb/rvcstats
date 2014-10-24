@@ -57,6 +57,7 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
   * domainOccurrence: A wrapper for domain that explicitly measures occurrence from original dataframes
   * stratDensity: A wrapper for strat that explicitly measures density from original dataframes
   * stratOccurrence: A wrapper for strat that explicitly measures occurrence from original dataframes
+ 
  **It is suggested that beggining users use the high level functions to avoid possible errors**
   
   
