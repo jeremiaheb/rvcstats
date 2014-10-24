@@ -9,13 +9,13 @@ Reef Visual Census Data Object
 Subsets input data by specified parameters and outputs an object of class "RVC" which can be used by the other functions within the rvcstats package.  
 }
 \usage{
-rvcData(data, species, years = "all", strata = "all", length.classes = "all", includes.protected = FALSE)
+rvcData(data, species, years = "all", strata = "all", includes.protected = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
 %%     ~~Describe \code{data} here~~
-A data.frame or list containing analysis ready data. Data must include columns for species code (SPECIES_CD), year (YEAR), primary sample unit (PRIMARY_SAMPLE_UNIT), station (STATION_NR), stratum (STRAT), and number counted (NUM). Other variables such as protected status (MPA_NR) or length (LEN) are needed if includes.protected or length.classes are anything other than the defaults. 
+A data.frame or list containing analysis ready data. Data must include columns for species code (SPECIES_CD), year (YEAR), primary sample unit (PRIMARY_SAMPLE_UNIT), station (STATION_NR), stratum (STRAT), and number counted (NUM). Other variables such as protected status (MPA_NR) is needed if includes.protected is TRUE. 
 }
   \item{species}{
 %%     ~~Describe \code{species} here~~
@@ -23,15 +23,11 @@ A string or vector of strings containing the species codes (first three letters 
 }
   \item{years}{
 %%     ~~Describe \code{years} here~~
-A number or numeric vector containing the years the user is intereted in analyzing. Default value of "all" selects for all available years.
+A number or numeric vector containing the years the user is interested in analyzing. Default value of "all" selects for all available years.
 }
   \item{strata}{
 %%     ~~Describe \code{strata} here~~
-A character vector of the four letter designations indicating the stratum or strata the user is interested in analyzing. Strata codes are: INPR - inshore patch reef, MCPR - mid-channel patch reef, OFPR - offshore patch reef, FSLR - forereef shallow low relif, FMLR - forereef medium depth low relief, FDLR - forereef deep low relief, HRRF - High relief reef. Default value of "all" selects for all available strata.
-}
-  \item{length.classes}{
-%%     ~~Describe \code{length.classes} here~~
-NOT YET IMPLEMENTED: A numeric vector of length class breakpoints in cm for which density is to be calculated seperately (e.g. c(24,32) will create three length classes: <24cm, 24-32cm, >32cm)
+A character vector of the four letter designations indicating the stratum or strata the user is interested in analyzing. Strata codes are: INPR - inshore patch reef, MCPR - mid-channel patch reef, OFPR - offshore patch reef, FSLR - forereef shallow low relief, FMLR - forereef medium depth low relief, FDLR - forereef deep low relief, HRRF - High relief reef. Default value of "all" selects for all available strata.
 }
   \item{includes.protected}{
 %%     ~~Describe \code{includes.protected} here~~
@@ -41,7 +37,7 @@ A boolean indicating whether or not to analyze protected areas separately from u
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
-The output from the rvcData function is intended to be used  as input into the other functions in this package. The output from the rvcData function itself is 'raw data'. 
+The output from the rvcData function is intended to be used  as input into the other functions in this package, such as \code{\link{domain}}, and \code{\link{strat}}
 }
 \value{
 %%  ~Describe the value returned
@@ -68,9 +64,6 @@ The station number (secondary sample unit) of the primary sample unit in which t
 \item{PROT}{
 The protected status of the area in which the sample was collected. 1 if it was in a protected area and 0 if it was not
 }
-\item{LEN}{
-The length class, in centimeters, of the sample
-}
 \item{NUM}{
 The sample count, averaged among divers at a given station. 
 }
@@ -80,16 +73,32 @@ The sample count, averaged among divers at a given station.
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 \code{\link{stratData}}
-\code{\link{stratDensity}}
-\code{\link{domainDensity}}
+\code{\link{strat}}
+\code{\link{domain}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+## Import simulated data
+data(rvc2)
+data(strat2)
 
-## The function is currently defined as
-## ToDo: Add examples
+## stratum and domain density estimates for Lutjanus griseus and 
+## Epinephelus morio without estimating protected areas separately
+sample = rvcData(rvc2, c("LUT GRIS", "Epinephelus morio"), years = 2011)
+strata = stratData(strat2, years = 2011)
+## Stratum estimates
+strat(sample, strata)
+## Domain Estimates
+domain(sample, strata)
+
+## Same as above, but seperately estimating protected areas
+sample = rvcData(rvc2, c("LUT GRIS", "Epinephelus morio"), years = 2011, includes.protected = TRUE)
+strata = stratData(strat2, years = 2011, includes.protected = TRUE)
+## Stratum estimates
+strat(sample, strata)
+## Domain Estimates
+domain(sample, strata)
+
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
