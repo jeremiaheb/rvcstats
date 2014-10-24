@@ -10,12 +10,12 @@ rvcData = function(data, species, years = "all", strata = "all",
   species = .toSpcCd(species)
   
   ## If years is not "all", check that years are in data and subset by years
-  if (years != "all"){
+  if (all(years != "all")){
     .inList("year(s)", years, data$YEAR)
     data = subset(data, YEAR %in% years)
   }
   ## If strata is not "all" check that strata are in data and subset by strata
-  if (strata != "all"){
+  if (all(strata != "all")){
     strata = toupper(strata)
     .inList("strata", strata, data$STRAT)
     data = subset(data, STRAT %in% strata)

@@ -9,13 +9,13 @@ stratData = function(data, years = "all", strata = "all", includes.protected = F
   .inList("Required Variable", reqd, names(data))
   
   ## If strata set to all, select all strata
-  if (strata == "all"){
-    strata = unique(data$STRAT)
+  if (all(strata != "all")){
+    data = subset(data, STRAT %in% strata)
   }
   
   ## If years set to all select all years
-  if (years == "all"){
-    years = unique(data$YEAR)
+  if (all(years != "all")){
+  data = subset(data, YEAR %in% years)
   }
   
   ## Select variables to aggregate by
@@ -28,9 +28,8 @@ stratData = function(data, years = "all", strata = "all", includes.protected = F
   }
   
   ## Subset and aggregate (if neccessary) by agg.by variables
-  sub = subset(data, YEAR %in% years & STRAT %in% strata)
-  agg.by = as.list(sub[agg.by])
-  newData = aggregate(sub$NTOT, by = agg.by, FUN = sum)
+  agg.by = as.list(data[agg.by])
+  newData = aggregate(data$NTOT, by = agg.by, FUN = sum)
   names(newData)[length(names(newData))] = "NTOT"
   
   ## Change class to STRAT
