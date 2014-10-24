@@ -79,8 +79,8 @@ stratDensity is a high-level wrapper for the \code{\link{strat}} function
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 \code{\link{domainDensity}}
-\code{\link{stratOccurence}}
-\code{\link(lenFreq)}
+\code{\link{stratOccurrence}}
+\code{\link{lenFreq}}
 }
 \examples{
 ## Import rvc and strat data

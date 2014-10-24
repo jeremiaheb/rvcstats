@@ -39,6 +39,7 @@ A character vector of the four letter designations indicating the stratum or str
 A boolean indicating whether or not to analyze protected areas separately from unprotected areas. Default value is FALSE.
 }
 }
+\value{
 Outputs a data.frame with:
 \item{occurrence}{A numeric vector of the average frequency of occurrence in a stratum}
 \item{mbar}{
