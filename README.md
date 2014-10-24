@@ -44,19 +44,19 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
    ## Calculate the length frequency of Grey Snapper, but aggregate by year and protected status
     lenFreq(rvc2, species = "LUT GRIS", agg.by = c("YEAR", "PROT"))
     ```
- ## List of Functions and short descriptions
+ ## List of functions and short descriptions
  This list is subject to change
- * Low-Level
-  * rvcData: Checks the RVC sample data and subsets by provided species, years, and strata. 
-  * stratData: Checks the stratum data and subsets by provided species, years, and strata.
-  * lenFreq: Outputs a table of length frequencies aggregated by variables provided by the user (e.g. year, strata, etc)
-  * strat: Calculates stratum level densities or occurrence
-  * domain: Calculates domain level densities or occurrence
- * High-Level
-  * domainDensity: A wrapper for domain that explicitly measures density from original dataframes
-  * domainOccurrence: A wrapper for domain that explicitly measures occurrence from original dataframes
-  * stratDensity: A wrapper for strat that explicitly measures density from original dataframes
-  * stratOccurrence: A wrapper for strat that explicitly measures occurrence from original dataframes
+ - Low-Level
+  	* rvcData: Checks the RVC sample data and subsets by provided species, years, and strata. 
+  	* stratData: Checks the stratum data and subsets by provided species, years, and strata.
+  	* lenFreq: Outputs a table of length frequencies aggregated by variables provided by the user (e.g. year, strata, etc)
+  	* strat: Calculates stratum level densities or occurrence
+  	* domain: Calculates domain level densities or occurrence
+ - High-Level
+  	* domainDensity: A wrapper for domain that explicitly measures density from original dataframes
+  	* domainOccurrence: A wrapper for domain that explicitly measures occurrence from original dataframes
+  	* stratDensity: A wrapper for strat that explicitly measures density from original dataframes
+  	* stratOccurrence: A wrapper for strat that explicitly measures occurrence from original dataframes
  
  **It is suggested that beggining users use the high level functions to avoid possible errors**
   
