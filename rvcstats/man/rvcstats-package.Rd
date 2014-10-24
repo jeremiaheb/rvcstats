@@ -11,7 +11,7 @@ An R package with functions designed to output tables, graphs, and time series o
 \tabular{ll}{
 Package: \tab rvcstats\cr
 Type: \tab Package\cr
-Version: \tab 0.1.1\cr
+Version: \tab 0.2.1\cr
 Date: \tab 2014-09-14\cr
 License: \tab GPLv3\cr
 }
