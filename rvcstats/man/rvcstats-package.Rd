@@ -33,8 +33,24 @@ rvc
 rvcstats
 }
 \seealso{
-\link{rvcData}
-\link{stratData}
+\strong{low-level functions}:
+\code{\link{rvcData}}
+\code{\link{stratData}}
+\code{\link{strat}}
+\code{\link{domain}}
+\code{\link{lenFreq}}
+
+\strong{high-level functions}:
+\code{\link{stratDensity}}
+\code{\link{stratOccurrence}}
+\code{\link{domainDensity}}
+\code{\link{domainOccurrence}}
+
+\strong{data-sets}:
+\code{\link{rvc1}}
+\code{\link{rvc2}}
+\code{\link{strat1}}
+\code{\link{strat2}}
 }
 \examples{
 %ToDo examples of test functions
