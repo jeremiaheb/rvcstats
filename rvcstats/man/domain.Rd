@@ -6,7 +6,7 @@ Sampling Domain Density/Occurrence
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Outputs a data.frame of domain level density/frequency of occurrence aggregated by year and species, and protected status (if includes.protected = TRUE for RVC and STRAT objects)
+Outputs a data.frame of domain level density/frequency of occurrence aggregated by year and species, and protected status (if includes.protected = TRUE for RVC and STRAT objects) }
 \usage{
 domain(rvcObj, stratObj, ...)
 }
@@ -82,7 +82,7 @@ strata = stratData(strat2)
 ## Domain estimates of density
 domain(sample, strata)
 ## Domain estimates of frequency of occurence
-domain(sample, strat, calculate.density = FALSE)
+domain(sample, strata, calculate.density = FALSE)
 
 ## Same as above, but seperately estimating protected areas
 sample = rvcData(rvc2, c("LUT GRIS", "Epinephelus morio"), includes.protected = TRUE)
@@ -91,7 +91,7 @@ strata = stratData(strat2, includes.protected = TRUE)
 ## Domain estimates of density
 domain(sample, strata)
 ## Domain estimates of frequency of occurence
-domain(sample, strat, calculate.density = FALSE)
+domain(sample, strata, calculate.density = FALSE)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

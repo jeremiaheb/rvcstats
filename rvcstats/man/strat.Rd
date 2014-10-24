@@ -93,11 +93,11 @@ strata = stratData(strat2, years = 2011)
 strat(sample, strata)
 
 ## Stratum estimates of frequency of occurrence
-strat(sample, strat, calculate.density = FALSE)
+strat(sample, strata, calculate.density = FALSE)
 
 ## If the secondary or primary unit areas change, those can also be set
 ## NOT RECCOMMENDED for most end-users
-strat(sample, strat, psu.area = 10000, ssu.area = 175)
+strat(sample, strata, psu.area = 10000, ssu.area = 175)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
