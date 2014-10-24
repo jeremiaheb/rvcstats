@@ -24,8 +24,15 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
   * A .csv or .txt file containing the names and total number of possible primary sampling units per stratum per year
 2. Once you have these data files you can turn them into data.frames in R by using the read.table or read.csv functions
   * Example:
-  ''' 
+  ``` 
     sample = read.csv("rvcdata.csv")
     strata = read.txt("stratadata.csv")
-  '''
+  ```
+3. Now you can finally start using the package, below are some examples (executable directly):
+ * Examples:
+  ```
+   ### Calculate domain level densities for Red Grouper for years 2000..2005
+    domainDensity(sample.data = sample, stratum.data = strata, species = "Epinephelus morio", years = 2000:2005)
+   ## Calculate stratum level occurrence for Grey Snapper 
+  
   
