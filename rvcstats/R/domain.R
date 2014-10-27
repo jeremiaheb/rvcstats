@@ -4,25 +4,6 @@
 ## to stratDensity
 domain = function(rvcObj, stratObj, ...){
   strat = strat(rvcObj, stratObj, ...)
-  ## If strat includes protected areas, weight strata by year and protected status,
-  ## otherwise weight only by year
-  if ("PROT" %in% names(strat)){
-    dat = unique(strat[c("NTOT","YEAR","PROT")])
-    f = formula(NTOT ~ YEAR + PROT)
-    by = c("YEAR", "PROT")
-  } else {
-    dat = unique(strat[c("NTOT","YEAR")])
-    f = formula(NTOT ~ YEAR)
-    by = "YEAR"
-  }
-  xx = aggregate(f, data = dat, FUN = sum)
-  strat$id = 1:nrow(strat) #save order of strat
-  xx = merge(strat,xx, by = by)
-  xx = xx[order(xx$id),] ## Retrieve order of of strat
-  strat$wh = xx$NTOT.x/xx$NTOT.y
-  ## Clean Up
-  rm(xx)
-  strat = strat[names(strat) %w/o% "id"]
   
   ## Select aggregate by variables
   agg.by = as.list(strat[names(strat) %w/o% c("NTOT","STRAT", "wh", "yi", "mbar", "n",

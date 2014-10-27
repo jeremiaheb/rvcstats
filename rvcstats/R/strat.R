@@ -73,5 +73,25 @@ strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, calculate.d
   strat2$vbar = with(strat2, ((1-fn)*v1/n)+((fn*(1-fm)*v2)/nm))
   strat2$NMTOT = strat2$NTOT*MTOT
   
+  ## If strat2 includes protected areas, weight strata by year and protected status,
+  ## otherwise weight only by year
+  if ("PROT" %in% names(strat2)){
+    dat = unique(strat2[c("NTOT","YEAR","PROT")])
+    f = formula(NTOT ~ YEAR + PROT)
+    by = c("YEAR", "PROT")
+  } else {
+    dat = unique(strat2[c("NTOT","YEAR")])
+    f = formula(NTOT ~ YEAR)
+    by = "YEAR"
+  }
+  xx = aggregate(f, data = dat, FUN = sum)
+  strat2$id = 1:nrow(strat2) #save order of strat2
+  xx = merge(strat2,xx, by = by)
+  xx = xx[order(xx$id),] ## Retrieve order of of strat2
+  strat2$wh = xx$NTOT.x/xx$NTOT.y
+  ## Clean Up
+  rm(xx)
+  strat2 = strat2[names(strat2) %w/o% "id"]
+  
 return(strat2)
 }
