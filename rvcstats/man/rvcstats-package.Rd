@@ -39,6 +39,7 @@ rvcstats
 \code{\link{strat}}
 \code{\link{domain}}
 \code{\link{lenFreq}}
+\code{\link{nStar}}
 
 \strong{high-level functions}:
 \code{\link{stratDensity}}
