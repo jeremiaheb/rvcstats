@@ -23,7 +23,7 @@ nStar = function(cv, rvcObj, stratObj, ..., m=2, per.stratum = TRUE){
   ## vstar = (cv/100)^2*yi^2
   vstar = ((cv/100)*weighted.mean(s$yi, s$wh))^2
   ## Optimal n per year
-  nstar = data.frame(YEAR = wsh$YEAR, SPECIES_CD = wsh$SPECIES_CD,  wsh = wsh$wsh, 
+  nstar = data.frame(YEAR = wsh$YEAR, SPECIES_CD = wsh$SPECIES_CD,  wsh = wsh$wsh, cv = cv,
                      nstar = (wsh$wsh*(wsh$wsh+wss))/(vstar+wsp))
   if (!per.stratum){
     nstar = nstar[,-3]
@@ -35,7 +35,7 @@ nStar = function(cv, rvcObj, stratObj, ..., m=2, per.stratum = TRUE){
   xx$nstarh = with(xx,nstar*(wh*sqrt(vbar)/wsh))
 #   
 #   ## Clean Up Returned Data
-  r = data.frame(YEAR = xx$YEAR, SPECIES_CD = xx$SPECIES_CD, STRAT = xx$STRAT, nstar = ceiling(xx$nstarh))
+  r = data.frame(YEAR = xx$YEAR, SPECIES_CD = xx$SPECIES_CD, STRAT = xx$STRAT, cv = cv, nstar = ceiling(xx$nstarh))
   return(r)  
 }
 }
