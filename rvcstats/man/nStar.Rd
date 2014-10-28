@@ -61,14 +61,14 @@ National Park Service (2009). "A cooperative multi-agency reef fish monitoring p
 }
 \note{
 %%  ~~further notes~~
-This is a low-level function. See \code{\link{optimalPSUs}} for a higher-level version. 
+This is a low-level function. See \code{\link{optimalPsus}} for a higher-level version. 
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-\code{\link{optimalPSUs}}
+\code{\link{optimalPsus}}
 }
 \examples{
 ## Load sample and stratum data
@@ -84,7 +84,6 @@ nStar(cv = 30, rvcObj=sample, stratObj=strata)
 
 ## Calculate domain level n* for CV of 10\%
 nStar(10, sample, strata, per.stratum = FALSE)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
