@@ -10,6 +10,11 @@ nStar = function(cv, rvcObj, stratObj, ..., m=2, per.stratum = FALSE){
     stop("make sure includes.protected = FALSE for rvcObj and stratObj.
          see ?rvcData and ?stratData for more details")
   }
+  ## Make sure cv is not a range, so that the by function used to
+  ## calculate vstar can be cast to a vector
+  if (length(cv)>1){
+    stop("cv cannot have length > 1")
+  }
   ## n* = sum(wh*suh * (sum(wh*suh) + sum(wh^2*s2h^2/m*wh*suh)))/
   ## (vstar + sum(wh^2*s1h^2/NTOT))
   s = strat(rvcObj, stratObj, ...)
@@ -21,10 +26,12 @@ nStar = function(cv, rvcObj, stratObj, ..., m=2, per.stratum = FALSE){
   ## wsp = sum(wh^2*s1^2/NTOT)
   wsp = aggregate(wh^2*v1/NTOT ~ YEAR + SPECIES_CD, data = s, FUN = sum)[,3]
   ## vstar = (cv/100)^2*yi^2
-  ## ToDO: fix
-  vstar = ((cv/100)*weighted.mean(s$yi, s$wh))^2
+  vstar = as.vector(by(s[c("yi", "wh")], s[c("YEAR", "SPECIES_CD")], FUN =
+               function(x){(cv/100)*weighted.mean(x$yi, x$wh)}))
   ## Optimal n per year
-  nstar = data.frame(YEAR = wsh$YEAR, SPECIES_CD = wsh$SPECIES_CD,  wsh = wsh$wsh, cv = cv,
+  ## ToDO: This might be better if matrices were used
+  ## so that cv could be a range
+  nstar = data.frame(YEAR = wsh$YEAR, SPECIES_CD = wsh$SPECIES_CD,  wsh = wsh$wsh,
                      nstar = (wsh$wsh*(wsh$wsh+wss))/(vstar+wsp))
   if (!per.stratum){
     nstar = nstar[,-3]
@@ -36,7 +43,7 @@ nStar = function(cv, rvcObj, stratObj, ..., m=2, per.stratum = FALSE){
   xx$nstarh = with(xx,nstar*(wh*sqrt(vbar)/wsh))
 #   
 #   ## Clean Up Returned Data
-  r = data.frame(YEAR = xx$YEAR, SPECIES_CD = xx$SPECIES_CD, STRAT = xx$STRAT, cv = cv, nstar = xx$nstarh)
+  r = data.frame(YEAR = xx$YEAR, SPECIES_CD = xx$SPECIES_CD, STRAT = xx$STRAT, nstar = xx$nstarh)
   return(r)  
 }
 }

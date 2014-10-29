@@ -16,7 +16,7 @@ nStar(cv, rvcObj, stratObj, ..., m = 2, per.stratum = TRUE)
 \arguments{
   \item{cv}{
 %%     ~~Describe \code{cv} here~~
-A numberic vector of the target coefficient of variance (standard deviation as a \strong{percent} of the mean)
+A number of the target coefficient of variance (\emph{standard deviation as a percent of the mean}). \strong{Note}: Cannot be a vector
 }
   \item{rvcObj}{
 %%     ~~Describe \code{rvcObj} here~~
@@ -36,7 +36,7 @@ Number of secondary sampling units per primary sampling unit.
 }
   \item{per.stratum}{
 %%     ~~Describe \code{per.stratum} here~~
-A boolean indicating whether n* should be calculated on a stratum level (default = TRUE) or on a domain level
+A boolean indicating whether n* should be calculated on a stratum level (TRUE) or on a domain level (FALSE). The default is TRUE.
 }
 }
 
@@ -47,9 +47,8 @@ A boolean indicating whether n* should be calculated on a stratum level (default
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 \item{YEAR}{Numeric vector of the year from which estimates were used to calculate n*. \strong{NOTE:} Not the n* calculation for that year, but for the year(s) afterwards}
-\item{SPECIES_CD}{A character vector of species codes for which the n* calculation applies}
+\item{SPECIES_CD}{A character vector of species codes for which the n* calculation applies. A species code consists of the first three letters of the genus name and the last four of the species name.}
 \item{STRAT}{A character vector indicating the stratum for which the n* estimate applies. Only present if per.stratum is set to TRUE (default)}
-\item{cv}{A numeric vector of the target coefficient which yields the n* estimates}
 \item{nstar}{A numeric vector of the optimal number of primary sampling units for the provided coefficient of variance}
 
 }
