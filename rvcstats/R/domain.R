@@ -2,8 +2,8 @@
 ## and total number of samples nm for the entire sampling domain
 ## Given: An RVC object, a STRAT object, and optional parameters passed
 ## to stratDensity
-domain = function(rvcObj, stratObj, ...){
-  strat = strat(rvcObj, stratObj, ...)
+domain = function(rvcObj, stratObj, calculate.density = TRUE, ...){
+  strat = strat(rvcObj, stratObj, calculate.density, ...)
   
   ## Select aggregate by variables
   agg.by = as.list(strat[names(strat) %w/o% c("NTOT","STRAT", "wh", "yi", "mbar", "n",

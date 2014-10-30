@@ -5,7 +5,7 @@
 ## SSUs (NMTOT) per Stratum
 ## Given an RVC object, a STRAT obj, and SSU and PSU areas
 ## 177m^2 and 40000m^2, by default
-strat = function(rvcObj, stratObj, ssu.area = 177, psu.area = 40000, calculate.density = TRUE) {
+strat = function(rvcObj, stratObj, calculate.density = TRUE, ssu.area = 177, psu.area = 40000) {
   ## Make sure stratObj is of class STRAT
   if (!inherits(stratObj, "STRAT")){
     stop("stratObj must be of class STRAT, type ?stratData for more info")
