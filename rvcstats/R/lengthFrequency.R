@@ -5,7 +5,7 @@ lengthFrequency = function(sample.data, stratum.data, species, years = "all", st
   L = lenFreq(sample.data, stratum.data, species, years, strata,
               includes.protected, by.stratum)
   ## Set aggregate by factors, and drop unused levels
-  agg.by = lapply(as.list(L[names(L) %w/o% c("LEN", "frequency")]), as.character)
+  agg.by = L[names(L) %w/o% c("LEN", "frequency"), drop = TRUE]
   
   summary = by(list(LEN = L$LEN,frequency = L$frequency), 
               agg.by,
