@@ -24,7 +24,8 @@ strat <- function(rvcObj, calc = "d") {
   ## Calculate n
   samp$n <- aggregate(psu$m, by = agg_by, FUN = length)$x;
   ## Calculate v1
-  samp$v1 <- aggregate(psu$yi, by = agg_by, FUN = var)$x;
+  samp$v1 <- aggregate(psu$yi, by = agg_by, 
+                       FUN = function(x){ifelse(is.na(var(x)),0,var(x))})$x;
   ## Calculate nm, v2, and np
   samp$nm <- aggregate(psu$m, by = agg_by, FUN = sum)$x;
   np <- aggregate(psu$np.freq, by = agg_by, FUN = sum)$x;
@@ -38,11 +39,11 @@ strat <- function(rvcObj, calc = "d") {
   ## Merge strat and samp
   strat2 <- merge(strat, samp)
   
-  ## Calculate MTOT
-  MTOT <- with(strat,round(GRID_SIZE^2/(pi*7.5^2), 0));
-  ## Calculate variance weights, variance, and NMTOT
-  fn <- with(strat2, n/NTOT);
-  fm <- with(strat2, mbar/MTOT);
+   ## Calculate MTOT
+   MTOT <- with(strat2,round(GRID_SIZE^2/(pi*7.5^2), 0));
+   ## Calculate variance weights, variance, and NMTOT
+   fn <- with(strat2, n/NTOT);
+   fm <- with(strat2, mbar/MTOT);
   strat2$vbar <- with(strat2, ((1-fn)*v1/n)+((fn*(1-fm)*v2)/nm));
   strat2$NMTOT <- with(strat2, NTOT*MTOT);
   
