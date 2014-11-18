@@ -40,7 +40,7 @@ rvcData = function(sample_data, stratum_data, species,
   if (all(length_class != "all")){
     sample_data$NUM  <- with(
       sample_data,
-      ifelse(NUM < length_class[1] | NUM > length_class[2],
+      ifelse(LEN < length_class[1] | LEN > length_class[2],
              0, NUM)
     );
   }
