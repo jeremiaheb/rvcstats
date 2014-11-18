@@ -1,10 +1,24 @@
-## Returns: a data.frame of avg. counts/ occurence (yi), total stratum variance (vbar)
-## variance among PSUs (v1), variance among SSUs (v2), 
-## avg. SSUs per PSU (mbar), number of PSUs (n), number of SSUs (nm),
-## total number of possible PSUs (NTOT), and total number of possible
-## SSUs (NMTOT) per Stratum
-## Given an RVC object and which parameter to calculate
-## 'd' for density (default) and 'p' for occurrence
+#' Stratum level estimates of density/occurrence
+#' @export
+#' @description Outputs the stratum level estimates of
+#' density or occurrence from an RVC object as a data.frame
+#' @param rvcObj
+#' An RVC object (see \code{\link{rvcData}})
+#' @param calc
+#' A character: 'd' to calculate density  estimates(default),
+#'  or 'p' for occurrence estimates
+#'  @return A data.frame containing the year, species, and stratum info as 
+#'  well as:
+#'  \item{wh}{The weighting factor for a particular stratum}
+#'  \item{yi}{The average density/occurrence}
+#'  \item{mbar}{The average number of secondary sample units per stratum}
+#'  \item{n}{The number of primary sample units per stratum}
+#'  \item{v1}{The variance between primary sample units in density/occurrence}
+#'  \item{v2}{The stratum-level variance between secondary sample units in density/occurrence}
+#'  \item{vbar}{The average stratum-level variance in density/occurrence}
+#'  \item{nm}{The total number of secondary sample units per stratum}
+#'  \item{NMTOT}{The total possible number of secondary samples per stratum}
+#'  @seealso \code{\link{rvcData}} \code{\link{domain}}
 strat <- function(rvcObj, calc = "d") {
   ## Calculate PSU densities/occurrences
   psu <- .psu(rvcObj, calc);

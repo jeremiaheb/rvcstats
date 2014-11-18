@@ -1,8 +1,18 @@
-## Returns: A data.frame of  
-## The average density/occurence (yi) per SSU (177m^2), variance, SE, and CV
-## and total number of samples nm for the entire sampling domain
-## Given: An RVC object, and calc, a character 'd' for density (default)
-## or 'p' for occurrence
+#' Domain level estimates of density/occurrence
+#' @export
+#' @description Outputs the domain level estimates of density or 
+#' occurrence given an RVC object
+#' @inheritParams strat
+#' @return A data.frame with the species, year, and stratum 
+#' information as well as:
+#' \item{yi}{The average density/occurrence}
+#' \item{variance}{The variance in density/occurrence}
+#' \item{se}{The standard error of density/occurrence}
+#' \item{cv}{The coeficient of variation (as a percent) in density/occurrence}
+#' \item{n}{The total number of primary samples per sampling domain}
+#' \item{nm}{The total number of secondary samples per sampling domain}
+#' \item{NMTOT}{The total possible number of secondary samples per sampling domain}
+#' @seealso \code{\link{rvcData}} \code{\link{strat}}
 domain  <-  function(rvcObj, calc = "d"){
   strat  <-  strat(rvcObj, calc)
   

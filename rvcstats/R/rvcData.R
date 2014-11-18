@@ -1,8 +1,42 @@
-## Returns: an RVC object from data subsetted by species, years, and strata.
-## if length_class != "all" it should be a numeric vector of length 2 with the
-## minimum length as the first element and the maximum length as the second element
-## inclusive of both. If includes_protected is TRUE column of protected status
-## will be added to sample_data output
+#' An RVC data object
+#' @export
+#' @description Creates an RVC data object from Reef Visual Census
+#' sample and stratum data
+#' @name rvcData
+#' @param sample_data 
+#' A data.frame or list containing the Reef Visual Census
+#' sample data. Must include variables named "SPECIES_CD", "YEAR",
+#'  "STRAT", "PRIMARY_SAMPLE_UNIT", "STATION_NR", "NUM"
+#'  (not case-sensitive).
+#' @param stratum_data 
+#' A data.frame or list containing the stratum information. 
+#' Must include variables names "YEAR", "STRAT", "NTOT"
+#' (not case-sensitive).
+#' @param species
+#' A character vector of scientific names or species codes,
+#' e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).
+#' @param length_class
+#' A numeric vector of length two, with the first value the minimum length and
+#' the second the maximum length (inclusive) to include in RVC object.
+#' Default value of 'all' selects for all lengths.
+#' @param when_present 
+#' A boolean: FALSE (default) to include stations where species 
+#' is present and absent, and TRUE to select only stations
+#' where species is present.
+#' @param years
+#' A numeric vector of the years to select from data. 
+#' Default value 'all' selects for all years present in data.
+#' @param strata
+#' A character vector of the strata to select from data.
+#' Default value of 'all' selects for all strata in data.
+#' @param includes_protected
+#' A boolean: FALSE (default) does not differentiate between
+#' protected and unprotected areas within strata, TRUE does.
+#' @return Returns an RVC object with two elements:
+#' \item{sample_data}{Contains the original sample data subsetted by
+#' input arguments}
+#' \item{stratum_data}{Contains original stratum data subsetted by
+#' input arguments}
 rvcData = function(sample_data, stratum_data, species, 
                    length_class = "all", when_present = FALSE, 
                    years = "all", strata = "all",

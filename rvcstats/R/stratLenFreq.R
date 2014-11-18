@@ -1,5 +1,9 @@
-## Returns: data.frame of stratum level length frequency 
-## given an RVC object
+#' Stratum level length frequencies
+#' @export
+#' @inheritParams strat
+#' @return A data.frame with lengths and their frequencies for
+#' every species in every stratum in rvcObj
+#' @seealso \code{\link{domainLenFreq}} \code{\link{rvcData}}
 stratLenFreq <- function(rvcObj){
   ## get length and stratum data
   len  <- rvcObj$sample_data;
