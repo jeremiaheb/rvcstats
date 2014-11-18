@@ -1,39 +1,13 @@
-## Returns: a STRAT object with weights (wh) for each stratum and year
-## Given selected years (defualt = "all") and strata (default = "all").
-## If includes.protected then substrata with protected status will be 
-## searched for in data with the variable name PROT
-stratData = function(data, years = "all", strata = "all", includes.protected = FALSE){
-  ## Check to make sure required variables are present 
-  names(data) = toupper(names(data))
-  reqd = c("YEAR", "STRAT", "NTOT")
-  .inList("Required Variable", reqd, names(data))
-  
-  ## If strata set to all, select all strata
-  if (all(strata != "all")){
-    data = subset(data, STRAT %in% strata)
-  }
-  
-  ## If years set to all select all years
-  if (all(years != "all")){
-  data = subset(data, YEAR %in% years)
-  }
-  
+## Returns: A data.frame with the weightings for each stratum
+.stratData = function(stratum_data, includes_protected){
   ## Select variables to aggregate by
-  agg.by = c("YEAR", "STRAT")
-  
-  ## If includes.protected is TRUE add includes protected to agg.by
-  if (includes.protected){
-    .inList("protection status variable", "PROT", names(data))
-    agg.by = c(agg.by, "PROT")
+  agg_by = c("YEAR", "STRAT", "GRID_SIZE")
+  ## If includes_protected is TRUE add includes protected to agg_by
+  if (includes_protected){
+    agg_by = c(agg_by, "PROT")
   }
-  
-  ## Subset and aggregate (if neccessary) by agg.by variables
-  agg.by = as.list(data[agg.by])
-  newData = aggregate(data$NTOT, by = agg.by, FUN = sum)
-  names(newData)[length(names(newData))] = "NTOT"
-  
-  ## Change class to STRAT
-  class(newData) = "STRAT"
-  
-  return(newData)
+  ## Subset and aggregate (if neccessary) by agg_by variables
+  agg_by = as.list(stratum_data[agg_by])
+  out = aggregate(list(NTOT = stratum_data$NTOT), by = agg_by, FUN = sum)
+  return(out)
 }
