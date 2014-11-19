@@ -8,6 +8,7 @@
 #' as a percent
 #' @inheritParams strat
 domainNStar  <- function(cv, rvcObj){
+  ## TODO: Drop Unused levels
   ## Get stratum level estimates of density
   strat  <- strat(rvcObj, calc = "d");
   ## Split data by year, species
