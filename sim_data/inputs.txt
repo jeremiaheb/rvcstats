@@ -1,0 +1,5 @@
+Inputs into samp.csv
+AFR SWAL: LEN ~N(20,2), NUM ~(POIS(1)+POIS(1))/2
+EUR SWAL: LEN ~N(30, 2), NUM ~(POIS(0.5) + POIS(0.5))/2
+
+No differences between strata or years
