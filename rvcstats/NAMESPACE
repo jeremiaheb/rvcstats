@@ -2,6 +2,7 @@
 
 export(domain)
 export(domainLenFreq)
+export(domainNStar)
 export(rvcData)
 export(strat)
 export(stratLenFreq)
