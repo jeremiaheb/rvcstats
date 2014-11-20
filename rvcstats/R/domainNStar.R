@@ -1,17 +1,24 @@
-#' The optimal number of primary sampling units
+#' The optimal number of primary sampling units 
+#' per sampling domain
 #' @export
 #' @description Outputs a data.frame of the optimal
 #' number of primary sampling units per sampling domain
-#' (n*)
+#' (n*) for a given coefficient of variance
 #' @param cv 
 #' A single integer representing the target coefficient variance
 #' as a percent
 #' @inheritParams strat
+#' @return A data.frame including the species code, year, and nstar
+#' for the target cv
 domainNStar  <- function(cv, rvcObj){
+  ## Make sure includes_protected is false
+  if (attr(rvcObj, "includes_protected")){
+    stop("includes_protected must be FALSE to calculate nstar")
+  }
   ## Get stratum level estimates of density
   strat  <- strat(rvcObj, calc = "d");
   ## Split data by year, species
-  spl  <- split(strat, strat[c("SPECIES_CD","YEAR")]);
+  spl  <- split(strat, strat[c("SPECIES_CD","YEAR")], drop = TRUE);
   # Function to calculate nstar
   nstar  <- function(x){
     ## Pull out parts to use in function
