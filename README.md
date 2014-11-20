@@ -4,7 +4,7 @@ rvcstats
 # Reef Visual Census statistical package in R
 
 ## Description
-The rvcstats package is designed to compute summary statistics, such as: fish density, frequency of occurence, and length frequencies for Reef Visual Census data, which can then be output to csv files or turned into graphs. 
+The rvcstats package is designed to compute summary statistics, such as: fish density, frequency of occurrence, and length frequencies for Reef Visual Census data, which can then be output to csv files or turned into graphs. 
 
 ## Installation 
 1. Download the compressed tar ball named "rvcstats_[version].tar.gz" from the root directory of this project
@@ -31,27 +31,60 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
 3. Now you can finally start using the package, below are some examples (executable directly):
  * Examples:
   ```
-  require(rvcstats)
-  ## Load example simulated datasets in package
-  data(rvc2) #RVC sample data
-  data(strat2) #Stratum data
-   ### Calculate domain level densities for Red Grouper for years 2011..2013
-    domainDensity(sample.data = rvc2, stratum.data = strat2, species = "Epinephelus morio", years = 2011:2013)
-   ## Calculate stratum level occurrence for Grey Snapper on patch reef strata
-    stratOccurrence(rvc2, strat2, species = "LUT GRIS", strata = c("INPR", "MCPR", "OFPR"))
-   ## Calculate the length frequency of Red Grouper in 2011 
-    lenFreq(rvc2, "epi mori", years = 2011)
-   ## Calculate the length frequency of Grey Snapper, but aggregate by year and protected status
-    lenFreq(rvc2, species = "LUT GRIS", agg.by = c("YEAR", "PROT"))
+	require(rvcstats)
+	## Load example simulated datasets in package
+	data(sample) #RVC sample data
+	data(strata) #Stratum data
+	
+	## Print them out to take a look at them
+	print(sample)
+	print(strata)
+	## The variable names in these tables are what the functions in this package expect,
+	## however, they do not need to be uppercase
+	
+	##Calculate domain level densities and occurrence for African Swallows from year 1..2
+	domainDensity(sample_data = sample, stratum_data = strata, species = "African Swallow")
+	domainOccurrence(sample_data = sample, stratum_data = strata, species = "African Swallow")
+	
+	## Calculate stratum level occurrence for European Swallows in the stratum "SPAM" in year 1
+	stratOccurrence(sample, strata, "EUR SWAL", strata = "SPAM", years = 1)
+	
+	## Note that the species argument can be the full species (scientific) name, or the species
+	## code
+	
+	## For lower level functions you first generate an RVC object using the rvcData function
+	## Then you can plug that object in to strat, domain, or other lower-level functions
+	# Generate RVC object
+	r <- rvcData(sample, strata, species = c("EUR SWAL", "AFR SWAL"), includes_protected = TRUE)
+	## Stratum level occurrence estimates
+	strat(r, calc = "p")
+	## Stratum level density estimates
+	strat(r, calc = "d")
+	## Domain level density estimates
+	strat(r)
+
+	## As of right now length frequency is only a lower-level function, lets take a look at length
+	## length frequencies for these species
+	r <- rvcData(sample, strata, species = c("eur swal", "afr swal"))
+	stratLenFreq(r)
+	domainLenFreq(r)
+	
+	## We can also calculate the optimal number of primary samples for a given coef. of variance
+	## domainNstar and stratNStar are currently only lower-level funtions
+	r <- rvcData(sample, strata, species = c("eur swal", "afr swal"))
+	domainNStar(cv = 30, rvcObj = r)
+	stratNStar(cv = 30, rvcObj = r)
     ```
  ## List of functions and short descriptions
  This list is subject to change
  - Low-Level
   	* rvcData: Checks the RVC sample data and subsets by provided species, years, and strata. 
-  	* stratData: Checks the stratum data and subsets by provided species, years, and strata.
-  	* lenFreq: Outputs a table of length frequencies aggregated by variables provided by the user (e.g. year, strata, etc)
   	* strat: Calculates stratum level densities or occurrence
   	* domain: Calculates domain level densities or occurrence
+	* stratLenFreq: Calculates the stratum level length frequencies
+	* domainLenFreq: Calculates the domain level length frequencies
+	* domainNStar: Calculates the optimal number of primary samples for the sampling domain
+	* stratNStar: Calculates the optimal number of priamry samples per stratum
  - High-Level
   	* domainDensity: A wrapper for domain that explicitly measures density from original dataframes
   	* domainOccurrence: A wrapper for domain that explicitly measures occurrence from original dataframes
