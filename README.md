@@ -61,7 +61,7 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
 	## Stratum level density estimates
 	strat(r, calc = "d")
 	## Domain level density estimates
-	strat(r)
+	domain(r)
 
 	## As of right now length frequency is only a lower-level function, lets take a look at length
 	## length frequencies for these species
