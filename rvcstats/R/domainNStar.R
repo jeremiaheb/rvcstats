@@ -16,18 +16,19 @@ domainNStar  <- function(cv, rvcObj){
     stop("includes_protected must be FALSE to calculate nstar")
   }
   ## Get stratum level estimates of density
-  strat  <- strat(rvcObj, calc = "d");
+  strat  <- mStar(rvcObj);
   ## Split data by year, species
   spl  <- split(strat, strat[c("SPECIES_CD","YEAR")], drop = TRUE);
   # Function to calculate nstar
   nstar  <- function(x){
     ## Pull out parts to use in function
-    s <- sqrt(x$vbar); v1  <- x$v1; v2  <- x$v2;
-    wh  <- x$wh; N  <- x$NTOT; mu  <- x$yi
+    s <- x$s; v1  <- x$v1; v2  <- x$v2;
+    wh  <- x$wh; N  <- x$NTOT; mu  <- x$yi; 
+    mstar  <- x$mstar;
     ## Calculate commonly used sums
     whs  <- sum(wh*s);
     ## Fix /0 problem
-    wss  <- wh*v2/(2*s);
+    wss  <- wh*v2/(mstar*s);
     wss[is.nan(wss)]  <- 0;
     ## Function to calculate nstar
     ns  <- whs*(whs + sum(wss))/((cv/100)^2*sum(wh*mu)^2 + sum(wh^2*v1/N));
