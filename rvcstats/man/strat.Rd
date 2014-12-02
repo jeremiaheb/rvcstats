@@ -20,7 +20,8 @@ A data.frame containing the year, species, and stratum info as
  \item{n}{The number of primary sample units per stratum}
  \item{v1}{The variance between primary sample units in density/occurrence}
  \item{v2}{The stratum-level variance between secondary sample units in density/occurrence}
- \item{vbar}{The average stratum-level variance in density/occurrence}
+ \item{s}{Sample standard deviation of density/occurrence in each stratum}
+ \item{vbar}{Variance in mean density/occurrence in each stratum}
  \item{nm}{The total number of secondary sample units per stratum}
  \item{NMTOT}{The total possible number of secondary samples per stratum}
 }

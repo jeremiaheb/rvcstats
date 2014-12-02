@@ -15,7 +15,8 @@
 #'  \item{n}{The number of primary sample units per stratum}
 #'  \item{v1}{The variance between primary sample units in density/occurrence}
 #'  \item{v2}{The stratum-level variance between secondary sample units in density/occurrence}
-#'  \item{vbar}{The average stratum-level variance in density/occurrence}
+#'  \item{s}{Sample standard deviation of density/occurrence in each stratum}
+#'  \item{vbar}{Variance in mean density/occurrence in each stratum}
 #'  \item{nm}{The total number of secondary sample units per stratum}
 #'  \item{NMTOT}{The total possible number of secondary samples per stratum}
 #'  @seealso \code{\link{rvcData}} \code{\link{domain}}
@@ -58,6 +59,7 @@ strat <- function(rvcObj, calc = "d") {
    ## Calculate variance weights, variance, and NMTOT
    fn <- with(strat2, n/NTOT);
    fm <- with(strat2, mbar/MTOT);
+  strat2$s  <- with(strat2, sqrt(v1 - v2/MTOT));
   strat2$vbar <- with(strat2, ((1-fn)*v1/n)+((fn*(1-fm)*v2)/nm));
   strat2$NMTOT <- with(strat2, NTOT*MTOT);
   
