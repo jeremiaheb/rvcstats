@@ -6,7 +6,13 @@
 #' @docType package
 #' @name rvcstats
 #' @references 
-#'Brandt, M.E., N. Zurcher, A. Acosta, J.S. Ault, J.A. Bohnsack, M.W. Feeley, D.E. Harper, J.H. Hunt, T. Kellison, D.B. McClellan, M.E. Patterson, and S.G. Smith (2009).
+#' Smith Steven G., Jerald S. Ault, James A. Bohnsack, Douglas E. Harper,
+#' Jiangang Luo, David B. McClellan (2011). "Multispecies survey design
+#' for assesing reef-fish stocks, spatially explicit management performance,
+#' and ecosystem condition". Fisheries Research 109:25-41
+#' \url{http://www.sciencedirect.com/science/article/pii/S0165783611000312}
+#' 
+#' Brandt, M.E., N. Zurcher, A. Acosta, J.S. Ault, J.A. Bohnsack, M.W. Feeley, D.E. Harper, J.H. Hunt, T. Kellison, D.B. McClellan, M.E. Patterson, and S.G. Smith (2009).
 #' "A cooperative multi-agency reef fish monitoring protocol for the Florida Keys reef
 #' ecosystem". Natural Resources Report NPS/SFCN/NRR -- 2009/150. National Park Service, Fort Collins, Colorado.
 #' \url{http://www.coris.noaa.gov/activities/fish_monitoring_protocol/} 
