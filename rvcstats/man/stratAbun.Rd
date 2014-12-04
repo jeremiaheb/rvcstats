@@ -3,10 +3,14 @@
 \alias{stratAbun}
 \title{Calculates stratum level indices of abundance}
 \usage{
-stratAbun(r)
+stratAbun(rvcObj)
+}
+\arguments{
+\item{rvcObj}{An RVC object (see \code{\link{rvcData}})}
 }
 \value{
-A data.frame with
+A data.frame with year, species, stratum, protected
+status (if applicable) and:
 \item{wh}{The weighting factor for a particular stratum}
  \item{yt}{The average abundance in each stratum}
  \item{vbar}{Variance in mean abundance in each stratum}
