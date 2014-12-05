@@ -15,39 +15,43 @@
 stratLengthSummary <- function(rvcObj){
   ## Get length frequency data
   l  <- stratLenFreq(rvcObj);
+  ## Select only data where frequency is greater than 0
+  l  <- with(l, l[freq > 0,]);
   ## Split by species, year, stratum, and protected status (if applicable)
-  by  <- c("SPECIES_CD", "YEAR", "STRAT", "PROT");
+  by  <- names(l) %in% c("SPECIES_CD", "YEAR", "STRAT", "PROT");
   spl  <- split(l, l[by], drop = TRUE);
-  ## Apply min, quantile, max, expected to split data
-  #Function to summarize each stratum
-  sumry  <- function(x){
-    # Length vector
-    len  <- x$LEN;
-    #Apply summary functions
-    min  <- ifelse(length(len)>1,min(len[len!=0]),0); 
-    max  <- ifelse(length(len)>1,max(len),0);
-    first  <- .quantile(0.25, len, x$freq);
-    median  <- .quantile(0.5, len, x$freq);
-    mean  <- len*x$freq; third  <- .quantile(0.75, len, x$freq);
-    ## Pull out factors
-    spc  <- x$SPECIES_CD[1]; yr  <- x$YEAR[1]; str  <- x$STRAT[1];
-    ## Generate output
-    out  <- data.frame(SPECIES_CD = spc, YEAR = yr,
-                       STRAT  = str, min = min, first.quartile = first,
-                       median = median, mean = mean, third.quartile = third,
-                       max = max);
-    ## if includes_protected, add as column
+  ## Define a function to compute summary statistics
+  summarize  <- function(x){
+    # Get length and frequency
+    len  <- x$LEN; freq  <- x$freq;
+    # Summary statistics
+    min  <- min(len); max  <- max(len);
+    mean  <- sum(len*freq);
+    median  <- .quantile(0.5, len, freq);
+    first  <- .quantile(0.25, len, freq);
+    third  <- .quantile(0.75, len, freq);
+    # Get associated factors
+    spc  <- x$SPECIES_CD[1];
+    yr  <- x$YEAR[1];
+    str  <- x$STRAT[1];
+    # Place in data frame
+    smry  <- data.frame(SPECIES_CD = spc, YEAR = yr, STRAT = str, min = min, 
+                        first.quantile = first, median = median, 
+                        mean = mean, third.quantile = third,
+                      max = max);
+    # Add protected if applicable
     if (attr(rvcObj, "includes_protected")){
-      PROT <- x$PROT[1]
-      out  <- c(out[1:2], PROT, out[3:ncol(out)]);
+      PROT  <- x$PROT[1]
+      smry  <- cbind(smry[1:2],PROT , smry[3:ncol(smry)]);
     }
+    return(smry)
   }
-  # Apply to list
-  s  <- lapply(spl, FUN = sumry);
-  ## Unsplit data and return
-  outp  <- NULL;
-  for (i in 1:seq_along(s)){
-    outp  <- rbind(outp, s[[i]]);
+  ## Apply function to each element 
+  s  <- lapply(spl, summarize);
+  ## Put the data back together
+  out  <-  NULL;
+  for (i in seq_along(s)){
+    out  <- rbind(out, s[[i]]);
   }
-  return(outp)
+  return(out)
 }
