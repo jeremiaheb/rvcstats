@@ -38,6 +38,6 @@ Calculates density or occurrence of mature/juvenile individuals on a
 stratum-level
 }
 \seealso{
-\code{\link{maturityData}}
+\code{\link{maturityData}} \code{\link{domainMaturity}}
 }
 

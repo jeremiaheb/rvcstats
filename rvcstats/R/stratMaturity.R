@@ -27,7 +27,7 @@
 #'  \item{vbar}{Variance in mean density/occurrence in each stratum}
 #'  \item{nm}{The total number of secondary sample units per stratum}
 #'  \item{NMTOT}{The total possible number of secondary samples per stratum}
-#'  @seealso \code{\link{maturityData}}
+#'  @seealso \code{\link{maturityData}} \code{\link{domainMaturity}}
 stratMaturity <- function(matObj, calc = 'd'){
   ## Check that matObj is a MAT object
   if (!inherits(matObj, 'MAT')){
