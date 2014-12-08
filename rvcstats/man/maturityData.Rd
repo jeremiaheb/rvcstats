@@ -27,6 +27,7 @@ and one for juveniles (see \code{\link{rvcData}} for more on RVC objects)
 }
 \description{
 Creates a MAT object from RVC sample data and stratum data
+that contains data for mature and juvenile individuals seperately
 }
 \seealso{
 \code{\link{rvcData}}

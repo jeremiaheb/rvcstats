@@ -1,6 +1,7 @@
 #' Creates a MAT object
 #' @export
-#' @description Creates a MAT object from RVC sample data and stratum data
+#' @description Creates a MAT object from RVC sample data and stratum data 
+#' that contains data for mature and juvenile individuals seperately
 #' @inheritParams rvcData
 #' @param species 
 #' A single species name
