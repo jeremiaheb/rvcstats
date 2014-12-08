@@ -70,11 +70,12 @@ rvcData = function(sample_data, stratum_data, species,
   }
   ## If length_class != "all" recode NUM so that only 
   ## any individuals outside the range provided are 0
-  ## e.g. output is inclusive of left and right range
+  ## Output is inclusive of left range and exclusive of right
+  ## e.g. [0,x) includes 0 but not x
   if (all(length_class != "all")){
     sample_data$NUM  <- with(
       sample_data,
-      ifelse(LEN < length_class[1] | LEN > length_class[2],
+      ifelse(LEN < length_class[1] | LEN >= length_class[2],
              0, NUM)
     );
   }
