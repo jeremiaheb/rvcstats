@@ -6,7 +6,7 @@
 #' @inheritParams stratLenFreq
 #' @return A data.frame with SPECIES_CD, YEAR, STRAT, PROT (if applicable), and:
 #' \item{min}{A numeric vector of the minimum length}
-#' \item{first.quartile}{A numeric vecotr of the first quartile of length}
+#' \item{first.quartile}{A numeric vector of the first quartile of length}
 #' \item{mean}{A numeric vector of the mean length}
 #' \item{median}{A numeric vector of the median length}
 #' \item{third.quartile}{A numeric vector of the third quartile of length}
