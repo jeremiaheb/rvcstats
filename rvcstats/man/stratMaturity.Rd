@@ -7,7 +7,10 @@ stratum-level}
 stratMaturity(matObj, calc = "d")
 }
 \arguments{
-\item{matObj}{}
+\item{matObj}{A MAT object, see \code{\link{maturityData}} for more details.}
+
+\item{calc}{A character: 'd' to calculate density  estimates(default),
+or 'p' for occurrence estimates}
 }
 \value{
 A data.frame with the species, year, stratum, protected status (if applicable)

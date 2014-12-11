@@ -2,8 +2,8 @@
 #' stratum-level
 #' @export
 #' @param matObj
-#' @inheritParams strat
 #' A MAT object, see \code{\link{maturityData}} for more details.
+#' @inheritParams strat
 #' @return
 #' A data.frame with the species, year, stratum, protected status (if applicable)
 #' and:
