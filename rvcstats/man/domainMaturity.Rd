@@ -7,7 +7,7 @@ occurrence for juveniles/adults}
 domainMaturity(matObj, calc = "d")
 }
 \arguments{
-\item{matObj}{}
+\item{matObj}{A MAT object, see \code{\link{maturityData}} for more details.}
 }
 \value{
 A data.frame with the species, year, and stratum
