@@ -1,4 +1,7 @@
-toQuery <- function(...){
+## Returns: A string in CGI query format given
+## A set of parameters and values belonging to 
+## those parameters
+.toQuery <- function(...){
   # Get the parameters as a list
   dots  <- list(...);
   if (length(dots) != 0){
