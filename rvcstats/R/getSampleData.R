@@ -1,8 +1,8 @@
 ## Returns: A data frame of the sample data given a set of parameters
 ## species, year, region, stratum, protected, and when_present
-.getSampleData  <- function(species, year = NULL, region = NULL, stratum = NULL,
-                           protected = NULL, when_present = NULL, 
-                           server = 'http://127.0.0.1:3000'){
+.getSampleData  <- function(species, year, region, stratum,
+                           protected, when_present, 
+                           server){
   require(RCurl);
   require(RJSONIO);
   # Put together URL and request
