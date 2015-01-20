@@ -43,7 +43,7 @@
 rvcData = function(species, year, region = NULL, stratum = NULL,
                    protected = NULL, length_class = NULL,
                    when_present = FALSE, merge_protected = TRUE,
-                   server = '128.0.0.1'){  
+                   server = 'http://localhost:3000'){  
   ## Parse full scientific names are trucated to SPECIES_CD
   species <- .toSpcCd(species);
   ## Make stratum codes upper case if not already
