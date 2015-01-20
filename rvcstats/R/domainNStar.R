@@ -11,9 +11,9 @@
 #' @return A data.frame including the species code, year, and nstar
 #' for the target cv
 domainNStar  <- function(cv, rvcObj){
-  ## Make sure includes_protected is false
-  if (attr(rvcObj, "includes_protected")){
-    stop("includes_protected must be FALSE to calculate nstar")
+  ## Make sure merge_protected is true
+  if (!attr(rvcObj, "merge_protected")){
+    stop("merge_protected must be TRUE to calculate nstar")
   }
   ## Get stratum level estimates of density
   strat  <- mStar(rvcObj);

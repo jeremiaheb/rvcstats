@@ -25,9 +25,9 @@ strat <- function(rvcObj, calc = "d") {
   psu <- .psu(rvcObj, calc);
   ## Set the variables by which to aggregate
   agg_by <- c("SPECIES_CD", "YEAR", "STRAT");
-  ## If includes_protected is TRUE add to
+  ## If merge_protected is FALSE add to
   ## aggregate by variables
-  if (attr(rvcObj, "includes_protected")){
+  if (!attr(rvcObj, "merge_protected")){
     agg_by  <- c(agg_by, "PROT");
   }
   ## Make agg_by into a list

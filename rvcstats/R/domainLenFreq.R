@@ -13,8 +13,8 @@ domainLenFreq  <- function(rvcObj){
   merged  <- merge(strat, len);
   ## Set agg_by vars
   agg_by  <- c("SPECIES_CD", "YEAR", "LEN");
-  ## If includes_protected is TRUE add to agg_by
-  if (attr(rvcObj, "includes_protected")){
+  ## If merge_protected is FALSE add to agg_by
+  if (!attr(rvcObj, "merge_protected")){
     agg_by  <- c(agg_by, "PROT")
   }
   ## Turn agg_by into a list

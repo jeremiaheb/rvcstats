@@ -8,8 +8,8 @@
   ssu  <- .ssu(rvcObj, calc);
   ## Set the variables by which to aggregate
   agg_by  <- c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT");
-  ## If includes_ptotected is TRUE add to agg_by vars
-  if (attr(rvcObj, "includes_protected")){
+  ## If merge_protected is FALSE add to agg_by vars
+  if (!attr(rvcObj, "merge_protected")){
     agg_by  <- c(agg_by, "PROT");
   }
   ## Number of SSUs per PSU

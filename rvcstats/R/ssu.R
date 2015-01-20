@@ -12,8 +12,8 @@
   ## Set the variables by which to aggregate
   agg_by  <- c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT",
                "STATION_NR");
-  ## If includes_protected is true, add to agg_by vars
-  if (attr(rvcObj, "includes_protected")){
+  ## If merge_protected is false, add to agg_by vars
+  if (!attr(rvcObj, "merge_protected")){
     agg_by  <- c(agg_by, "PROT");
   }
   ## If calc is 'p' change the function to be applied to aggregate

@@ -11,8 +11,8 @@ stratLenFreq <- function(rvcObj){
   ## set aggregate by variables
   byStrat  <- c("SPECIES_CD", "YEAR", "STRAT");
   byLen  <- c("SPECIES_CD", "YEAR", "STRAT","LEN");
-  ## If includes_protected is TRUE add to aggregate vars
-  if (attr(rvcObj, "includes_protected")){
+  ## If merge_protected is FALSE add to aggregate vars
+  if (!attr(rvcObj, "merge_protected")){
     byStrat  <- c(byStrat, "PROT");
     byLen  <- c(byLen, "PROT");
   }

@@ -39,7 +39,7 @@ domainLengthSummary  <- function(rvcObj){
                         mean = mean, third.quantile = third,
                         max = max);
     # Add protected if applicable
-    if (attr(rvcObj, "includes_protected")){
+    if (!attr(rvcObj, "merge_protected")){
       PROT  <- x$PROT[1]
       smry  <- cbind(smry[1:2],PROT , smry[3:ncol(smry)]);
     }
