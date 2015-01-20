@@ -8,5 +8,5 @@ Maintainer: Harry Ganz <harry.ganz@noaa.gov>
 Description: Provides fisheries managers and scientists with summary statistics
     for South Florida's Reef Visual Census using standard statistical
     procedures
-Depends: RJSONIO, RCurl
+Depends: 'RJSONIO (>= 1.3-0)', 'RCurl (>=1.95-4.5)'
 License: GPL-3
