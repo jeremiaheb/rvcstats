@@ -10,7 +10,7 @@
     stop("calc must be either 'p' to for occurrence or 'd' for density")
   }
   ## Set the variables by which to aggregate
-  agg_by  <- c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT",
+  agg_by  <- c("SPECIES_CD", "REGION", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT",
                "STATION_NR");
   ## If merge_protected is false, add to agg_by vars
   if (!attr(rvcObj, "merge_protected")){

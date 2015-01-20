@@ -24,7 +24,7 @@ strat <- function(rvcObj, calc = "d") {
   ## Calculate PSU densities/occurrences
   psu <- .psu(rvcObj, calc);
   ## Set the variables by which to aggregate
-  agg_by <- c("SPECIES_CD", "YEAR", "STRAT");
+  agg_by <- c("SPECIES_CD", "YEAR", "REGION", "STRAT");
   ## If merge_protected is FALSE add to
   ## aggregate by variables
   if (!attr(rvcObj, "merge_protected")){

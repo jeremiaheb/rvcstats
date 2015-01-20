@@ -7,7 +7,7 @@
   ## get the ssu data
   ssu  <- .ssu(rvcObj, calc);
   ## Set the variables by which to aggregate
-  agg_by  <- c("SPECIES_CD", "YEAR", "STRAT", "PRIMARY_SAMPLE_UNIT");
+  agg_by  <- c("SPECIES_CD", "YEAR", "REGION", "STRAT", "PRIMARY_SAMPLE_UNIT");
   ## If merge_protected is FALSE add to agg_by vars
   if (!attr(rvcObj, "merge_protected")){
     agg_by  <- c(agg_by, "PROT");

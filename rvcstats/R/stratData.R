@@ -1,8 +1,8 @@
 ## Returns: A data.frame with the weightings for each stratum
 .stratData  <-  function(stratum_data, merge_protected){
   ## Select variables to aggregate by
-  agg_by  <-  c("YEAR", "STRAT", "GRID_SIZE");
-  byYear  <- c("YEAR");
+  agg_by  <-  c("YEAR", "REGION", "STRAT", "GRID_SIZE");
+  byYear  <- c("YEAR", "REGION");
   ## If merge_protected is FALSE add includes protected to agg by vars
   if (!merge_protected){
     agg_by  <-  c(agg_by, "PROT");
