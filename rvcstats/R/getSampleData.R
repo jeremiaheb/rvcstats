@@ -3,8 +3,6 @@
 .getSampleData  <- function(species, year, region, stratum,
                            protected, when_present, 
                            server){
-  require(RCurl);
-  require(RJSONIO);
   # Put together URL and request
   url  <- paste(server, '/api/samples.json', 
           .toQuery(species = species, year = year, region = region,
