@@ -8,8 +8,8 @@
   # Put together URL and request
   url  <- paste(server, '/api/samples.json', 
           .toQuery(species = species, year = year, region = region,
-                   stratum = stratum, protected = protected, 
-                   when_present = when_present),
+                   stratum = stratum, prot = protected, 
+                   present = when_present),
           sep='');
   # Get data and convert JSON to list
   j  <- fromJSON(getURL(url));
