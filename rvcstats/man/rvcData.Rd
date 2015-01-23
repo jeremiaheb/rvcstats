@@ -4,9 +4,7 @@
 \alias{rvcData}
 \title{An RVC data object}
 \usage{
-rvcData(species, year, region = NULL, stratum = NULL, protected = NULL,
-  length_class = NULL, when_present = FALSE, merge_protected = TRUE,
-  server = "http://localhost:3000")
+rvcData(species, year, region, server = "http://localhost:3000")
 }
 \arguments{
 \item{species}{A character vector of scientific names or species codes,
@@ -16,30 +14,9 @@ e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).}
 Default value NULL selects for all years present in data.}
 
 \item{region}{A character vector of the region code(s) to select from
-data. Default value of NULL selects for all regions
-present in the data.}
+data.}
 
-\item{stratum}{A character vector of the strata codes to select from data.
-Default value of NULL selects for all strata in data.}
-
-\item{protected}{A boolean indicating whether only protected areas should be
-selected. Default value of NULL selects both protected and
-unprotected areas.}
-
-\item{length_class}{A numeric vector of length two, with the first value the minimum length (exclusive) and
-the second the maximum length (inclusive) to include in RVC object.
-e.g. length_class = c(x,y) indicates lengths greater than but not
-including x up to and including y.
-Default value of NULL selects for all lengths.}
-
-\item{when_present}{A boolean indicating whether only stations where the selected species
-were seen should be selected. Default of FALSE selects for all stations, whether
-or not the selected species were seen. NOTE: Only works when one species
-selected in species argument.}
-
-\item{merge_protected}{A boolean indicating whether protected and unprotected areas should be merged
-in the results. Default value of TRUE does not differentiate between protected and
-unprotected areas.}
+\item{...}{Optional parameters passed to rvcData, e.g. server}
 }
 \value{
 Returns an RVC object with two elements:
