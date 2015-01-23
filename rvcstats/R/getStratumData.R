@@ -1,5 +1,5 @@
-.getStratumData  <- function(year, region, stratum,
-                               protected, server) {                     
+.getStratumData  <- function(year, region, stratum=NULL,
+                               protected=NULL, server) {                     
  # Put together URL and request
   url  <- paste(server, '/api/strats.json', 
                 .toQuery(year = year, region = region,

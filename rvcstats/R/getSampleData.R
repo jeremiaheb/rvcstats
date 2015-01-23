@@ -1,7 +1,7 @@
 ## Returns: A data frame of the sample data given a set of parameters
 ## species, year, region, stratum, protected, and when_present
-.getSampleData  <- function(species, year, region, stratum,
-                           protected, when_present, 
+.getSampleData  <- function(species, year, region, stratum=NULL,
+                           protected=NULL, when_present=NULL, 
                            server){
   # Put together URL and request
   url  <- paste(server, '/api/samples.json', 
