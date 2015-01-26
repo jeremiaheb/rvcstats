@@ -28,7 +28,7 @@ data.}
 Throws exception if more than one species selected. Defualt
 value is false}
 
-\item{merge_protected}{#' A boolean. If TRUE merges protected and unprotected
+\item{merge_protected}{A boolean. If TRUE merges protected and unprotected
 strata together. Default value is false}
 
 \item{length_class}{Can be NULL, keyword or number. Must be NULL if more than one species selected, or else throws exception
@@ -50,7 +50,6 @@ input arguments}
 input arguments}
 }
 \description{
-Selects data from x by provided arguments. If
-x is NULL, will try to get data from server
+Produces a subset of Reef Visual Census data.
 }
 
