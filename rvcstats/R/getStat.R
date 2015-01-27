@@ -27,7 +27,7 @@ getStat  <- function(x=NULL, level, stat, growth_parameters = NULL, ...){
     switch(stat,
            density = strat(x, stat),
            occurrence = strat(x, occurrence),
-           length_frequency = stratLenFreq(x, occurrence),
+           length_frequency = stratLenFreq(x),
            abundance = stratAbun(x),
            biomass = NULL
            )
