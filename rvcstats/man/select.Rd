@@ -14,8 +14,7 @@ select(x = NULL, species = NULL, year = NULL, region = NULL,
 \item{species}{A character vector of scientific names or species codes,
 e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).}
 
-\item{year}{A numeric vector of the years to select from data.
-Default value NULL selects for all years present in data.}
+\item{year}{A numeric vector of the years to select from data.}
 
 \item{region}{A character vector of the region code(s) to select from
 data.}
@@ -40,7 +39,7 @@ If not found, throws exception
 \item If number, the provided number is used as the breakpoint.
 }}
 
-\item{...}{Optional parameters passed to rvcData, e.g. server}
+\item{...}{Optional parameters passed to \code{\link{rvcData}}, e.g. server}
 }
 \value{
 Returns an RVC object with two elements:
@@ -51,5 +50,8 @@ input arguments}
 }
 \description{
 Produces a subset of Reef Visual Census data.
+}
+\seealso{
+\code{\link{rvcData}} \code{\link{getStat}}
 }
 

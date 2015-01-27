@@ -8,12 +8,10 @@
 #' e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).
 #' @param year
 #' A numeric vector of the years to select from data. 
-#' Default value NULL selects for all years present in data.
 #' @param region
 #' A character vector of the region code(s) to select from 
 #' data. 
-#' @param ...
-#' Optional parameters passed to rvcData, e.g. server
+#' @seealso \code{\link{select}} \code{\link{getStat}}
 #' @return Returns an RVC object with two elements:
 #' \item{sample_data}{Contains the original sample data subsetted by
 #' input arguments}

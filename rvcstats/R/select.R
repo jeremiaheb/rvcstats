@@ -25,6 +25,9 @@
 #' If not found, throws exception
 #' \item If number, the provided number is used as the breakpoint.
 #' }
+#' @param ...
+#' Optional parameters passed to \code{\link{rvcData}}, e.g. server
+#' @seealso \code{\link{rvcData}} \code{\link{getStat}}
 #' @return Returns an RVC object with two elements:
 #' \item{sample_data}{Contains the original sample data subsetted by
 #' input arguments}

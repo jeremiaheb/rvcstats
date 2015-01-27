@@ -10,13 +10,10 @@ rvcData(species, year, region, server = "http://localhost:3000")
 \item{species}{A character vector of scientific names or species codes,
 e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).}
 
-\item{year}{A numeric vector of the years to select from data.
-Default value NULL selects for all years present in data.}
+\item{year}{A numeric vector of the years to select from data.}
 
 \item{region}{A character vector of the region code(s) to select from
 data.}
-
-\item{...}{Optional parameters passed to rvcData, e.g. server}
 }
 \value{
 Returns an RVC object with two elements:
@@ -28,5 +25,8 @@ input arguments}
 \description{
 Creates an RVC data object from Reef Visual Census
 sample and stratum data
+}
+\seealso{
+\code{\link{select}} \code{\link{getStat}}
 }
 

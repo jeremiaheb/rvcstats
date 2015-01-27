@@ -4,13 +4,13 @@
 \alias{strat}
 \title{Stratum level estimates of density/occurrence}
 \usage{
-strat(rvcObj, calc = "d")
+strat(rvcObj, stat = "density")
 }
 \arguments{
 \item{rvcObj}{An RVC object (see \code{\link{rvcData}})}
 
-\item{calc}{A character: 'd' to calculate density  estimates(default),
-or 'p' for occurrence estimates}
+\item{stat}{A String: "density" to calculate density  estimates(default),
+or "occurrence" for occurrence estimates}
 }
 \value{
 A data.frame containing the year, species, and stratum info as
