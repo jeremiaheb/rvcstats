@@ -4,9 +4,9 @@
 #' density or occurrence from an RVC object as a data.frame
 #' @param rvcObj
 #' An RVC object (see \code{\link{rvcData}})
-#' @param calc
-#' A character: 'd' to calculate density  estimates(default),
-#'  or 'p' for occurrence estimates
+#' @param stat
+#' A String: "density" to calculate density  estimates(default),
+#'  or "occurrence" for occurrence estimates
 #'  @return A data.frame containing the year, species, and stratum info as 
 #'  well as:
 #'  \item{wh}{The weighting factor for a particular stratum}
@@ -20,9 +20,9 @@
 #'  \item{nm}{The total number of secondary sample units per stratum}
 #'  \item{NMTOT}{The total possible number of secondary samples per stratum}
 #'  @seealso \code{\link{rvcData}} \code{\link{domain}}
-strat <- function(rvcObj, calc = "d") {
+strat <- function(rvcObj, stat = "density") {
   ## Calculate PSU densities/occurrences
-  psu <- .psu(rvcObj, calc);
+  psu <- .psu(rvcObj, stat);
   ## Set the variables by which to aggregate
   agg_by <- c("SPECIES_CD", "YEAR", "REGION", "STRAT");
   ## If merge_protected is FALSE add to

@@ -13,8 +13,8 @@
 #' \item{nm}{The total number of secondary samples per sampling domain}
 #' \item{NMTOT}{The total possible number of secondary samples per sampling domain}
 #' @seealso \code{\link{rvcData}} \code{\link{strat}}
-domain  <-  function(rvcObj, calc = "d"){
-  strat  <-  strat(rvcObj, calc)
+domain  <-  function(rvcObj, stat = "density"){
+  strat  <-  strat(rvcObj, stat)
   
   ## Select aggregate by variables
   agg_by  <- c("SPECIES_CD", "YEAR");

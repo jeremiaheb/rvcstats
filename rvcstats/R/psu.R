@@ -3,9 +3,9 @@
 ## number of SSUs (m), and replicate status (np.freq) for each PSU.
 ## Given an RVC object and calc, a code for whether density or occurrence
 ## should be calculated
-.psu = function(rvcObj, calc = "d"){
+.psu = function(rvcObj, stat = "d"){
   ## get the ssu data
-  ssu  <- .ssu(rvcObj, calc);
+  ssu  <- .ssu(rvcObj, stat);
   ## Set the variables by which to aggregate
   agg_by  <- c("SPECIES_CD", "YEAR", "REGION", "STRAT", "PRIMARY_SAMPLE_UNIT");
   ## If merge_protected is FALSE add to agg_by vars
@@ -21,9 +21,9 @@
   ## Avg. counts/occurence in SSU by PSU
   psu$yi = aggregate(ssu$yi, by = as.list(ssu[agg_by]), FUN = mean)$x
   
-  ## If calc == 'd' calculate variance for 
+  ## If stat == 'd' calculate variance for 
   ## continuous distribution, else for binomial distribution
-  if (calc == "d"){
+  if (stat == "density"){
     ## Variance in counts of each SSU by PSU
     psu$vari = aggregate(ssu$yi, by = as.list(ssu[agg_by]),
                          FUN = function(x){ifelse(is.na(var(x)),0,var(x))})$x;
