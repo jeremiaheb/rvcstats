@@ -1,17 +1,3 @@
-#' Summarizes Length Frequency Data for each Stratum
-#' @export
-#' @description Produces a data.frame with summary statistics
-#' of length split by species, year, and protected status 
-#' (if applicable)
-#' @inheritParams stratLenFreq
-#' @return A data.frame with SPECIES_CD, YEAR, STRAT, PROT (if applicable), and:
-#' \item{min}{A numeric vector of the minimum length}
-#' \item{first.quartile}{A numeric vector of the first quartile of length}
-#' \item{mean}{A numeric vector of the mean length}
-#' \item{median}{A numeric vector of the median length}
-#' \item{third.quartile}{A numeric vector of the third quartile of length}
-#' \item{max}{A numeric vector of the maximum length}
-#' @seealso \code{\link{stratLenFreq}}
 stratLengthSummary <- function(rvcObj){
   ## Get length frequency data
   l  <- stratLenFreq(rvcObj);

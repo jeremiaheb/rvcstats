@@ -1,15 +1,3 @@
-#' The optimal number of primary sampling units 
-#' per sampling domain
-#' @export
-#' @description Outputs a data.frame of the optimal
-#' number of primary sampling units per sampling domain
-#' (n*) for a given coefficient of variance
-#' @param cv 
-#' A single integer representing the target coefficient variance
-#' as a percent
-#' @inheritParams strat
-#' @return A data.frame including the species code, year, and nstar
-#' for the target cv
 domainNStar  <- function(cv, rvcObj){
   ## Make sure merge_protected is true
   if (!attr(rvcObj, "merge_protected")){

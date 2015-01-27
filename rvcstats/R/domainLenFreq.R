@@ -1,9 +1,3 @@
-#' Domain level length frequencies
-#' @export
-#' @inheritParams strat
-#' @return A data.frame with lengths and their frequencies for
-#' every species in every sampling domain in rvcObj
-#' @seealso \code{\link{stratLenFreq}} \code{\link{rvcData}}
 domainLenFreq  <- function(rvcObj){
   ## Get the stratum level frequencies and
   ## stratum data

@@ -1,10 +1,3 @@
-#' The optimal number of primary sampling units per stratum
-#' @export
-#' @description Outputs a data.frame the optimal number of sampling units 
-#' per stratum for a given coeeficient of variance
-#' @inheritParams domainNStar
-#' @return A data.frame including the species code, year,
-#' stratum, and nstar for the target cv
 stratNStar  <- function(cv, rvcObj){
   ## Get domain nstar and stratum data
   d  <- domainNStar(cv, rvcObj);
