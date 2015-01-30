@@ -49,7 +49,7 @@ select  <- function(x=NULL, species = NULL, year = NULL, region = NULL,
     }
   }
   ## Parse full scientific names are trucated to SPECIES_CD
-  species <- if(!is.null(species)){.toSpcCd(species)};
+  species <- if(!is.null(species)){toSpcCd(species)};
   ## Make region/stratum codes upper case if not already
   region  <- if(!is.null(region)){toupper(region)};
   stratum  <- if(!is.null(stratum)){toupper(stratum)};
@@ -84,13 +84,7 @@ select  <- function(x=NULL, species = NULL, year = NULL, region = NULL,
   if (!is.null(length_class)){
     x$sample_data[paste("<",length_class,sep="")] = ifelse(x$sample_data$LEN < length_class,1,0);
     x$sample_data[paste(">=",length_class,sep="")] = ifelse(x$sample_data$LEN >= length_class,1,0);
-    attr(x,"length_classes"  <- TRUE)
   }
-  #Calculate weighting. If merge_protected is TRUE add 
-  #the NTOTs for protected and unprotected strata together
-  x$stratum_data  <- .stratData(x$stratum_data, merge_protected);
-  attr(x,"merge_protected")  <- merge_protected;
   # Set class to RVC
-  class(x)  <- "RVC"
   return(x)
 }
