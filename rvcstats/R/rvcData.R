@@ -20,17 +20,14 @@
 rvcData = function(species, year, region,
                    server = 'http://localhost:3000'){  
   ## Parse full scientific names are trucated to SPECIES_CD
-  species <- .toSpcCd(species);
+  species <- toSpcCd(species);
   ## Make region codes upper case if not already
   region  <- toupper(region);
   ## Get Data from server
-  sample_data  <- .getSampleData(species, year, region, server=server);
-  stratum_data  <- .getStratumData(year, region, server=server);
-  ## Add weighting to stratum data
-  stratum_data  <- .stratData(stratum_data, merge_protected = FALSE);
-  ## Prepare output and return
-  out  <- list(sample_data = sample_data, stratum_data = stratum_data);
-  class(out)  <- "RVC"; #set class
-  attr(out, "merge_protected") <- FALSE;
+  sample_data  <- getSampleData(species, year, region, server=server);
+  stratum_data  <- getStratumData(year, region, server=server);
+  ## Create output, set class to RVC, and return
+  out  <- structure(list(sample_data = sample_data, stratum_data = stratum_data),
+                    class="RVC");
   return(out)
 }
