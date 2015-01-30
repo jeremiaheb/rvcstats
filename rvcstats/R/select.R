@@ -79,6 +79,13 @@ select  <- function(x=NULL, species = NULL, year = NULL, region = NULL,
     }
     x$sample_data  <- subset(x$sample_data, NUM > 0);
   }
+  # If length_class != NULL, add two columns, one less than
+  # the provided number and one greater 
+  if (!is.null(length_class)){
+    x$sample_data[paste("<",length_class,sep="")] = ifelse(x$sample_data$LEN < length_class,1,0);
+    x$sample_data[paste(">=",length_class,sep="")] = ifelse(x$sample_data$LEN >= length_class,1,0);
+    attr(x,"length_classes"  <- TRUE)
+  }
   #Calculate weighting. If merge_protected is TRUE add 
   #the NTOTs for protected and unprotected strata together
   x$stratum_data  <- .stratData(x$stratum_data, merge_protected);
