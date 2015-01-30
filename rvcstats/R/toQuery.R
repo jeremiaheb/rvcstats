@@ -1,7 +1,7 @@
 ## Returns: A string in CGI query format given
 ## A set of parameters and values belonging to 
 ## those parameters
-.toQuery <- function(...){
+toQuery <- function(...){
   # Get the parameters as a list
   dots  <- list(...);
   # Get the names of the parameters

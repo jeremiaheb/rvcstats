@@ -1,5 +1,5 @@
 ## Helper Function to create a species code from a scientific name
-.toSpcCd = function(s){
+toSpcCd = function(s){
   x = sapply(s, FUN = function(s){
     spl = strsplit(s, " ")
     f = substring(spl[[1]][1],1,3)

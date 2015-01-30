@@ -1,11 +1,11 @@
 ## Returns: A data frame of the sample data given a set of parameters
 ## species, year, region, stratum, protected, and when_present
-.getSampleData  <- function(species, year, region, stratum=NULL,
+getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
                            server){
   # Put together URL and request
   url  <- paste(server, '/api/samples.json', 
-          .toQuery(species = species, year = year, region = region,
+          toQuery(species = species, year = year, region = region,
                    stratum = stratum, prot = protected, 
                    present = when_present),
           sep='');
