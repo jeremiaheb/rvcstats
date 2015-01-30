@@ -1,6 +1,6 @@
 ## Returns: A list of the variables in the
 ## Anaylsis Ready data by which to aggregate
-.aggBy  <- function(level, stat, merge_protected){
+aggBy  <- function(level, stat, merge_protected=FALSE){
   # Starting list of all variables 
   # Uses alist instead of list so that the values are
   # not evaluated until later, see return statement
