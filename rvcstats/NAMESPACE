@@ -2,6 +2,7 @@
 
 export(domain)
 export(getStat)
+export(psu)
 export(rvcData)
 export(select)
 export(ssu)

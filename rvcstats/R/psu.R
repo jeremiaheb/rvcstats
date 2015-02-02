@@ -1,39 +1,54 @@
-## Returns: a data.frame of the avg. counts or occurence (yi), 
-## variance in counts or occurrence (vari), 
-## number of SSUs (m), and replicate status (np.freq) for each PSU.
-## Given an RVC object and calc, a code for whether density or occurrence
-## should be calculated
-.psu = function(rvcObj, stat = "d"){
-  ## get the ssu data
-  ssu  <- .ssu(rvcObj, stat);
-  ## Set the variables by which to aggregate
-  agg_by  <- c("SPECIES_CD", "YEAR", "REGION", "STRAT", "PRIMARY_SAMPLE_UNIT");
-  ## If merge_protected is FALSE add to agg_by vars
-  if (!attr(rvcObj, "merge_protected")){
-    agg_by  <- c(agg_by, "PROT");
-  }
-  ## Number of SSUs per PSU
-  psu  <- with(
-    ssu,
-    aggregate(list(m = STATION_NR), by = as.list(ssu[agg_by]), FUN = length)
-    );
-
-  ## Avg. counts/occurence in SSU by PSU
-  psu$yi = aggregate(ssu$yi, by = as.list(ssu[agg_by]), FUN = mean)$x
+#' @export
+## Returns: the sample data as a PSU level statistic (yi) 
+## variance (var) and number of SSUs (m), given
+## x, an RVC object
+## stat, the statistic to be calculated
+## growth_parameters, a list of allometric growth parameters (if
+## stat == "biomass")
+psu  <- function(x, stat, growth_parameters){
+  ## Run ssu on x
+  x  <- ssu(x, stat, growth_parameters);
   
-  ## If stat == 'd' calculate variance for 
-  ## continuous distribution, else for binomial distribution
-  if (stat == "density"){
-    ## Variance in counts of each SSU by PSU
-    psu$vari = aggregate(ssu$yi, by = as.list(ssu[agg_by]),
-                         FUN = function(x){ifelse(is.na(var(x)),0,var(x))})$x;
-    
+  ## Set up the arguments to be used in aggregate function
+  # For summary statistic:
+  args1  <- alist(x = list(yi = yi), by = aggBy("psu", stat), FUN = NULL);
+  # For variance:
+  args2  <- alist(x = list(var = yi), by = aggBy("psu", stat), FUN = NULL);
+  # For m:
+  args3  <- alist(x = list(m = STATION_NR), by = aggBy("psu", stat), FUN = NULL);
+  
+  ## Cases for summary statistic
+  if (stat == "density" | stat == "occurrence"){
+    args1$FUN  <- mean;
   } else {
-    psu$vari = ifelse(psu$m==1, 0, psu$m/(psu$m-1)*psu$yi*(1-psu$yi));
+    args1$FUN  <- sum;
+  }
+  ## Cases for variance
+  if (stat == "occurrence"){
+    # Discrete variance
+    pvar  <- function(x){mean(x)*(1-mean(x))}
+    args2$FUN  <-  function(x){ifelse(length(x)>1,length(x)/(length(x)-1)*pvar(x), NA)}
+    # Produces NAs if m == 1
+  } else {
+    args2$FUN  <- var;
+    ## Produces NAs if m == 1
+  }
+  ## All cases for m use the same function
+  args3$FUN  <- length;
+  
+  ## Clone x$stratum_data into a list called out
+  out  <- list();
+  out$stratum_data  <- x$stratum_data;
+  
+  ## If summary statistic is length_frequency, only calculate statistic value
+  ## else calculate value, variance, and m
+  out$sample_data  <- with(x$sample_data, do.call(aggregate, args1));
+  if (stat!="length_frequency"){
+    out$sample_data$var  <- with(x$sample_data, do.call(aggregate, args2)$var);
+    out$sample_data$m  <- with(x$sample_data, do.call(aggregate, args3)$m);
   }
   
-  ## Replicate status
-  psu$np.freq = ifelse(psu$m>1,1,0)
-  
-  return(psu)
+  ## Set class to PSU
+  class(out)  <- "PSU"
+  return(out)
 }
