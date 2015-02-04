@@ -19,10 +19,10 @@ psu  <- function(x, stat, growth_parameters){
   
   ## Cases:
   # For statistic
-  if (stat == "density" | stat == "occurrence"){
-    args1$FUN  <- mean;
-  } else {
+  if (stat == "length_frequency"){
     args1$FUN  <- sum;
+  } else {
+    args1$FUN  <- mean;
   }
   # For variance:
   if (stat == "occurrence"){
