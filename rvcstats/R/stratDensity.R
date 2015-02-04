@@ -1,8 +1,8 @@
 #' @export
-## Returns a STRAT object of stratum-level density estimates given,
-## psu-level estimates, x
-## a boolean indicating whether or not to merge protected areas,
-## merge protected
+## Returns: Stratum level abundance given,
+## x, a psu object, and
+## merge_protected, a boolean indicating whether protected
+## and unprotected areas should be merged together
 stratDensity  <- function(x, merge_protected){
   
   # Set up arguments
