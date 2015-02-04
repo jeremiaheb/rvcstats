@@ -51,8 +51,11 @@ stratDensity  <- function(x, merge_protected){
   fn  <- with(out, n/NTOT);
   fm  <- with(out, mbar/MTOT);
   var  <- (1-fn)*v1/n+(fn*(1-fm)*v2)/nm;
+  #NMTOT - Number of possible SSUs
+  NMTOT  <- with(out, MTOT*NTOT);
   
   ## Append desired variables to output and return
-  out  <- cbind(out, var, n, nm);
+  colN  <- which(names(out)=="NTOT"); #get index of NTOT column
+  out  <- cbind(out[1:colN], NMTOT, out[(colN+1):ncol(out)], var, n, nm);
   return(out)
 }
