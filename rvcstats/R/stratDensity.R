@@ -49,7 +49,7 @@ stratDensity  <- function(x, merge_protected){
   #var - Overall Variance 
   MTOT  <- with(out, round(GRID_SIZE^2/(pi*7.5^2),0));
   fn  <- with(out, n/NTOT);
-  fm  <- with(out, m/MTOT);
+  fm  <- with(out, mbar/MTOT);
   var  <- (1-fn)*v1/n+(fn*(1-fm)*v2)/nm;
   
   ## Append desired variables to output and return
