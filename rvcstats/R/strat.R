@@ -1,4 +1,3 @@
-#' @export
 ## Returns domain-level summary statistics given,
 ## x, and rvc object
 ## stat, the requested statistics

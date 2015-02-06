@@ -1,4 +1,3 @@
-#' @export
 ## Returns: the sample data as a PSU level statistic (yi) 
 ## variance (var) and number of SSUs (m), given
 ## x, an RVC object

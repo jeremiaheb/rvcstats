@@ -1,4 +1,3 @@
-#' @export
 ## Returns: the sample data as SSU level statistics given 
 ## x, an RVC object
 ## stat, the statistic to be calculated
