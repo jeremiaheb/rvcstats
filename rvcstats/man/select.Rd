@@ -15,8 +15,8 @@ e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).}
 
 \item{year}{A numeric vector of the years to select from data.}
 
-\item{region}{A character vector of the region code(s) to select from
-data.}
+\item{region}{A string of the region code to select from
+data. Only one region allowed at a time.}
 
 \item{stratum}{A four-letter code representing the stratum}
 
@@ -33,6 +33,21 @@ input arguments}
 }
 \description{
 Produces a subset of Reef Visual Census data.
+}
+\note{
+\code{\link{select}} is best used to subset large amounts of data pulled off the
+server in \code{\link{rvcData}} into smaller managable chunks. See
+documentation for \code{\link{rvcData}} for more details
+}
+\examples{
+x  <- rvcData(species = c("EPI MORI", "MYC BONA"),
+year = 2012, region = "FLA KEYS")
+## Select 1 species from a group
+select(x, species = "EPI MORI")
+## Select only samples from protected areas
+select(x, protected = 1)
+## Select a subset of strata
+select(x, stratum = c("FSLR","FMLR","FDLR"))
 }
 \seealso{
 \code{\link{rvcData}} \code{\link{getStat}}

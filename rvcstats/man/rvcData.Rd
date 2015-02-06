@@ -12,8 +12,11 @@ e.g. 'Lutjanus griseus' or 'LUT GRIS' (not case-sensitive).}
 
 \item{year}{A numeric vector of the years to select from data.}
 
-\item{region}{A character vector of the region code(s) to select from
-data.}
+\item{region}{A string of the region code to select from
+data. Only one region allowed at a time.}
+
+\item{server}{A string indicating the location of the server. Can
+be an IP address or URL}
 }
 \value{
 Returns an RVC object with two elements:
@@ -24,7 +27,14 @@ input arguments}
 }
 \description{
 Creates an RVC data object from Reef Visual Census
-sample and stratum data
+data located on a remote server
+}
+\note{
+Best practice it to pull off the maximum amount of data you
+plan on working with first using \code{\link{rvcData}},
+and then to use the \code{\link{select}}
+function to break it into smaller managable bits. This reduces the
+time spent downloading it from the server.
 }
 \examples{
 ## Names not case-sensitive

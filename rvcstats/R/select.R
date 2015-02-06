@@ -27,9 +27,9 @@
 #' ## Select a subset of strata
 #' select(x, stratum = c("FSLR","FMLR","FDLR"))
 #' @note
-#' All of the parameters in select can be passed to getStat. The 
-#' usefullness of the select function is when a subset of the data
-#' pulled off the server is used to calculate multiple statistics
+#' \code{\link{select}} is best used to subset large amounts of data pulled off the 
+#' server in \code{\link{rvcData}} into smaller managable chunks. See
+#' documentation for \code{\link{rvcData}} for more details
 select  <- function(x, species = NULL, year = NULL, region = NULL,
                     stratum = NULL, protected = NULL, ...){
   ## Parse full scientific names are trucated to SPECIES_CD
