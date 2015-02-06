@@ -18,14 +18,14 @@
 #'  @param when_present
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 #'  was present. NOTE: Can only be used for density and with only one species. 
-#'  @param length_classes
+#'  @param length_class
 #'  Number: A breakpoint indiating the length about which to calculate the statistic.  
 #'  @param ...
 #'  Optional parameters to pass to the select method (see \code{\link{select}})
 #'  @return A data frame of the summary statistics
 #'  @seealso \code{\link{rvcData}} \code{\link{select}}
 getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = FALSE, when_present = FALSE,
-                     length_classes = NULL, ...){
+                     length_class = NULL, ...){
   # Select based on option, if neccessary
   x  <- select(x, ...);
   # If when_present, check that stat=="density", only one species and 
@@ -42,7 +42,24 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
     # Subset by when_present
     x <- onlyPresent(x);
   }
-  # If length_classes, add length_classes and run once on each
+  # If length_class, add length_class and run once on each
+  if (!is.null(length_class)){
+    lwr  <- x;
+    upr  <- x;
+    lwr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN < length_class, NUM, 0));
+    upr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN >= length_class, NUM, 0));
+    l  <- list(lwr, upr);
+    lout  <- lapply(l, function(z){
+      getStat(z, level, stat, growth_parameters, merge_protected,
+              when_present, length_class = NULL)
+      });
+    lout[[1]]$length_class  <- rep(paste("<", length_class, sep = ""), 
+                                nrow(lout[[1]]));
+    lout[[2]]$length_class  <- rep(paste(">=", length_class, sep = ""), 
+                                nrow(lout[[2]]));
+    out  <- do.call(rbind, lout)
+    return(out)
+  }
   # If level == "stratum" use stratum level functions
   # if level == "domain" use domain level functions
   # else return error
