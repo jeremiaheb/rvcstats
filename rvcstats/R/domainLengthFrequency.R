@@ -1,4 +1,3 @@
-#' @export
 ## Returns: Domain level length-frequency given,
 ## x, a data.frame of strat data, and
 ## merge_protected, a boolean indicating whether protected

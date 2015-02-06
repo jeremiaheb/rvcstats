@@ -1,5 +1,4 @@
-#' @export
-## Returns: Stratum level abundance given,
+## Returns: Stratum level density given,
 ## x, a psu object, and
 ## merge_protected, a boolean indicating whether protected
 ## and unprotected areas should be merged together

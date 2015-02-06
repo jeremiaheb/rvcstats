@@ -1,4 +1,3 @@
-#'@export
 ## Returns: Stratum level length_frequency given,
 ## x, a psu object, and
 ## merge_protected, a boolean indicating whether protected

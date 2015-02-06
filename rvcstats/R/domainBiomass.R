@@ -1,4 +1,3 @@
-#' @export
 ## Returns: Domain level biomass given,
 ## x, a data.frame of strat data, and
 ## merge_protected, a boolean indicating whether protected

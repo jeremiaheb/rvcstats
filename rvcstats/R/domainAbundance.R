@@ -1,4 +1,3 @@
-#' @export
 ## Returns Domain level abundance estimates given,
 ## x, a data.frame of stratum-level estimates
 ## merge_protected, a boolean indicating whether

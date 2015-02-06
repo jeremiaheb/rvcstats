@@ -1,4 +1,3 @@
-#'@export
 ## Returns: A dataframe with the weighting for each stratum provided
 addWeighting  <- function(x, merge_protected, when_present){
   ## Set the variables by which to aggregate 
