@@ -44,6 +44,10 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   }
   # If length_class, add length_class and run once on each
   if (!is.null(length_class)){
+    # Check that there is only one species
+    if (length(unique(x$sample_data$SPECIES_CD)) != 1){
+      stop("only one species can be selected if length_class != NULL")
+    }
     lwr  <- x;
     upr  <- x;
     lwr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN < length_class, NUM, 0));
