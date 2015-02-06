@@ -86,5 +86,6 @@ select  <- function(x=NULL, species = NULL, year = NULL, region = NULL,
     x$sample_data[paste(">=",length_class,sep="")] = ifelse(x$sample_data$LEN >= length_class,1,0);
   }
   # Set class to RVC
+  class(x)  <- "RVC"
   return(x)
 }
