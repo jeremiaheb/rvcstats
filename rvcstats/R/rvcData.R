@@ -9,7 +9,7 @@
 #' @param year
 #' A numeric vector of the years to select from data. 
 #' @param region
-#' A character vector of the region code(s) to select from 
+#' A string of the region code to select from 
 #' data. 
 #' @seealso \code{\link{select}} \code{\link{getStat}}
 #' @return Returns an RVC object with two elements:
@@ -29,6 +29,10 @@ rvcData = function(species, year, region,
   species <- toSpcCd(species);
   ## Make region codes upper case if not already
   region  <- toupper(region);
+  ## If more than one region raise error
+  if (length(region)>1){
+    stop('only one region can be selected at a time')
+  }
   ## Get Data from server
   sample_data  <- getSampleData(species, year, region, server=server);
   stratum_data  <- getStratumData(year, region, server=server);
