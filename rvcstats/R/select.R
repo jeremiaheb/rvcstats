@@ -17,6 +17,19 @@
 #' input arguments}
 #' \item{stratum_data}{Contains original stratum data subsetted by
 #' input arguments}
+#' @examples
+#' x  <- rvcData(species = c("EPI MORI", "MYC BONA"), 
+#' year = 2012, region = "FLA KEYS")
+#' ## Select 1 species from a group
+#' select(x, species = "EPI MORI")
+#' ## Select only samples from protected areas
+#' select(x, protected = 1)
+#' ## Select a subset of strata
+#' select(x, stratum = c("FSLR","FMLR","FDLR"))
+#' @note
+#' All of the parameters in select can be passed to getStat. The 
+#' usefullness of the select function is when a subset of the data
+#' pulled off the server is used to calculate multiple statistics
 select  <- function(x, species = NULL, year = NULL, region = NULL,
                     stratum = NULL, protected = NULL, ...){
   ## Parse full scientific names are trucated to SPECIES_CD
