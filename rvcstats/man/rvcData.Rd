@@ -2,7 +2,7 @@
 % Please edit documentation in R/rvcData.R
 \name{rvcData}
 \alias{rvcData}
-\title{An RVC data object}
+\title{Get RVC data from server}
 \usage{
 rvcData(species, year, region, server = "http://localhost:3000")
 }
@@ -25,6 +25,13 @@ input arguments}
 \description{
 Creates an RVC data object from Reef Visual Census
 sample and stratum data
+}
+\examples{
+## Names not case-sensitive
+rvcData(species = 'Epinephelus morio', year = 2012, region = 'FLA KEYS')
+## Can pass multiple species and years
+rvcData(c('LUT GRIS', 'LUT ANAL'), year = c(2010, 2012), region = 'FLA KEYS',
+server = '127.0.0.1:3000')
 }
 \seealso{
 \code{\link{select}} \code{\link{getStat}}

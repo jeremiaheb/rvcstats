@@ -1,4 +1,4 @@
-#' An RVC data object
+#' Get RVC data from server
 #' @export
 #' @description Creates an RVC data object from Reef Visual Census
 #' sample and stratum data
@@ -17,6 +17,12 @@
 #' input arguments}
 #' \item{stratum_data}{Contains original stratum data subsetted by
 #' input arguments}
+#' @examples
+#' ## Names not case-sensitive
+#' rvcData(species = 'Epinephelus morio', year = 2012, region = 'FLA KEYS')
+#' ## Can pass multiple species and years
+#' rvcData(c('LUT GRIS', 'LUT ANAL'), year = c(2010, 2012), region = 'FLA KEYS',
+#' server = '127.0.0.1:3000')
 rvcData = function(species, year, region,
                    server = 'http://localhost:3000'){  
   ## Parse full scientific names are trucated to SPECIES_CD
