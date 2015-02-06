@@ -68,8 +68,11 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   # if level == "domain" use domain level functions
   # else return error
   if (level == "stratum"){
-    return(strat(x, stat, growth_paramters, merge_protected));
+    out  <- strat(x, stat, growth_parameters, merge_protected);
   } else if (level == "domain") {
-    return(domain(x, stat, growth_parameters, merge_protected, when_present))
+    out  <- domain(x, stat, growth_parameters, merge_protected, when_present)
   } else {stop("level must be 'stratum' or 'domain'")}
+  # Set name and return
+  names(out)[names(out) == "yi"] = stat;
+  return(out)
 }
