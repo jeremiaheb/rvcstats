@@ -9,22 +9,6 @@
 #' A four-letter code representing the stratum
 #' @param protected
 #' An integer representing the protected status.
-#' @param when_present
-#' A boolean. : If true selects only data where species was observed.
-#' Throws exception if more than one species selected. Defualt 
-#' value is false
-#' @param merge_protected
-#' A boolean. If TRUE merges protected and unprotected
-#' strata together. Default value is false
-#' @param length_class 
-#' Can be NULL, keyword or number. Must be NULL if more than one species selected, or else throws exception
-#' \itemize{
-#' \item If NULL does not modify sample data
-#' \item If keyword "maturity" or "exploitable", retrieves median length at maturity or capture (respectively) 
-#' for the provided species from the server, and uses that as a breakpoint.
-#' If not found, throws exception
-#' \item If number, the provided number is used as the breakpoint.
-#' }
 #' @param ...
 #' Optional parameters passed to \code{\link{rvcData}}, e.g. server
 #' @seealso \code{\link{rvcData}} \code{\link{getStat}}
@@ -33,21 +17,8 @@
 #' input arguments}
 #' \item{stratum_data}{Contains original stratum data subsetted by
 #' input arguments}
-select  <- function(x=NULL, species = NULL, year = NULL, region = NULL,
-                    stratum = NULL, protected = NULL, 
-                    when_present = FALSE, merge_protected = FALSE,
-                    length_class = NULL, ...){
-  ## If x is NULL, run RVC data and then select
-  if (is.null(x)){
-    # If any of species, year, or region is null throw exception
-    # else make request from server
-    v  <- lapply(list(species, year, region), is.null)
-    if (do.call(any, v)){
-      stop('If x is NULL, species, year, and region cannot be NULL')
-    } else {
-      x  <- rvcData(species, year, region, ...)
-    }
-  }
+select  <- function(x, species = NULL, year = NULL, region = NULL,
+                    stratum = NULL, protected = NULL, ...){
   ## Parse full scientific names are trucated to SPECIES_CD
   species <- if(!is.null(species)){toSpcCd(species)};
   ## Make region/stratum codes upper case if not already
@@ -69,22 +40,6 @@ select  <- function(x=NULL, species = NULL, year = NULL, region = NULL,
   x$sample_data  <- subset(x$sample_data, 
                       SPECIES_CD %match% species
                            );
-  # If when_present is TRUE, subset by records when 
-  # NUM > 0
-  if (when_present){
-    # Throws error if more than one species is selected
-    if (length(unique(x$sample_data$SPECIES_CD))>1){
-      stop('when_present cannot be TRUE if more than 
-           one species selected');
-    }
-    x$sample_data  <- subset(x$sample_data, NUM > 0);
-  }
-  # If length_class != NULL, add two columns, one less than
-  # the provided number and one greater 
-  if (!is.null(length_class)){
-    x$sample_data[paste("<",length_class,sep="")] = ifelse(x$sample_data$LEN < length_class,1,0);
-    x$sample_data[paste(">=",length_class,sep="")] = ifelse(x$sample_data$LEN >= length_class,1,0);
-  }
   # Set class to RVC
   class(x)  <- "RVC"
   return(x)
