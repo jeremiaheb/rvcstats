@@ -49,7 +49,7 @@ stratDensity  <- function(x, merge_protected){
   # Merge all the tables
   temp  <- Reduce(merge, list(temp, n, nm, mbar, np, v1, v2_s));
   # Calculate v2
-  temp$v2  <- with(temp, v2_s/np);
+  temp$v2  <- with(temp, ifelse(np != 0, v2_s/np, NA));
   #var - Overall Variance 
   MTOT  <- with(temp, round(GRID_SIZE^2/(pi*7.5^2),0));
   fn  <- with(temp, n/NTOT);
