@@ -1,31 +1,49 @@
-#' Returns summary statistics 
+#' Returns summary statistics
 #' @export
-#' @description Returns summary statistic 'stat' at level 'level' 
-#' for RVC object 'x'
+#' @description Returns summary statistics given an RVC object
 #' @inheritParams select
 #' @param level
-#' Keyword, either "stratum" or "domain" indicating at which level the 
+#' Keyword: either "stratum" or "domain" indicating at which level the 
 #' summary statistic should be calculated
 #' @param stat
-#' Keyword, indicating which summary statistic to calculate. Options are
+#' Keyword: indicating which summary statistic to calculate. Options are
 #' "density", "occurrence", "abundance", "length_frequency", and "biomass"
 #' @param growth_parameters
-#'  A list of allometric growth parameters named a (the linear coefficient)
-#'  and b (the exponent). Only needed if stat = "biomass". Defualt value is NULL
-#'  @param merge_protected
+#'  A list of allometric growth parameters named 'a' (the linear coefficient)
+#'  and 'b' (the exponent). Only needed if stat = "biomass". Default value is NULL
+#' @param merge_protected
 #'  Boolean: Indicates whether protected and unprotected areas are merged together in calculating
 #'  the statistic. Default value is FALSE. 
-#'  @param when_present
+#' @param when_present
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 #'  was present. NOTE: Can only be used for density and with only one species. 
-#'  @param length_class
-#'  Number: A breakpoint indiating the length about which to calculate the statistic.  
-#'  @param ...
+#' @param length_class
+#'  Number: A number indiating the breakpoint about which to separate calculate the
+#'  statistic seperately. NOTE: can only be used when one species selected.
+#' @param ...
 #'  Optional parameters to pass to the select method (see \code{\link{select}})
-#'  @return A data frame of the summary statistics
-#'  @seealso \code{\link{rvcData}} \code{\link{select}}
+#' @return Returns: a data frame of the summary statistics
+#' @examples
+#' x  <- rvcData(species = 'EPI MORI', year = 2012, region = 'FLA KEYS')
+#' ## Calculate Domain-Level Density
+#' getStat(x, level = "domain", stat = "density")
+#' ## Calculate Stratum Level biomass 
+#' ## merging both protected and unprotected areas
+#' getStat(x, level = "stratum", stat = "biomass",
+#'  growth_parameters = list(a = 0.061, b = 2.2),
+#'  merge_protected = TRUE)
+#'## Calculate domain level density for individuals above and below 
+#'## 40cm
+#'getStat(x, level = "domain", stat = "density", length_class = 40)
+#' @seealso \code{\link{rvcData}} \code{\link{select}}
 getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = FALSE, when_present = FALSE,
                      length_class = NULL, ...){
+  # Make sure stat is valid
+  if(!any(stat %in% c("abundance", "biomass", "density",
+                     "occurrence", "length_frequency"))){
+    stop('stat must be one of the following: "abundance", "biomass", "density",
+                     "occurrence", "length_frequency"')
+  }
   # Select based on option, if neccessary
   x  <- select(x, ...);
   # If when_present, check that stat=="density", only one species and 
