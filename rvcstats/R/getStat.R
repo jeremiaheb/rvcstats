@@ -1,6 +1,6 @@
 #' Returns summary statistics
 #' @export
-#' @description Returns summary statistics given an RVC object
+#' @description Returns a data.frame of summary statistics given an RVC object
 #' @inheritParams select
 #' @param level
 #' Keyword: either "stratum" or "domain" indicating at which level the 
@@ -18,8 +18,9 @@
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 #'  was present. NOTE: Can only be used for density and with only one species. 
 #' @param length_class
-#'  Number: A number indiating the breakpoint about which to separate calculate the
-#'  statistic seperately. NOTE: can only be used when one species selected.
+#'  Number: indicating a break point between two length classes, such as the breakpoint between 
+#'  immature and mature individuals or non-exploitable and exploitable individuals. Break is 
+#'  non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
 #' @param ...
 #'  Optional parameters to pass to the select method (see \code{\link{select}})
 #' @return Returns: a data frame of the summary statistics

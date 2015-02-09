@@ -33,7 +33,7 @@ data located on a remote server
 Best practice it to pull off the maximum amount of data you
 plan on working with first using \code{\link{rvcData}},
 and then to use the \code{\link{select}}
-function to break it into smaller managable bits. This reduces the
+function to break it into smaller manageable bits. This reduces the
 time spent downloading it from the server.
 }
 \examples{

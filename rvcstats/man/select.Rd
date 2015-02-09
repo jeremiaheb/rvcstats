@@ -36,7 +36,7 @@ Produces a subset of Reef Visual Census data.
 }
 \note{
 \code{\link{select}} is best used to subset large amounts of data pulled off the
-server in \code{\link{rvcData}} into smaller managable chunks. See
+server in \code{\link{rvcData}} into smaller manageable chunks. See
 documentation for \code{\link{rvcData}} for more details
 }
 \examples{

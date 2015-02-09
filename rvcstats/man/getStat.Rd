@@ -25,8 +25,9 @@ the statistic. Default value is FALSE.}
 \item{when_present}{Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 was present. NOTE: Can only be used for density and with only one species.}
 
-\item{length_class}{Number: A number indiating the breakpoint about which to separate calculate the
-statistic seperately. NOTE: can only be used when one species selected.}
+\item{length_class}{Number: indicating a break point between two length classes, such as the breakpoint between
+immature and mature individuals or non-exploitable and exploitable individuals. Break is
+non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).}
 
 \item{...}{Optional parameters to pass to the select method (see \code{\link{select}})}
 }
@@ -34,7 +35,7 @@ statistic seperately. NOTE: can only be used when one species selected.}
 Returns: a data frame of the summary statistics
 }
 \description{
-Returns summary statistics given an RVC object
+Returns a data.frame of summary statistics given an RVC object
 }
 \examples{
 x  <- rvcData(species = 'EPI MORI', year = 2012, region = 'FLA KEYS')

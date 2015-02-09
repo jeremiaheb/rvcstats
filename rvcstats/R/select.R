@@ -28,7 +28,7 @@
 #' select(x, stratum = c("FSLR","FMLR","FDLR"))
 #' @note
 #' \code{\link{select}} is best used to subset large amounts of data pulled off the 
-#' server in \code{\link{rvcData}} into smaller managable chunks. See
+#' server in \code{\link{rvcData}} into smaller manageable chunks. See
 #' documentation for \code{\link{rvcData}} for more details
 select  <- function(x, species = NULL, year = NULL, region = NULL,
                     stratum = NULL, protected = NULL, ...){
