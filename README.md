@@ -7,6 +7,17 @@ rvcstats
 The rvcstats package is designed to compute summary statistics, such as: fish density, frequency of occurrence, and length frequencies for Reef Visual Census data, which can then be output to csv files or turned into graphs. 
 
 ## Installation 
+### The Easy Way
+1. In R, type the following:
+```
+install.packages('devtools') 
+devtools::install_github('harryganz/rvcstats/rvcstats')
+```
+You can skip the first line if you already have devtools installed.
+
+The disadvantage of this is that it makes you download R devtools first.
+
+### The Hard Way
 1. Download the compressed tar ball named "rvcstats_[version].tar.gz" from the root directory of this project
 2. Open up windows command prompt 
   * Go to start menu
@@ -20,7 +31,7 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
 
 ## How to use this package
 First, read the data off the server using the rvcData function. Best practice is to pull off
-all the data you will need first then break it in to smaller chunks, if neccessary,
+all the data you will need first then break it in to smaller chunks, if necessary,
 for analysis. 
 * Note: only one region can be pulled off at a time
 	
@@ -77,7 +88,7 @@ Optional arguments are:
 * when_present: a boolean indicating whether or not to calculate the statistic only for stations where the species was presents (default = FALSE)
 	* NOTE: Can only be used if only one species selected, and for density/abundance
 * merge_protected: a boolean indicating whether the statistic should be calculated for both protected and unprotected areas together (TRUE) or separately (FALSE), the default is FALSE.
-* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coeffiecient, and, 'b', the exponential coefficient. Only required if stat = 'biomass', otherwise NULL. 
+* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coefficient, and, 'b', the exponential coefficient. Only required if stat = 'biomass', otherwise NULL. 
 * length_class: a number indicating a break point between two length classes, such as the breakpoint between immature and mature individuals or non-exploitable and exploitable individuals. Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper). 
 	* NOTE: Can only be used if one species selected 
 
