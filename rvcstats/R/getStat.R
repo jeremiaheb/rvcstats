@@ -50,8 +50,9 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   # and subset by NUM > 0
   if (when_present){
     # Check that stat == "density
-    if (stat != "density"){
-      stop("stat must be 'density' if when_present is TRUE")
+    if (stat != "density" | stat != "abundance"){
+      stop("stat must be 'density' or 'abundance' if
+           when_present is TRUE")
     }
     # Check that there is only one species
     if (length(unique(x$sample_data$SPECIES_CD)) != 1){
