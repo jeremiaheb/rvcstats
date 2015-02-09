@@ -19,78 +19,70 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
 5. It should install to your R library. To make sure, open up R and type library(rvcstats). If it successfully installed, you should not get any errors. 
 
 ## How to use this package
-1. Besides the actual R package, you will need two other things to start working with the RVC data:
-  * A .csv or .txt file containing the "analysis ready" reef visual census sampling data
-  * A .csv or .txt file containing the names and total number of possible primary sampling units per stratum per year
-2. Once you have these data files you can turn them into data.frames in R by using the read.table or read.csv functions
-  * Example:
-  ``` 
-    sample = read.csv("rvcdata.csv")
-    strata = read.txt("stratadata.csv")
-  ```
-3. Now you can finally start using the package, below are some examples (executable directly):
- * Examples:
-  ```
-	require(rvcstats)
-	## Load example simulated datasets in package
-	data(sample) #RVC sample data
-	data(strata) #Stratum data
+First, read the data off the server using the rvcData function. Best practice is to pull off
+all the data you will need first then break it in to smaller chunks, if neccessary,
+for analysis. 
+* Note: only one region can be pulled off at a time
 	
-	## Print them out to take a look at them
-	print(sample)
-	print(strata)
-	## The variable names in these tables are what the functions in this package expect,
-	## however, they do not need to be uppercase
-	
-	##Calculate domain level densities and occurrence for African Swallows from year 1..2
-	domainDensity(sample_data = sample, stratum_data = strata, species = "African Swallow")
-	domainOccurrence(sample_data = sample, stratum_data = strata, species = "African Swallow")
-	
-	## Calculate stratum level occurrence for European Swallows in the stratum "SPAM" in year 1
-	stratOccurrence(sample, strata, "EUR SWAL", strata = "SPAM", years = 1)
-	
-	## Note that the species argument can be the full species (scientific) name, or the species
-	## code
-	
-	## For lower level functions you first generate an RVC object using the rvcData function
-	## Then you can plug that object in to strat, domain, or other lower-level functions
-	# Generate RVC object
-	r <- rvcData(sample, strata, species = c("EUR SWAL", "AFR SWAL"), includes_protected = TRUE)
-	## Stratum level occurrence estimates
-	strat(r, calc = "p")
-	## Stratum level density estimates
-	strat(r, calc = "d")
-	## Domain level density estimates
-	domain(r)
+```
+## Pull data for red (Epinephelus morio) and black grouper (Mycteroperca bonaci) 
+## off of the server for 2010-2012 in the florida keys
+grouper <- rvcData(species = c('Epinephelus morio', 'MYC BONA'), year = 2010:2012,
+region = 'FLA KEYS')
+```
+The rvcData and select functions output RVC objects which are basically lists of the 'analysis ready' sample data and stratum data, but the output is fairly raw and not useful without knowledge of how the Reef Visual Census is conducted.
 
-	## As of right now length frequency is only a lower-level function, lets take a look at length
-	## length frequencies for these species
-	r <- rvcData(sample, strata, species = c("eur swal", "afr swal"))
-	stratLenFreq(r)
-	domainLenFreq(r)
+If you would like to do statistics on only one species you can use the select function. 
+
+```
+## Select red grouper from grouper
+red_grouper <- select(grouper, species = "EPI MORI")
+```
+
+The select function can also be used to select specific years, strata, and protected statuses. Complete function
+descriptions for rvcData and select can be found in the R help files for each function (type ?function\_name into the interactive console, where function\_name is the name of the function you need help with). 
 	
-	## We can also calculate the optimal number of primary samples for a given coef. of variance
-	## domainNstar and stratNStar are currently only lower-level funtions
-	r <- rvcData(sample, strata, species = c("eur swal", "afr swal"))
-	domainNStar(cv = 30, rvcObj = r)
-	stratNStar(cv = 30, rvcObj = r)
-    ```
- ## List of functions and short descriptions
- This list is subject to change
- - Low-Level
-  	* rvcData: Checks the RVC sample data and subsets by provided species, years, and strata. 
-  	* strat: Calculates stratum level densities or occurrence
-  	* domain: Calculates domain level densities or occurrence
-	* stratLenFreq: Calculates the stratum level length frequencies
-	* domainLenFreq: Calculates the domain level length frequencies
-	* domainNStar: Calculates the optimal number of primary samples for the sampling domain
-	* stratNStar: Calculates the optimal number of priamry samples per stratum
- - High-Level
-  	* domainDensity: A wrapper for domain that explicitly measures density from original dataframes
-  	* domainOccurrence: A wrapper for domain that explicitly measures occurrence from original dataframes
-  	* stratDensity: A wrapper for strat that explicitly measures density from original dataframes
-  	* stratOccurrence: A wrapper for strat that explicitly measures occurrence from original dataframes
- 
- **It is suggested that beggining users use the high level functions to avoid possible errors**
-  
+Once you have subset the data, you can calculate summary statistics using the getStat function.
+
+```
+## Density for red grouper, with protected and unprotected areas merged together
+red_grouper_dens <- getStat(red_grouper, level = "domain", stat = "density",
+merge_protected = TRUE)
+
+## Utilizing the when_present argument, you can calculate density when present
+## Here the statistic is being calculated at the stratum level
+reg_grouper_dens_when_pres <- getStat(red_grouper, level = "stratum", stat = "density", 
+when_present = TRUE)
+
+## Options from select can also be passed to the getStat function
+## Here we have black grouper occurrence with protected and unprotected areas calculated seperately
+black_grouper_occ <- getStat(grouper, species = "MYC BONA", level = "domain", stat = "occurrence")
+```
+
+There are three required arguments for getStat:
+* x: the RVC object produced by either the rvcData function or the select function. It should contain all the species, years, and strata for which you wish to calculate summary statistics
+* level: a keyword of either "domain" or "stratum" indicating the level at which you wish to calculate the summary statistic
+* stat: a keyword indicating the summary statistic you wish to calculate, the available statistics are:
+	* "density": The average number of individuals counted per sampling station (177m^2)
+	* "occurrence": The estimated probability of encountering an individual in a sampling station.
+	* "abundance": The estimated total count extrapolated over the sampling domain
+	* "length_frequency": The estimated frequency of a set of lengths generated from observed data
+		* the length frequency data is generated from the minimum median and maximum length at each station fit to a probability distribution.
+	* "biomass": The estimated total biomass extrapolated over the sampling domain
+		* Requires allometric growth parameters to be input, see the growth_parameters argument description below. 
+
+**NOTE**: All of the above statistics are indices, not model-based estimates. They indicate the synoptic count data, and any conclusions drawn from them are subject to the relationship between counts and actual abundance.  
+
+Optional arguments are:
+* when_present: a boolean indicating whether or not to calculate the statistic only for stations where the species was presents (default = FALSE)
+	* NOTE: Can only be used if only one species selected, and for density/abundance
+* merge_protected: a boolean indicating whether the statistic should be calculated for both protected and unprotected areas together (TRUE) or separately (FALSE), the default is FALSE.
+* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coeffiecient, and, 'b', the exponential coefficient. Only required if stat = 'biomass', otherwise NULL. 
+* length_class: a number indicating a break point between two length classes, such as the breakpoint between immature and mature individuals or non-exploitable and exploitable individuals. Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper). 
+	* NOTE: Can only be used if one species selected 
+
+## A short list of functions and their descriptions
+1. rvcData(species, year, stratum, server): Pulls data off the server by the provided arguments and produces an RVC object.
+2. select(x, species, year, stratum, protected): subsets an RVC object x to produce a new RVC object.
+3. getStat(x, level, stat, growth\_parameters, merge\_protected, when\_present, length\_class): produces a data.frame of summary statistics, 'stat', from an RVC object, 'x', at the level, 'level', with the other options provided. 
   
