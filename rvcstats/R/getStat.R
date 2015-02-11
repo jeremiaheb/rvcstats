@@ -51,7 +51,7 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   # and subset by NUM > 0
   if (when_present){
     # Check that stat == "density
-    if (stat != "density" | stat != "abundance"){
+    if (!any(stat %in% c("density", "abundance"))){
       stop("stat must be 'density' or 'abundance' if
            when_present is TRUE")
     }
