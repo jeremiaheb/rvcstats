@@ -1,5 +1,18 @@
-## Returns: A data frame of the sample data given a set of parameters
-## species, year, region, stratum, protected, and when_present
+#' Retrieves RVC sample data from server
+#' @export 
+#' @description 
+#' Returns a data frame of the sample data pulled from the server. Useful for 
+#' analyzing the analysis ready data using custom functions not included
+#' in this package.
+#' @inheritParams rvcData
+#' @param region
+#' A character vector of the region(s) from which to get sample data.
+#' \emph{Multiple regions may be selected}.
+#' @inheritParams select
+#' @param when_present
+#' A boolean indicating whether only samples where 
+#' individuals were seen should be selected. \cr
+#' \emph{Multiple species may be selected}
 getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
                            server){
