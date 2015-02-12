@@ -11,3 +11,4 @@ Description: Provides fisheries managers and scientists with summary statistics
 License: GPL-3
 Imports: RJSONIO,
     RCurl
+Suggests: testthat
