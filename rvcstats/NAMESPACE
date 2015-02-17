@@ -2,5 +2,6 @@
 
 export(getSampleData)
 export(getStat)
+export(getStratumData)
 export(rvcData)
 export(select)

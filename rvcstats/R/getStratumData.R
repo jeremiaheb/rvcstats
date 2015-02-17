@@ -1,3 +1,9 @@
+#' Retrieves stratum data from server
+#' @export
+#' @description Returns a data frame of stratum data pulled from the
+#' server. Useful for writing your own function using the RVC data.
+#' @inheritParams getSampleData
+#' @seealso \code{\link{rvcData}} \code{\link{getSampleData}}
 getStratumData  <- function(year, region, stratum=NULL,
                                protected=NULL, server) {                     
  # Put together URL and request
