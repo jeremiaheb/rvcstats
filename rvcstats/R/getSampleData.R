@@ -13,6 +13,7 @@
 #' A boolean indicating whether only samples where 
 #' individuals were seen should be selected. \cr
 #' \emph{Multiple species may be selected}
+#' @seealso \code{\link{rvcData}} \code{\link{getStratumData}}
 getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
                            server){

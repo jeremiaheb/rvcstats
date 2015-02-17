@@ -32,4 +32,7 @@ Returns a data frame of the sample data pulled from the server. Useful for
 analyzing the analysis ready data using custom functions not included
 in this package.
 }
+\seealso{
+\code{\link{rvcData}} \code{\link{getStratumData}}
+}
 
