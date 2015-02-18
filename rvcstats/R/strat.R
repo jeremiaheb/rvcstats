@@ -17,5 +17,14 @@ strat  <- function(x, stat, growth_parameters, merge_protected){
     length_frequency = stratLengthFrequency(x, merge_protected),
     biomass = stratBiomass(x, merge_protected)
     );
+  if (stat != "length_frequency"){
+    out  <- with(out,
+                 aggregate(
+                   list(NTOT = NTOT, NMTOT = NMTOT,
+                        yi = yi, var = var, n = n, nm = nm),
+                   by = aggBy("stratum", stat, merge_protected),
+                   FUN = sum)
+    );
+  }
   return(out)
 }
