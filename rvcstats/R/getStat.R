@@ -60,7 +60,7 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
       stop("only one species can be selected if when_present is TRUE")
     }
     # Subset by when_present
-    x <- onlyPresent(x);
+    x$sample_data  <- subset(x$sample_data, NUM > 0);
   }
   # If length_class, add length_class and run once on each
   if (!is.null(length_class)){
