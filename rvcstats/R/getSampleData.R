@@ -17,6 +17,7 @@
 getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
                            server){
+  species = toSpcCd(species);
   # Put together URL and request
   url  <- paste(server, '/api/samples.json', 
           toQuery(species = species, year = year, region = region,
