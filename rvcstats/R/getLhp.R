@@ -20,7 +20,7 @@
 #' \deqn{W(kg) = \alpha L(cm)^\beta }
 #' @seealso \code{\link{rvcData}} \code{\link{getStratumData}}
 #' \code{\link{getSampleData}}
-getLhp  <- function(species, server){
+getLhp  <- function(species, server='http://localhost:3000'){
   # Convert species to species code
   species = toSpcCd(species)
   # Put together URL and request
