@@ -58,16 +58,23 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
     # try to pull growth parameters off of the server
     if (is.null(growth_parameters)){
       # Try to pull pars off server, if 
-      # failed, raise error
+      # no connection raise error
       lhp  <- tryCatch(
         {getLhp(spc, ...)},
         error = function(cond){
-          message('the following error occurred:')
+          message("the following error occurred:");
           message(cond);
-          stop('could not retrieve life history parameters from server,
-               try entering them manually');
+          stop('make sure you are connected to the server and 
+               try again')
         }
-        );
+      )
+      # If species not found, raise error
+      if(is.null(lhp)){
+        msg  <- paste("growth parameters for speces", spc, 
+                      "could not be found on server,",
+                      "please enter them manually", sep = " ");
+        stop(msg)
+      }
       growth_parameters  <- list(a = lhp$WLEN_A, b = lhp$WLEN_B);
     }
   }
