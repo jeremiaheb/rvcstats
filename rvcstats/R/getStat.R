@@ -47,6 +47,30 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   }
   # Select based on option, if neccessary
   x  <- select(x, ...);
+  # if stat is biomass...  
+  if (stat == "biomass"){
+    spc = as.character(unique(x$sample_data$SPECIES_CD));
+    # Make sure only one species present
+    if (length(spc)>1){
+      stop("only one species can be selected if stat='biomass'");
+    }
+    # And no growth parameters are provided
+    # try to pull growth parameters off of the server
+    if (is.null(growth_parameters)){
+      # Try to pull pars off server, if 
+      # failed, raise error
+      lhp  <- tryCatch(
+        {getLhp(spc, ...)},
+        error = function(cond){
+          message('the following error occurred:')
+          message(cond);
+          stop('could not retrieve life history parameters from server,
+               try entering them manually');
+        }
+        );
+      growth_parameters  <- list(a = lhp$WLEN_A, b = lhp$WLEN_B);
+    }
+  }
   # If when_present, check that stat=="density", only one species and 
   # and subset by NUM > 0
   if (when_present){
