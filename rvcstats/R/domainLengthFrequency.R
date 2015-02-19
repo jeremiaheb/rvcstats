@@ -5,7 +5,7 @@
 domainLengthFrequency  <- function(x, merge_protected){
   ## Arguments
   args1  <- alist(x = list(yi = wh*yi),
-                  by = aggBy("domain", "length_frequency", merge_protected),
+                  by = aggBy("domain", "length_frequency", merge_protected=FALSE),
                   FUN= sum, na.rm = TRUE);
   args2  <- alist(x = list(sum_yi = wh*yi),
                   by = NULL,
@@ -32,5 +32,15 @@ domainLengthFrequency  <- function(x, merge_protected){
   c  <- which(names(out) == "sum_yi");
   out  <- out[-c];
   
+  ## If merge protected merge protected and unprotected areas
+  if (merge_protected){
+    out  <- with(out,
+                 aggregate(
+                   list(yi = yi),
+                   by = aggBy("domain", "length_frequency", merge_protected),
+                   FUN = sum, na.rm = TRUE
+                   )
+                 );
+  }
   return(out)
 }
