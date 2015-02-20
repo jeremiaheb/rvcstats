@@ -10,7 +10,8 @@
 #' "density", "occurrence", "abundance", "length_frequency", and "biomass"
 #' @param growth_parameters
 #'  A list of allometric growth parameters named 'a' (the linear coefficient)
-#'  and 'b' (the exponent). Only needed if stat = "biomass". Default value is NULL
+#'  and 'b' (the exponent). If no growth parameters are provided (NULL), 
+#'  function will attempt to retrieve them from the server. 
 #' @param merge_protected
 #'  Boolean: Indicates whether protected and unprotected areas are merged together in calculating
 #'  the statistic. Default value is FALSE. 
@@ -18,9 +19,12 @@
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 #'  was present. NOTE: Can only be used for density and with only one species. 
 #' @param length_class
-#'  Number: indicating a break point between two length classes, such as the breakpoint between 
-#'  immature and mature individuals or non-exploitable and exploitable individuals. Break is 
-#'  non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
+#'  Number or Keyword: indicating a break point between two length classes, such as the breakpoint between 
+#'  immature and mature individuals or non-exploitable and exploitable individuals. The recognized
+#'  keywords are "LM" for median length-at-maturity and "LC" for minimum length-at-capture. If keywords
+#'  are provided, getStat will attempt to retrieve the breakpoint values from the server, otherwise it will
+#'  use the provided breakpoint. 
+#'  Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
 #' @param ...
 #'  Optional parameters to pass to the select method (see \code{\link{select}})
 #' @return Returns: a data frame of the summary statistics
