@@ -45,5 +45,12 @@ getLhp  <- function(species, server='http://localhost:3000'){
   if (length(out$SPECIES_CD) != length(species)){
     warning("not all species life history parameters found on server")
   }
+  # find "NA" and turn to NA
+  # cast factor to numeric 
+  # sometimes R can be a pain
+  out[-1]  <- apply(out[-1], 2, 
+                    function(x){
+                      as.numeric(ifelse(x=="NA",NA,x))
+                      });
   return(out)
 }
