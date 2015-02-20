@@ -4,7 +4,7 @@
 \alias{getLhp}
 \title{Returns life history parameter data}
 \usage{
-getLhp(species, server)
+getLhp(species, server = "http://localhost:3000")
 }
 \arguments{
 \item{species}{A character vector of scientific names or species codes,
