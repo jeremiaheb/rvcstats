@@ -57,25 +57,16 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
     # And no growth parameters are provided
     # try to pull growth parameters off of the server
     if (is.null(growth_parameters)){
-      # Try to pull pars off server, if 
-      # no connection raise error
-      lhp  <- tryCatch(
-        {getLhp(spc, ...)},
-        error = function(cond){
-          message("the following error occurred:");
-          message(cond);
-          stop('make sure you are connected to the server and 
-               try again')
-        }
-      )
-      # If species not found, raise error
-      if(is.null(lhp)){
-        msg  <- paste("growth parameters for speces", spc, 
-                      "could not be found on server,",
-                      "please enter them manually", sep = " ");
-        stop(msg)
-      }
+      # Try to pull pars off server
+      # ToDO figure out how to pass server through options
+      lhp  <- getLhp(spc);
+      a = lhp$WLEN_A;
+      b = lhp$WLEN_B;
+      if (is.na(a) | is.na(b)){
+        stop("growth parameters not found on server, please enter them manually")
+      } else{
       growth_parameters  <- list(a = lhp$WLEN_A, b = lhp$WLEN_B);
+      }
     }
   }
   # If when_present, check that stat=="density", only one species and 
