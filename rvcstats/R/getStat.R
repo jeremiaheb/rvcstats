@@ -86,9 +86,24 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   }
   # If length_class, add length_class and run once on each
   if (!is.null(length_class)){
+    spc = as.character(unique(x$sample_data$SPECIES_CD));
     # Check that there is only one species
-    if (length(unique(x$sample_data$SPECIES_CD)) != 1){
+    if (length(spc) != 1){
       stop("only one species can be selected if length_class != NULL")
+    }
+    #If length_class is LM, set length_class to LM from server
+    if (length_class == "LM"){
+      length_class = getLhp(spc)$LM
+      if(is.na(length_class)){
+        stop("length_at_maturity not found on server, please enter it manually")
+      }
+    }
+    #If length_class is LC, set length_class to LC from server
+    if (length_class == "LC"){
+      length_class = getLhp(spc)$LC
+      if(is.na(length_class)){
+        stop("length_at_capture not found on server, please enter it manually")
+      }
     }
     lwr  <- x;
     upr  <- x;
