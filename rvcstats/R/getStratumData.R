@@ -11,8 +11,17 @@ getStratumData  <- function(year, region, stratum=NULL,
                 toQuery(year = year, region = region,
                          strat = stratum, prot = protected),
                 sep='');
-  # Get data and convert JSON to list
-  j  <- RJSONIO::fromJSON(RCurl::getURL(url));
+  # Get data and convert JSON to list, 
+  # if not connected return error
+  j  <- tryCatch({RJSONIO::fromJSON(RCurl::getURL(url))},
+                 error = function(cond){
+                   message("the following error occurred:")
+                   message(cond)
+                   stop("make sure you are connected to the 
+                        server and try again")
+                 });
+  ## Check that data was returned
+  if(length(j)==0){stop("no stratum data returned from server")}
   # Turn list into data.frame 
   out  <- do.call(rbind, lapply(j, as.data.frame));
   return(out)
