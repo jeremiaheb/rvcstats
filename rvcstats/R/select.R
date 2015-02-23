@@ -9,8 +9,6 @@
 #' A four-letter code representing the stratum
 #' @param protected
 #' An integer representing the protected status.
-#' @param ...
-#' Optional parameters passed to \code{\link{rvcData}}, e.g. server
 #' @seealso \code{\link{rvcData}} \code{\link{getStat}}
 #' @return Returns an RVC object with two elements:
 #' \item{sample_data}{Contains the original sample data subsetted by
@@ -31,7 +29,7 @@
 #' server in \code{\link{rvcData}} into smaller manageable chunks. See
 #' documentation for \code{\link{rvcData}} for more details
 select  <- function(x, species = NULL, year = NULL, region = NULL,
-                    stratum = NULL, protected = NULL, ...){
+                    stratum = NULL, protected = NULL){
   ## Parse full scientific names are trucated to SPECIES_CD
   species <- if(!is.null(species)){toSpcCd(species)};
   ## Make region/stratum codes upper case if not already
