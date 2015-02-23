@@ -16,10 +16,11 @@
 #' be an IP address or URL
 #' @seealso \code{\link{select}} \code{\link{getStat}}
 #' @return Returns an RVC object with two elements:
-#' \item{sample_data}{Contains the original sample data subsetted by
-#' input arguments}
-#' \item{stratum_data}{Contains original stratum data subsetted by
-#' input arguments}
+#' \item{sample_data}{A data frame containing the analysis ready sample data}
+#' \item{stratum_data}{A data frame containing stratum data, e.g. the number of 
+#' possible primary sampling units for each stratum in each year (NTOT)}
+#' \item{lhp_data}{A data frame containing life history parameter data, NULL if no
+#' life history data available for selected species}
 #' @examples
 #' ## Names not case-sensitive
 #' rvcData(species = 'Epinephelus morio', year = 2012, region = 'FLA KEYS')
