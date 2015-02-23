@@ -10,11 +10,14 @@
 #' @param protected
 #' An integer representing the protected status.
 #' @seealso \code{\link{rvcData}} \code{\link{getStat}}
-#' @return Returns an RVC object with two elements:
-#' \item{sample_data}{Contains the original sample data subsetted by
-#' input arguments}
-#' \item{stratum_data}{Contains original stratum data subsetted by
-#' input arguments}
+#' @return Returns an RVC object with three elements:
+#' \item{sample_data}{A data frame containing the analysis ready sample data}
+#' \item{stratum_data}{A data frame containing data about the stratum, including the number of 
+#' possible primary sample units per stratum (NTOT)}
+#' \item{lhp_data}{A data frame containing life history parameter data, including 
+#' minimum length-at-capture (LC), median length-at-maturity (LM), and the allometric growth
+#' parameters (WLEN_A, WLEN_B).
+#'  NULL if no life history data available for selected species}
 #' @examples
 #' x  <- rvcData(species = c("EPI MORI", "MYC BONA"), 
 #' year = 2012, region = "FLA KEYS")
