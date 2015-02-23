@@ -26,13 +26,7 @@ getSampleData  <- function(species, year, region, stratum=NULL,
           sep='');
   # Get data and convert JSON to list, 
   # if not connected return error
-  j  <- tryCatch({RJSONIO::fromJSON(RCurl::getURL(url))},
-                 error = function(cond){
-                   message("the following error occurred:")
-                   message(cond)
-                   stop("make sure you are connected to the 
-                        server and try again")
-                 });
+  j  <- getData(url);
   ## Check that data was returned
   if(length(j)==0){stop("no sample data returned from server")}
   # Turn list into data.frame 

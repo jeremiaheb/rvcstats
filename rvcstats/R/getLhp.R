@@ -29,16 +29,9 @@ getLhp  <- function(species, server='http://localhost:3000'){
                 sep='');
   # Get data and convert JSON to list, 
   # if not connected return error
-  j  <- tryCatch({RJSONIO::fromJSON(RCurl::getURL(url))},
-                 error = function(cond){
-                   message("the following error occurred:")
-                   message(cond)
-                   stop("make sure you are connected to the 
-                        server and try again")
-                 });
-  # If nothing is returned, raise error 
-  if (length(j)==0){stop("provided species life history parameters
-                         not found on server")}
+  j  <- getData(url);
+  # If nothing is returned, raise warning
+  if (length(j)==0){stop("provided species life history parameters not found on server")}
   # Turn list into data.frame 
   out  <- do.call(rbind, lapply(j, as.data.frame));
   # If not all species found return warning
