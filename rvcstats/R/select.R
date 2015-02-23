@@ -39,19 +39,28 @@ select  <- function(x, species = NULL, year = NULL, region = NULL,
   if (!inherits(x,"RVC")){
     stop('x must be an RVC object')
   }
-  # Subset species and sample data by common values
-  # Note: match function part of rvcstats package
-  x  <- lapply(x, function(x){subset(x,
-          YEAR %match% year &
-          REGION %match% region &
-          STRAT %match% stratum &
-          PROT %match% protected)}
-        );
-  # Further subset by species 
-  x$sample_data  <- subset(x$sample_data, 
-                      SPECIES_CD %match% species
-                           );
-  # Set class to RVC
-  class(x)  <- "RVC"
+  # Subset species, sample, and lhp data by provided
+  # arguments
+  x$sample_data  <- subset(x$sample_data,
+                           YEAR %match% year &
+                           REGION %match% region &
+                           STRAT %match% stratum &
+                           PROT %match% protected &
+                           SPECIES_CD %match% species);
+  x$stratum_data  <- subset(x$stratum_data,
+                            YEAR %match% year &
+                            REGION %match% region &
+                            STRAT %match% stratum &
+                            PROT %match% protected
+                            )
+  if (!is.null(x$lhp_data)){
+    x$lhp_data  <- subset(x$lhp,
+                          SPECIES_CD %match% species);
+    # If Lhp data not found, change lhp_data to NULL
+    if (nrow(x$lhp_data) == 0){
+      x$lhp_data = NULL;
+      warning("no life history parameter data available for selected species");
+    }
+  }
   return(x)
 }
