@@ -45,8 +45,17 @@ rvcData = function(species, year, region,
   ## Get Data from server
   sample_data  <- getSampleData(species, year, region, server=server);
   stratum_data  <- getStratumData(year, region, server=server);
+  # Get life history parameter data from server,
+  # warn and return NULL if none found
+  lhp_data  <- tryCatch(
+    {getLhp(species, server=server)},
+    error = function(cond){
+      warning(cond)
+      return(NULL)
+    });
   ## Create output, set class to RVC, and return
-  out  <- structure(list(sample_data = sample_data, stratum_data = stratum_data),
+  out  <- structure(list(sample_data = sample_data, stratum_data = stratum_data,
+                         lhp_data = lhp_data),
                     class="RVC");
   return(out)
 }
