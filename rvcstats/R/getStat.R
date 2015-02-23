@@ -60,15 +60,12 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
     # And no growth parameters are provided
     # try to pull growth parameters off of the server
     if (is.null(growth_parameters)){
-      # Try to pull pars off server
-      # ToDO figure out how to pass server through options
-      lhp  <- getLhp(spc);
-      a = lhp$WLEN_A;
-      b = lhp$WLEN_B;
-      if (is.na(a) | is.na(b)){
-        stop("growth parameters not found on server, please enter them manually")
+      a = x$lhp_data$WLEN_A;
+      b = x$lhp_data$WLEN_B;
+      if (isBlank(a) | isBlank(b)){
+        stop("growth parameters not found, please enter them manually")
       } else{
-      growth_parameters  <- list(a = lhp$WLEN_A, b = lhp$WLEN_B);
+      growth_parameters  <- list(a = a, b = b);
       }
     }
   }
