@@ -53,9 +53,8 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   x  <- select(x, ...);
   # if stat is biomass...  
   if (stat == "biomass"){
-    spc = as.character(unique(x$sample_data$SPECIES_CD));
     # Make sure only one species present
-    if (length(spc)>1){
+    if (!hasOneSpecies(x$sample_data)){
       stop("only one species can be selected if stat='biomass'");
     }
     # And no growth parameters are provided
@@ -82,7 +81,7 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
            when_present is TRUE")
     }
     # Check that there is only one species
-    if (length(unique(x$sample_data$SPECIES_CD)) != 1){
+    if (!hasOneSpecies(x$sample_data)){
       stop("only one species can be selected if when_present is TRUE")
     }
     # Subset by when_present
