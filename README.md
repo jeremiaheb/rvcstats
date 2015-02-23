@@ -25,7 +25,7 @@ The disadvantage of this is that it makes you download R devtools first.
   * Click on the command prompt application
 3. In the command prompt navigate to where you downloaded the tarball
   * Type "cd [directory containing tar ball]" (e.g. cd C:\Users\John Smith\Downloads\)
-4. Type "R CMD INSTALL rvcstats\_[version].tar.gz", where [version] is version name in the file (e.g. rvcstats\_0.1.1.tar.gz)
+4. Type "R CMD INSTALL rvcstats\_[version].tar.gz", where [version] is version name in the file (e.g. rvcstats\_0.6.1.tar.gz)
   * Make sure that "INSTALL" is capitalized
 5. It should install to your R library. To make sure, open up R and type library(rvcstats). If it successfully installed, you should not get any errors.
 
@@ -88,14 +88,18 @@ There are three required arguments for getStat:
 **NOTE**: All of the above statistics are indices, not model-based estimates. They indicate the synoptic count data, and any conclusions drawn from them are subject to the relationship between counts and actual abundance.  
 
 Optional arguments are:
-* when_present: a boolean indicating whether or not to calculate the statistic only for stations where the species was presents (default = FALSE)
+* when_present: a boolean indicating whether or not to calculate the statistic only for stations where the species was present (default = FALSE)
 	* NOTE: Can only be used if only one species selected, and for density/abundance
 * merge_protected: a boolean indicating whether the statistic should be calculated for both protected and unprotected areas together (TRUE) or separately (FALSE), the default is FALSE.
-* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coefficient, and, 'b', the exponential coefficient. Only required if stat = 'biomass', otherwise NULL.
-* length_class: a number indicating a break point between two length classes, such as the breakpoint between immature and mature individuals or non-exploitable and exploitable individuals. Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
+* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coefficient, and, 'b', the exponential coefficient. If stat is set to 'biomass' and growth\_parameters is NULL, getStat will attempt to get the allometric growth parameters from the server. If they are not available, getStat will raise an error. 
+* length_class: a number or keyword indicating a break point between two length classes. Available keywords are "LM" for median length-at-maturity and "LC" for minimum length-at-capture (usually the legal minimum size). If a keyword is used, getStat will attempt to retrieve the values from the server. If a number is used, getStat will use that number as the length, in centimeters, at which to set the breakpoint. Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
 	* NOTE: Can only be used if one species selected
 
 ## A short list of functions and their descriptions
 1. rvcData(species, year, stratum, server): Pulls data off the server by the provided arguments and produces an RVC object.
 2. select(x, species, year, stratum, protected): subsets an RVC object x to produce a new RVC object.
 3. getStat(x, level, stat, growth\_parameters, merge\_protected, when\_present, length\_class): produces a data.frame of summary statistics, 'stat', from an RVC object, 'x', at the level, 'level', with the other options provided.
+4. getLhp(species, server): retrieves life history parameter data for provided species from server
+5. getSampleData(species, year, region, stratum, protected, when_present, server): a lower-level function which retrieves the sample data from the server
+6. getStratumData(year, region, stratum, protected, server): a lower-level
+function which retrieves the stratum data from the server
