@@ -5,8 +5,8 @@ toBiomass  <- function(x, growth_parameters){
   }
   # Get allometric growth parameters
   a  <- growth_parameters[['a']]; b  <- growth_parameters[['b']];
-  # Convert NUM into biomass
-  x$sample_data$NUM  <- with(x$sample_data, NUM*a*LEN^b);
+  # Convert NUM into biomass in kg
+  x$sample_data$NUM  <- with(x$sample_data, (NUM*a*(LEN*10)^b)/1000);
   # Return modified data
   return(x)
 }
