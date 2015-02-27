@@ -23,9 +23,9 @@ Generally corresponds to the minimum size limit}
 \item{LM}{The median length at maturity in
 centimeters}
 \item{WLEN_A}{The alpha coefficient of the allometric
-growth equation in kg/cm}
+growth equation in g ~ mm}
 \item{WLEN_B}{The beta coefficient of the allometric
-growth equation}
+growth equation in g ~ mm}
 }
 \description{
 Returns a table of life history parameters given a single
@@ -33,7 +33,7 @@ or several species and a server location
 }
 \note{
 The allometric growth equation:
-\deqn{W(kg) = \alpha L(cm)^\beta }
+\deqn{W(g) = \alpha L(mm)^\beta }
 }
 \seealso{
 \code{\link{rvcData}} \code{\link{getStratumData}}
