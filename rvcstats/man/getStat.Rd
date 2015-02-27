@@ -17,8 +17,10 @@ summary statistic should be calculated}
 "density", "occurrence", "abundance", "length_frequency", and "biomass"}
 
 \item{growth_parameters}{A list of allometric growth parameters named 'a' (the linear coefficient)
-and 'b' (the exponent). If no growth parameters are provided (NULL),
-function will attempt to retrieve them from RVC object.}
+and 'b' (the exponent).
+If no growth parameters are provided (NULL),
+function will attempt to retrieve them from RVC object.
+\strong{NOTE:} Units for growth parameters are in mm not cm}
 
 \item{merge_protected}{Boolean: Indicates whether protected and unprotected areas are merged together in calculating
 the statistic. Default value is FALSE.}
