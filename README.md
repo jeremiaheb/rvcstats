@@ -36,6 +36,7 @@ for analysis.
 * Note: only one region can be pulled off at a time
 
 ```
+library(rvcstats)
 ## Pull data for red (Epinephelus morio) and black grouper (Mycteroperca bonaci)
 ## off of the server for 2010-2012 in the florida keys
 grouper <- rvcData(species = c('Epinephelus morio', 'MYC BONA'), year = 2010:2012,
@@ -63,8 +64,8 @@ merge_protected = TRUE)
 
 ## Utilizing the when_present argument, you can calculate density when present
 ## Here the statistic is being calculated at the stratum level
-reg_grouper_dens_when_pres <- getStat(red_grouper, level = "stratum",
-stat = "density", when_present = TRUE, 
+red_grouper_dens_when_pres <- getStat(red_grouper, level = "stratum",
+stat = "density", when_present = TRUE,
 merge_protected = FALSE)
 
 ## Options from select can also be passed to the getStat function
@@ -92,7 +93,7 @@ Optional arguments are:
 * when_present: a boolean indicating whether or not to calculate the statistic only for stations where the species was present (default = FALSE)
 	* NOTE: Can only be used if only one species selected, and for density/abundance
 * merge_protected: a boolean indicating whether the statistic should be calculated for both protected and unprotected areas together (TRUE) or separately (FALSE), the default is TRUE.
-* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coefficient, and, 'b', the exponential coefficient. If stat is set to 'biomass' and growth\_parameters is NULL, getStat will attempt to get the allometric growth parameters from the server. If they are not available, getStat will raise an error. 
+* growth_parameters: a list of the allometric growth parameters, including one named, 'a', the linear coefficient, and, 'b', the exponential coefficient. If stat is set to 'biomass' and growth\_parameters is NULL, getStat will attempt to get the allometric growth parameters from the server. If they are not available, getStat will raise an error.
 * length_class: a number or keyword indicating a break point between two length classes. Available keywords are "LM" for median length-at-maturity and "LC" for minimum length-at-capture (usually the legal minimum size). If a keyword is used, getStat will attempt to retrieve the values from the server. If a number is used, getStat will use that number as the length, in centimeters, at which to set the breakpoint. Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
 	* NOTE: Can only be used if one species selected
 
