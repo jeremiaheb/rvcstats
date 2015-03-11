@@ -68,8 +68,8 @@ stat = "density", when_present = TRUE,
 merge_protected = FALSE)
 
 ## Options from select can also be passed to the getStat function
-## Here we have black grouper occurrence with protected
-## and unprotected areas calculated separately
+## Here we pass the species argument to select
+## Only black grouper
 black_grouper_occ <- getStat(grouper, species = "MYC BONA", level = "domain",
 stat = "occurrence", merge_protected = FALSE)
 ```
