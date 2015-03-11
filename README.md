@@ -64,13 +64,14 @@ merge_protected = TRUE)
 ## Utilizing the when_present argument, you can calculate density when present
 ## Here the statistic is being calculated at the stratum level
 reg_grouper_dens_when_pres <- getStat(red_grouper, level = "stratum",
-stat = "density", when_present = TRUE)
+stat = "density", when_present = TRUE, 
+merge_protected = FALSE)
 
 ## Options from select can also be passed to the getStat function
 ## Here we have black grouper occurrence with protected
 ## and unprotected areas calculated separately
 black_grouper_occ <- getStat(grouper, species = "MYC BONA", level = "domain",
-stat = "occurrence")
+stat = "occurrence", merge_protected = FALSE)
 ```
 
 There are three required arguments for getStat:
