@@ -16,7 +16,7 @@
 #'  \strong{NOTE:} Units for growth parameters are in mm not cm 
 #' @param merge_protected
 #'  Boolean: Indicates whether protected and unprotected areas are merged together in calculating
-#'  the statistic. Default value is FALSE. 
+#'  the statistic. Default value is TRUE. 
 #' @param when_present
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 #'  was present. NOTE: Can only be used for density and with only one species. 
@@ -43,7 +43,7 @@
 #'## 40cm
 #'getStat(x, level = "domain", stat = "density", length_class = 40)
 #' @seealso \code{\link{rvcData}} \code{\link{select}}
-getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = FALSE, when_present = FALSE,
+getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = TRUE, when_present = FALSE,
                      length_class = NULL, ...){
   # Make sure stat is valid
   if(!any(stat %in% c("abundance", "biomass", "density",
@@ -75,8 +75,8 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   # and subset by NUM > 0
   if (when_present){
     # Check that stat == "density
-    if (!any(stat %in% c("density", "abundance"))){
-      stop("stat must be 'density' or 'abundance' if
+    if (!any(stat %in% c("density", "abundance", "biomass"))){
+      stop("stat must be 'density', 'abundance', or 'biomass' if
            when_present is TRUE")
     }
     # Check that there is only one species

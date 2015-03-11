@@ -4,7 +4,7 @@
 \alias{getStat}
 \title{Returns summary statistics}
 \usage{
-getStat(x, level, stat, growth_parameters = NULL, merge_protected = FALSE,
+getStat(x, level, stat, growth_parameters = NULL, merge_protected = TRUE,
   when_present = FALSE, length_class = NULL, ...)
 }
 \arguments{
@@ -23,7 +23,7 @@ function will attempt to retrieve them from RVC object.
 \strong{NOTE:} Units for growth parameters are in mm not cm}
 
 \item{merge_protected}{Boolean: Indicates whether protected and unprotected areas are merged together in calculating
-the statistic. Default value is FALSE.}
+the statistic. Default value is TRUE.}
 
 \item{when_present}{Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
 was present. NOTE: Can only be used for density and with only one species.}
