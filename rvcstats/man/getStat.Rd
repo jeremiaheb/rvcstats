@@ -48,10 +48,10 @@ x  <- rvcData(species = 'EPI MORI', year = 2012, region = 'FLA KEYS')
 ## Calculate Domain-Level Density
 getStat(x, level = "domain", stat = "density")
 ## Calculate Stratum Level biomass
-## merging both protected and unprotected areas
+## with protected and unprotected areas listed separately
 getStat(x, level = "stratum", stat = "biomass",
  growth_parameters = list(a = 0.061, b = 2.2),
- merge_protected = TRUE)
+ merge_protected = FALSE)
 ## Calculate domain level density for individuals above and below
 ## 40cm
 getStat(x, level = "domain", stat = "density", length_class = 40)
