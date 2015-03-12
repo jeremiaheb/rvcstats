@@ -45,6 +45,8 @@ rvcData = function(species, year, region,
   if (length(region)>1){
     stop('only one region can be selected at a time')
   }
+  message("starting to retrieve data from server, this could
+          take a few minutes ... ")
   ## Get Data from server
   sample_data  <- getSampleData(species, year, region, server=server);
   stratum_data  <- getStratumData(year, region, server=server);
@@ -56,6 +58,7 @@ rvcData = function(species, year, region,
       warning(cond)
       return(NULL)
     });
+  message("... completed retrieving data")
   ## Create output, set class to RVC, and return
   out  <- structure(list(sample_data = sample_data, stratum_data = stratum_data,
                          lhp_data = lhp_data),
