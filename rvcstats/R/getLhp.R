@@ -33,7 +33,7 @@ getLhp  <- function(species, server='http://localhost:3000'){
   # If nothing is returned, raise warning
   if (length(j)==0){stop("provided species life history parameters not found on server")}
   # Turn list into data.frame 
-  out <- toDataFrame(j);
+  out  <- do.call(rbind, lapply(j, as.data.frame));
   # If not all species found return warning
   if (length(out$SPECIES_CD) != length(species)){
     warning("not all species life history parameters found on server")

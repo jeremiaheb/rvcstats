@@ -17,6 +17,6 @@ getStratumData  <- function(year, region, stratum=NULL,
   ## Check that data was returned
   if(length(j)==0){stop("no stratum data returned from server")}
   # Turn list into data.frame 
-  out  <- toDataFrame(j);
+  out  <- do.call(rbind, lapply(j, as.data.frame));
   return(out)
 }
