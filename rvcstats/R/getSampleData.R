@@ -14,6 +14,19 @@
 #' individuals were seen should be selected. \cr
 #' \emph{Multiple species may be selected}
 #' @seealso \code{\link{rvcData}} \code{\link{getStratumData}}
+#' @examples
+#' ## Retrieve sample data for Red Grouper in 2012
+#' ## In the Florida Keys
+#' rg  <- getSampleData(species = "Epi Mori", year = 2012,
+#' region = "FLA KEYS");
+#' ## Retrieve sample data for Barraccuda in FLA KEYS 
+#' ## in 2012 excluding all non-observations
+#' bc  <- getSampleData(species = 'sph barr', year = 2012,
+#' region = 'FLA KEYS', when_present = TRUE);
+#' ## Retrieve sample data for Hogfish in FLA KEYS
+#' ## in 2010-2012 for protected areas only
+#' hf  <- getSampleData("lac maxi", 2010:2012, 
+#' 'fla keys', protected = TRUE)
 getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
                            server = "http://localhost:3000"){

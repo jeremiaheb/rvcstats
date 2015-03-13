@@ -4,6 +4,11 @@
 #' server. Useful for writing your own function using the RVC data.
 #' @inheritParams getSampleData
 #' @seealso \code{\link{rvcData}} \code{\link{getSampleData}}
+#' @examples
+#' ## Get stratum data for protected areas in
+#' ## the Florida Keys in 2012
+#' ntot2012  <- getStratumData(year = 2012, 
+#' region = 'fla keys', protected = TRUE);
 getStratumData  <- function(year, region, stratum=NULL,
                                protected=NULL, 
                             server = "http://localhost:3000") { 

@@ -5,7 +5,7 @@
 \title{Retrieves RVC sample data from server}
 \usage{
 getSampleData(species, year, region, stratum = NULL, protected = NULL,
-  when_present = NULL, server)
+  when_present = NULL, server = "http://localhost:3000")
 }
 \arguments{
 \item{species}{A character vector of scientific names or species codes,
@@ -31,6 +31,20 @@ be an IP address or URL}
 Returns a data frame of the sample data pulled from the server. Useful for
 analyzing the analysis ready data using custom functions not included
 in this package.
+}
+\examples{
+## Retrieve sample data for Red Grouper in 2012
+## In the Florida Keys
+rg  <- getSampleData(species = "Epi Mori", year = 2012,
+region = "FLA KEYS");
+## Retrieve sample data for Barraccuda in FLA KEYS
+## in 2012 excluding all non-observations
+bc  <- getSampleData(species = 'sph barr', year = 2012,
+region = 'FLA KEYS', when_present = TRUE);
+## Retrieve sample data for Hogfish in FLA KEYS
+## in 2010-2012 for protected areas only
+hf  <- getSampleData("lac maxi", 2010:2012,
+'fla keys', protected = TRUE)
 }
 \seealso{
 \code{\link{rvcData}} \code{\link{getStratumData}}

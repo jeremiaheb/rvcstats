@@ -35,6 +35,10 @@ or several species and a server location
 The allometric growth equation:
 \deqn{W(g) = \alpha L(mm)^\beta }
 }
+\examples{
+## Retrieves life history parameters for Black Grouper
+bg  <- getLhp(species = "Myc Bona")
+}
 \seealso{
 \code{\link{rvcData}} \code{\link{getStratumData}}
 \code{\link{getSampleData}}

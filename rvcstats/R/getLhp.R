@@ -20,6 +20,9 @@
 #' \deqn{W(g) = \alpha L(mm)^\beta }
 #' @seealso \code{\link{rvcData}} \code{\link{getStratumData}}
 #' \code{\link{getSampleData}}
+#' @examples
+#' ## Retrieves life history parameters for Black Grouper
+#' bg  <- getLhp(species = "Myc Bona")
 getLhp  <- function(species, server='http://localhost:3000'){
   # Convert species to species code
   species = toSpcCd(species)

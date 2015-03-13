@@ -4,7 +4,8 @@
 \alias{getStratumData}
 \title{Retrieves stratum data from server}
 \usage{
-getStratumData(year, region, stratum = NULL, protected = NULL, server)
+getStratumData(year, region, stratum = NULL, protected = NULL,
+  server = "http://localhost:3000")
 }
 \arguments{
 \item{year}{A numeric vector of the years to select from data.}
@@ -22,6 +23,12 @@ be an IP address or URL}
 \description{
 Returns a data frame of stratum data pulled from the
 server. Useful for writing your own function using the RVC data.
+}
+\examples{
+## Get stratum data for protected areas in
+## the Florida Keys in 2012
+ntot2012  <- getStratumData(year = 2012,
+region = 'fla keys', protected = TRUE);
 }
 \seealso{
 \code{\link{rvcData}} \code{\link{getSampleData}}
