@@ -25,7 +25,7 @@ The disadvantage of this is that it makes you download R devtools first.
   * Click on the command prompt application
 3. In the command prompt navigate to where you downloaded the tarball
   * Type "cd [directory containing tar ball]" (e.g. cd C:\Users\John Smith\Downloads\)
-4. Type "R CMD INSTALL rvcstats\_[version].tar.gz", where [version] is version name in the file (e.g. rvcstats\_0.6.1.tar.gz)
+4. Type "R CMD INSTALL rvcstats\_[version].tar.gz", where [version] is version name in the file (e.g. rvcstats\_0.6.2.tar.gz)
   * Make sure that "INSTALL" is capitalized
 5. It should install to your R library. To make sure, open up R and type library(rvcstats). If it successfully installed, you should not get any errors.
 
