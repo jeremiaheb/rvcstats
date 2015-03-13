@@ -50,12 +50,19 @@ select  <- function(x, species = NULL, year = NULL, region = NULL,
                            STRAT %match% stratum &
                            PROT %match% protected &
                            SPECIES_CD %match% species);
+  if (nrow(x$sample_data) == 0){
+    msg  <- paste("no rows in sample data.",
+                  "make sure all fields are spelled",
+                  "correctly and are available in RVC object",
+                  sep = " ");
+    stop(msg);
+  }
   x$stratum_data  <- subset(x$stratum_data,
                             YEAR %match% year &
                             REGION %match% region &
                             STRAT %match% stratum &
                             PROT %match% protected
-                            )
+                            );
   if (!is.null(x$lhp_data)){
     x$lhp_data  <- subset(x$lhp,
                           SPECIES_CD %match% species);
