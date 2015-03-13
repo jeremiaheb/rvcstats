@@ -5,7 +5,8 @@
 #' @inheritParams getSampleData
 #' @seealso \code{\link{rvcData}} \code{\link{getSampleData}}
 getStratumData  <- function(year, region, stratum=NULL,
-                               protected=NULL, server) {                     
+                               protected=NULL, 
+                            server = "http://localhost:3000") { 
  # Reformat parameters
   region = toupper(region);
   stratum = if(!is.null(stratum)){

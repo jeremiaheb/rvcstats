@@ -16,7 +16,7 @@
 #' @seealso \code{\link{rvcData}} \code{\link{getStratumData}}
 getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
-                           server){
+                           server = "http://localhost:3000"){
   ## Reformat all parameters
   species = toSpcCd(species);
   region = toupper(region);
