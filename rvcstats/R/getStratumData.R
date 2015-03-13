@@ -6,6 +6,14 @@
 #' @seealso \code{\link{rvcData}} \code{\link{getSampleData}}
 getStratumData  <- function(year, region, stratum=NULL,
                                protected=NULL, server) {                     
+ # Reformat parameters
+  region = toupper(region);
+  stratum = if(!is.null(stratum)){
+    toupper(stratum);
+  }
+  protected = if(!is.null(protected)){
+    as.numeric(protected);
+  }
  # Put together URL and request
   url  <- paste(server, '/api/strats.json', 
                 toQuery(year = year, region = region,
