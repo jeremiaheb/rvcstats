@@ -19,7 +19,7 @@
 #'  the statistic. Default value is TRUE. 
 #' @param when_present
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
-#'  was present. NOTE: Can only be used for density and with only one species. 
+#'  was present. NOTE: Can only be used  with one species. 
 #' @param length_class
 #'  Number or Keyword: indicating a break point between two length classes, such as the breakpoint between 
 #'  immature and mature individuals or non-exploitable and exploitable individuals. The recognized
@@ -74,11 +74,6 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   # If when_present, check that stat=="density", only one species and 
   # and subset by NUM > 0
   if (when_present){
-    # Check that stat == "density
-    if (!any(stat %in% c("density", "abundance", "biomass"))){
-      stop("stat must be 'density', 'abundance', or 'biomass' if
-           when_present is TRUE")
-    }
     # Check that there is only one species
     if (!hasOneSpecies(x$sample_data)){
       stop("only one species can be selected if when_present is TRUE")

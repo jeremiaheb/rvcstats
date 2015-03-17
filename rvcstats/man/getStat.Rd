@@ -26,7 +26,7 @@ function will attempt to retrieve them from RVC object.
 the statistic. Default value is TRUE.}
 
 \item{when_present}{Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
-was present. NOTE: Can only be used for density and with only one species.}
+was present. NOTE: Can only be used  with one species.}
 
 \item{length_class}{Number or Keyword: indicating a break point between two length classes, such as the breakpoint between
 immature and mature individuals or non-exploitable and exploitable individuals. The recognized
