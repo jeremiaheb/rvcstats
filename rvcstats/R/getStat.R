@@ -45,14 +45,7 @@
 #' @seealso \code{\link{rvcData}} \code{\link{select}}
 getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = TRUE, when_present = FALSE,
                      length_class = NULL, ...){
-  # Make sure stat is valid
-  if(!any(stat %in% c("abundance", "biomass", "density",
-                     "occurrence", "length_frequency"))){
-    stop('stat must be one of the following: "abundance", "biomass", "density",
-                     "occurrence", "length_frequency"')
-  }
-  # Select based on option, if neccessary
-  x  <- select(x, ...);
+  
   # if stat is biomass...  
   if (stat == "biomass"){
     # And no growth parameters are provided

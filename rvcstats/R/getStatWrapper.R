@@ -2,11 +2,20 @@
 ## A multispecies wrapper for getStat
 getStatWrapper  <- function(x, level, stat, growth_parameters = NULL, merge_protected = TRUE, when_present = FALSE,
                             length_class = NULL, ...){
+  # Make sure stat is valid
+  if(!any(stat %in% c("abundance", "biomass", "density",
+                      "occurrence", "length_frequency"))){
+    stop('stat must be one of the following: "abundance", "biomass", "density",
+                     "occurrence", "length_frequency"')
+  }
+  # Select based on option, if neccessary
+  x  <- select(x, ...);
+  ## Set up output
   out  <- NULL;
   ## If x has only one species or (growth_paramters == NULL & length_class == NULL
   ## and when_present == FALSE) do single species case
   ## else do multispecies
-  if ((is.null(growth_parameters) & is.null(length_class) & !when_present) | hasOneSpecies(x)){
+  if ((is.null(growth_parameters) & is.null(length_class) & !when_present) | hasOneSpecies(x$sample_data)){
     out  <- getStat(x, level, stat, growth_parameters, merge_protected, when_present,
             length_class, ...);
   } else {
