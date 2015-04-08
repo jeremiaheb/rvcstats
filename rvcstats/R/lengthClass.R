@@ -2,10 +2,6 @@
 lengthClass  <- function(x, length_class, level, stat,
                          growth_parameters, merge_protected,
                          when_present){
-  # Check that there is only one species
-  if (!hasOneSpecies(x$sample_data)){
-    stop("only one species can be selected if length_class != NULL")
-  }
   #If length_class is LM, set length_class to LM from lhp_data
   if (length_class == "LM"){
     length_class = x$lhp_data$LM
@@ -20,13 +16,14 @@ lengthClass  <- function(x, length_class, level, stat,
       stop("length_at_capture not found, please enter it manually")
     }
   }
-  # Make two clones of the input data
+  # Make three clones of the input data
   lwr  <- x;
   upr  <- x;
+  all  <- x;
   # Subset lwr and upr for each length class and make a list
   lwr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN < length_class, NUM, 0));
   upr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN >= length_class, NUM, 0));
-  l  <- list(lwr, upr);
+  l  <- list(lwr, upr, all);
   # Apply getStat to each
   lout  <- lapply(l, function(z){
     getStat(z, level, stat, growth_parameters, merge_protected,
@@ -37,6 +34,7 @@ lengthClass  <- function(x, length_class, level, stat,
                                  nrow(lout[[1]]));
   lout[[2]]$length_class  <- rep(paste(">=", length_class, sep = ""), 
                                  nrow(lout[[2]]));
+  lout[[3]]$length_class  <- rep("all", nrow(lout[[3]]));
   # Rbind and return
   out  <- do.call(rbind, lout)
   return(out)
