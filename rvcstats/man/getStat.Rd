@@ -2,7 +2,7 @@
 % Please edit documentation in R/getStat.R
 \name{getStat}
 \alias{getStat}
-\title{Returns summary statistics}
+\title{Summary Statistics for RVC data}
 \usage{
 getStat(x, level, stat, growth_parameters = NULL, merge_protected = TRUE,
   when_present = FALSE, length_class = NULL, ...)

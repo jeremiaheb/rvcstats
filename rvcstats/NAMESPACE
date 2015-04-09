@@ -3,7 +3,6 @@
 export(getLhp)
 export(getSampleData)
 export(getStat)
-export(getStatWrapper)
 export(getStratumData)
 export(rvcData)
 export(select)
