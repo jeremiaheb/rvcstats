@@ -16,11 +16,25 @@ summary statistic should be calculated}
 \item{stat}{Keyword: indicating which summary statistic to calculate. Options are
 "density", "occurrence", "abundance", "length_frequency", and "biomass"}
 
-\item{growth_parameters}{A list of allometric growth parameters named 'a' (the linear coefficient)
-and 'b' (the exponent).
-If no growth parameters are provided (NULL),
-function will attempt to retrieve them from RVC object.
-\strong{NOTE:} Units for growth parameters are in mm not cm}
+\item{growth_parameters}{Only needed is stat = "biomass".
+\itemize{
+   \item{If x contains a single species:}{
+   A list of allometric growth parameters named 'a' (the linear coefficient)
+   and 'b' (the exponent).
+   If no growth parameters are provided (NULL),
+   function will attempt to retrieve them from RVC object.}
+   \item{If x contains multiple species:}{
+   A list of lists, with each key a species code with underscores instead of spaces and
+   each value a list of growth parameters in the same format as for a single speces. \cr
+   e.g. \code{growth_parameters = list(EPI_MORI = list(a=1.2e-5, b=2.88), MYC_BONA = list(a=1.88e-5, b=3))}. \cr
+   If a species is not listed or value is NULL, function will attempt to retrieve growth_parameters
+   from RVC object.}
+ }
+ \strong{NOTE:} Argument format is dependent on number of species in RVC object x. If
+ x contains multiple species, but only one species is selected via the optional ... parameter
+ the multispecies form must still be used. Also, multispecies form cannot be used for
+ single species.  \cr
+ \strong{NOTE:} Units for growth parameters are in mm not cm}
 
 \item{merge_protected}{Boolean: Indicates whether protected and unprotected areas are merged together in calculating
 the statistic. Default value is TRUE.}
