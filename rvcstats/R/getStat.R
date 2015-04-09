@@ -8,9 +8,8 @@
 #' @param stat
 #' Keyword: indicating which summary statistic to calculate. Options are
 #' "density", "occurrence", "abundance", "length_frequency", and "biomass"
-#' @param growth_parameters
-#' Only needed is stat = "biomass".
-#' \itemize{
+#' @param growth_parameters \cr
+#' \describe{
 #'    \item{If x contains a single species:}{
 #'    A list of allometric growth parameters named 'a' (the linear coefficient)
 #'    and 'b' (the exponent).
@@ -18,7 +17,7 @@
 #'    function will attempt to retrieve them from RVC object.}
 #'    \item{If x contains multiple species:}{
 #'    A list of lists, with each key a species code with underscores instead of spaces and 
-#'    each value a list of growth parameters in the same format as for a single speces. \cr 
+#'    each value a list of growth parameters in the same format as for a single species. \cr 
 #'    e.g. \code{growth_parameters = list(EPI_MORI = list(a=1.2e-5, b=2.88), MYC_BONA = list(a=1.88e-5, b=3))}. \cr
 #'    If a species is not listed or value is NULL, function will attempt to retrieve growth_parameters
 #'    from RVC object.}
@@ -33,14 +32,24 @@
 #'  the statistic. Default value is TRUE. 
 #' @param when_present
 #'  Boolean: Indicates whether statistic is to be calculated for non-zero data, when the species
-#'  was present. NOTE: Can only be used  with one species. 
-#' @param length_class
-#'  Number or Keyword: indicating a break point between two length classes, such as the breakpoint between 
-#'  immature and mature individuals or non-exploitable and exploitable individuals. The recognized
-#'  keywords are "LM" for median length-at-maturity and "LC" for minimum length-at-capture. If keywords
-#'  are provided, getStat will attempt to retrieve the breakpoint values from the RVC object, otherwise it will
-#'  use the provided breakpoint. 
-#'  Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
+#'  was present. 
+#' @param length_class \cr
+#' \describe{
+#'  \item{If x contains a single species:}{
+#'    Number or Keyword: indicating a break point between two length classes, such as the breakpoint between 
+#'    immature and mature individuals or non-exploitable and exploitable individuals. The recognized
+#'    keywords are "LM" for median length-at-maturity and "LC" for minimum length-at-capture. If keywords
+#'    are provided, getStat will attempt to retrieve the breakpoint values from the RVC object, otherwise it will
+#'    use the provided breakpoint. }
+#'    \item{if x contains multiple species}{
+#'    A list, with each key a species code with underscores instead of spaces and 
+#'    each value a number or keyword in the same format as for a single species. \cr 
+#'    e.g. \code{length_class = list(EPI_MORI = "LC", MYC_BONA = 62)}. \cr
+#'    If a species is not listed or value is NULL, function will calculate statistic for
+#'    all length classes combined.
+#'    }
+#'  }
+#'    \strong{NOTE:} Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
 #' @param ...
 #'  Optional parameters to pass to the select method (see \code{\link{select}})
 #' @return Returns: a data frame of the summary statistics
