@@ -1,4 +1,4 @@
-## Helper: Handles length_class in getStat function
+## Helper: Handles length_class in getStatSingle function
 lengthClass  <- function(x, length_class, level, stat,
                          growth_parameters, merge_protected,
                          when_present){
@@ -24,9 +24,9 @@ lengthClass  <- function(x, length_class, level, stat,
   lwr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN < length_class, NUM, 0));
   upr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN >= length_class, NUM, 0));
   l  <- list(lwr, upr, all);
-  # Apply getStat to each
+  # Apply getStatSingle to each
   lout  <- lapply(l, function(z){
-    getStat(z, level, stat, growth_parameters, merge_protected,
+    getStatSingle(z, level, stat, growth_parameters, merge_protected,
             when_present, length_class = NULL)
   });
   # Append length_class to output data.frames
