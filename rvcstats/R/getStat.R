@@ -1,6 +1,6 @@
-#' Returns summary statistics
-#' @export
+#' Summary Statistics for RVC data
 #' @description Returns a data.frame of summary statistics given an RVC object
+#' @export
 #' @inheritParams select
 #' @param level
 #' Keyword: either "stratum" or "domain" indicating at which level the 
@@ -44,41 +44,48 @@
 #'getStat(x, level = "domain", stat = "density", length_class = 40)
 #' @seealso \code{\link{rvcData}} \code{\link{select}}
 getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = TRUE, when_present = FALSE,
-                     length_class = NULL, ...){
-  
-  # if stat is biomass...  
-  if (stat == "biomass"){
-    # And no growth parameters are provided
-    # try to pull growth parameters off of the server
-    if (is.null(growth_parameters)){
-      a = x$lhp_data$WLEN_A;
-      b = x$lhp_data$WLEN_B;
-      if (isBlank(a) | isBlank(b)){
-        stop("growth parameters not found, please enter them manually")
-      } else{
-      growth_parameters  <- list(a = a, b = b);
-      }
+                            length_class = NULL, ...){
+  # Make sure stat is valid
+  if(!any(stat %in% c("abundance", "biomass", "density",
+                      "occurrence", "length_frequency"))){
+    stop('stat must be one of the following: "abundance", "biomass", "density",
+                     "occurrence", "length_frequency"')
+  }
+  # Select based on option, if neccessary
+  x  <- select(x, ...)
+  ## Set up output
+  out  <- NULL;
+  ## If x has only one species or (stat != biomass & length_class == NULL
+  ## and when_present == FALSE) do single species case
+  ## else do multispecies
+  if ((stat!="biomass" & is.null(length_class) & !when_present) | hasOneSpecies(x$sample_data)){
+    out  <- getStatSingle(x, level, stat, growth_parameters, merge_protected, when_present,
+            length_class, ...);
+  } else {
+    ## Make a list of species
+    species_list  <- as.character(unique(x$sample_data$SPECIES_CD));
+    ## Run single species case for each species
+    lout  <- list();
+    for (i in seq_along(species_list)){
+      ## Species name with underscore instead of space
+      spc  <- gsub(" ","_", species_list[i]);
+      ## Growth paramters for species i
+      gp  <- growth_parameters[[spc]];
+      ## Length class for species i
+      lc  <- length_class[[spc]];
+      ## The single-species case for species i
+      lout[[i]]  <- getStatSingle(x, level, stat, growth_parameters = gp, merge_protected, when_present,
+                          length_class = lc, species = species_list[i])
     }
+    ## If length_class is in some but not all data.frames in lout, add to
+    ## data frames where it is missing with "all" as the level
+    has_length_class  <- unlist(lapply(lout, function(x){"length_class" %in% names(x)}));
+    if (any(has_length_class) & !all(has_length_class)){
+      lout[!has_length_class]  <- lapply(lout[!has_length_class], 
+                                         function(x){cbind(x,length_class = rep("all",nrow(x)))})
+    }
+    ## Rbind all data.frames together and return
+    out  <- do.call(rbind, lout);
   }
-  # If when_present subset by NUM > 0
-  if (when_present){
-    # Subset by when_present
-    x$sample_data  <- subset(x$sample_data, NUM > 0);
-  }
-  # If length_class, add length_class and run once on each
-  if (!is.null(length_class)){
-    return(lengthClass(x, length_class, level, stat, growth_parameters,
-                merge_protected, when_present));
-  }
-  # If level == "stratum" use stratum level functions
-  # if level == "domain" use domain level functions
-  # else return error
-  if (level == "stratum"){
-    out  <- strat(x, stat, growth_parameters, merge_protected);
-  } else if (level == "domain") {
-    out  <- domain(x, stat, growth_parameters, merge_protected, when_present)
-  } else {stop("level must be 'stratum' or 'domain'")}
-  # Set name and return
-  names(out)[names(out) == "yi"] = stat;
   return(out)
 }
