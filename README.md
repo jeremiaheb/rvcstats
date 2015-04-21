@@ -18,16 +18,13 @@ You can skip the first line if you already have devtools installed.
 The disadvantage of this is that it makes you download R devtools first.
 
 ### The Hard Way
-1. Download the compressed tar ball named "rvcstats_[version].tar.gz" from the root directory of this project
-2. Open up windows command prompt
-  * Go to start menu
-  * In the search bar type cmd
-  * Click on the command prompt application
-3. In the command prompt navigate to where you downloaded the tarball
-  * Type "cd [directory containing tar ball]" (e.g. cd C:\Users\John Smith\Downloads\)
-4. Type "R CMD INSTALL rvcstats\_[version].tar.gz", where [version] is version name in the file (e.g. rvcstats\_0.6.2.tar.gz)
-  * Make sure that "INSTALL" is capitalized
-5. It should install to your R library. To make sure, open up R and type library(rvcstats). If it successfully installed, you should not get any errors.
+1. Download the compressed source folder named "rvcstats_[version].tar.gz" from the root directory of this project
+2. Type the following in R  
+```
+install.packages("[path_to_file]/rvcstats_[version].tar.gz", repos = NULL)
+library(rvcstats)
+``` 
+* Where [path_to_file] is the path to the directory containing the downloaded source folder and [version] is the version       number
 
 ## How to use this package
 First, read the data off the server using the rvcData function. Best practice is to pull off
