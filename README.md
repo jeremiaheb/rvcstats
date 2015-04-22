@@ -21,7 +21,7 @@ The disadvantage of this is that it makes you download R devtools first.
 1. Download the compressed source folder named "rvcstats_[version].tar.gz" from the root directory of this project
 2. Type the following in R  
 ```
-install.packages("[path_to_file]/rvcstats_[version].tar.gz", repos = NULL)
+install.packages("[path_to_file]/rvcstats_[version].tar.gz", repos = NULL, type="source")
 library(rvcstats)
 ``` 
 * Where [path_to_file] is the path to the directory containing the downloaded source folder and [version] is the version       number
