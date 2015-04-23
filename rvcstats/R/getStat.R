@@ -50,6 +50,10 @@
 #'    }
 #'  }
 #'    \strong{NOTE:} Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).
+#' @param bin_width
+#' A number indicating the width of each length bin is stat="length_frequency".
+#' If NULL (default) lengths will not be binned. \cr 
+#' \strong{NOTE:} In output, bins will be labelled by their midpoints.
 #' @param ...
 #'  Optional parameters to pass to the select method (see \code{\link{select}})
 #' @return Returns: a data frame of the summary statistics
@@ -67,7 +71,7 @@
 #'getStat(x, level = "domain", stat = "density", length_class = 40)
 #' @seealso \code{\link{rvcData}} \code{\link{select}}
 getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected = TRUE, when_present = FALSE,
-                            length_class = NULL, ...){
+                            length_class = NULL, bin_width = NULL, ...){
   # Make sure stat is valid
   if(!any(stat %in% c("abundance", "biomass", "density",
                       "occurrence", "length_frequency"))){
@@ -109,6 +113,13 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
     }
     ## Rbind all data.frames together and return
     out  <- do.call(rbind, lout);
+  }
+  ## Handle bin_width
+  if (stat == "length_frequency" & !is.null(bin_width)){
+    if (!is.numeric(bin_width) | length(bin_width)!=1){
+      stop("bin width must be a number")
+    }
+    out  <- binnedLength(out, bin_width, level, merge_protected);
   }
   return(out)
 }
