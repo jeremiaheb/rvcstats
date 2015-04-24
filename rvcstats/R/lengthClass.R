@@ -20,9 +20,12 @@ lengthClass  <- function(x, length_class, level, stat,
   lwr  <- x;
   upr  <- x;
   all  <- x;
+  # Subset lwr and upr to not include unlengthed fish
+  lwr$sample_data  <- subset(lwr$sample_data, LEN >= 0);
+  upr$sample_data  <- subset(upr$sample_data, LEN >= 0);
   # Subset lwr and upr for each length class and make a list
-  lwr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN < length_class, NUM, 0));
-  upr$sample_data$NUM  <- with(x$sample_data, ifelse(LEN >= length_class, NUM, 0));
+  lwr$sample_data$NUM  <- with(lwr$sample_data, ifelse(LEN < length_class, NUM, 0));
+  upr$sample_data$NUM  <- with(upr$sample_data, ifelse(LEN >= length_class, NUM, 0));
   l  <- list(lwr, upr, all);
   # Apply getStatSingle to each
   lout  <- lapply(l, function(z){
