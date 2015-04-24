@@ -61,8 +61,8 @@ was present.}
    \strong{NOTE:} Break is non-inclusive for the lower interval and inclusive for the upper (i.e. lower > break >= upper).}
 
 \item{bin_width}{A number indicating the width of each length bin is stat="length_frequency".
-If NULL lengths will not be binned. \cr
-\strong{NOTE:} In output bins will be labelled by their midpoints.}
+If NULL (default) lengths will not be binned. \cr
+\strong{NOTE:} In output, bins will be labelled by their midpoints.}
 
 \item{...}{Optional parameters to pass to the select method (see \code{\link{select}})}
 }
