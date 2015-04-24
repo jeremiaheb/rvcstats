@@ -5,6 +5,10 @@ getStatSingle  <- function(x, level, stat, growth_parameters, merge_protected, w
   # Handle ... argument with select function
   # suppress warnings already handled in getStat main function
   x  <- suppressWarnings(select(x, ...));
+  # If stat is length_frequency dropped unlengthed fish LEN == -9
+  if (stat == "length_frequency"){
+    x$sample_data  <- subset(x$sample_data, LEN >= 0);
+  }
   # if stat is biomass set growth parameters appropriately
   if (stat == "biomass"){
     growth_parameters  <- setGrowthParameters(x, growth_parameters);
