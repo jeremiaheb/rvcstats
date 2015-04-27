@@ -48,7 +48,7 @@ rvcData = function(species, year, region,
   message("starting to retrieve data from server, this could
           take a few minutes ... ")
   ## Get Data from server
-  sample_data  <- getSampleData(species, year, region, server=server);
+  sample_data  <- suppressMessages(getSampleData(species, year, region, server=server));
   stratum_data  <- getStratumData(year, region, server=server);
   # Get life history parameter data from server,
   # warn and return NULL if none found

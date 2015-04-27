@@ -50,7 +50,10 @@ getSampleData  <- function(species, year, region, stratum=NULL,
           sep='');
   # Get data and convert JSON to list, 
   # if not connected return error
+  message("starting to retrieve data from server, this could
+          take a few minutes ... ")
   j  <- getData(url);
+  message("... completed retrieving data")
   ## Check that data was returned
   if(length(j)==0){stop("no sample data returned from server")}
   # Turn list into data.frame 
