@@ -11,7 +11,7 @@ The rvcstats package is designed to compute summary statistics, such as: fish de
 1. In R, type the following:
 ```
 install.packages('devtools')
-devtools::install_github('harryganz/rvcstats/rvcstats')
+devtools::install_github('jeremiaheb/rvcstats/rvcstats')
 ```
 You can skip the first line if you already have devtools installed.
 
