@@ -91,6 +91,20 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
   } else {
     ## Make a list of species
     species_list  <- as.character(unique(x$sample_data$SPECIES_CD));
+    ## Make names of growth_parameters and length_class uppercase
+    if(!is.null(length_class)){
+      names(length_class)  <- toupper(names(length_class));
+      if (!is.list(length_class)){stop("length_class must be a list")}
+    }
+    if(!is.null(growth_parameters)){
+      names(growth_parameters)  <- toupper(names(growth_parameters));
+      if (!is.list(growth_parameters)){stop("growth_parameters must be a list")}
+      if(!(all(species_list %in% gsub("_"," ", names(growth_parameters))))){
+        msg = paste("all species must be included in growth_parameters," ,
+                    " see ?getStat for more information", sep = "")
+        stop(msg)
+      }
+    }
     ## Run single species case for each species
     lout  <- list();
     for (i in seq_along(species_list)){
@@ -99,18 +113,7 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
       ## Growth paramters for species i
       gp  <- growth_parameters[[spc]];
       ## Length class for species i
-      lc  <- tryCatch(
-        length_class[[spc]],
-        error = function(e){
-          if (geterrmessage() == "subscript out of bounds"){
-            msg = paste("length_class must be a list",
-                        "for multiple species", sep = " ");
-            stop(msg)
-          } else {
-            stop(paste(e));
-          }
-        }
-                      );
+      lc  <- length_class[[spc]];
       ## The single-species case for species i
       lout[[i]]  <- getStatSingle(x, level, stat, growth_parameters = gp, merge_protected, when_present,
                           length_class = lc, species = species_list[i])
