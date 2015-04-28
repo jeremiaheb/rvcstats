@@ -99,7 +99,18 @@ getStat  <- function(x, level, stat, growth_parameters = NULL, merge_protected =
       ## Growth paramters for species i
       gp  <- growth_parameters[[spc]];
       ## Length class for species i
-      lc  <- length_class[[spc]];
+      lc  <- tryCatch(
+        length_class[[spc]],
+        error = function(e){
+          if (geterrmessage() == "subscript out of bounds"){
+            msg = paste("length_class must be a list",
+                        "for multiple species", sep = " ");
+            stop(msg)
+          } else {
+            stop(paste(e));
+          }
+        }
+                      );
       ## The single-species case for species i
       lout[[i]]  <- getStatSingle(x, level, stat, growth_parameters = gp, merge_protected, when_present,
                           length_class = lc, species = species_list[i])
