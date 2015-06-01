@@ -104,3 +104,25 @@ Optional arguments are:
 5. getSampleData(species, year, region, stratum, protected, when_present, server): a lower-level function which retrieves the sample data from the server
 6. getStratumData(year, region, stratum, protected, server): a lower-level
 function which retrieves the stratum data from the server
+
+## How to contribute to the rvcstats package
+
+Contributing to the rvcstats R package is fairly easy. All you need is a GitHub account, the <a href="https://git-scm.com/">git version control software</a>, and the <a href = "http://www.rstudio.com/">R studio</a> IDE. First you will need to "fork" the rvcstats repository into your own repository, then you will need to "clone" the repository onto your computer and make whatever changes you would like to add to the rvcstats package, finally you will need to send a "pull request" to the main repository, <a href="https://github.com/jeremiaheb/rvcstats">https://github.com/jeremiaheb/rvcstats</a>, so it can be merged into the package. These steps are explained in more detail below.
+
+1. "Forking" the repository:
+  * Download the git version control software <a href="https://git-scm.com/downloads">here</a>. If you have Ubuntu it should already be installed on your system.  
+  * Login to your GitHub account, if you don't have one, you can set one up for free at <a href="https://github.com/join">https://github.com/join</a>
+  * Navigate to the rvcstats repository (<a href="https://github.com/jeremiaheb/rvcstats">https://github.com/jeremiaheb/rvcstats</a>) and click on the "fork" button on the top right. This makes a copy of the rvcstats repository as it is on your GitHub account. You can make changes to this copy without affecting the main version.
+2. Cloning the repository
+  * Open the forked copy in your GitHub repository. It should be at a URL like https://github.com/[your\_account\_name]/rvcstats. On the right of the page should be a text field with the clone URL, you will need to copy and paste this. You can use https (the default), which requires a login for every change you make to the repository, or you can set up SSH authentication, which doesn't require login, but is attached to a specific computer. The instructions on how to set up SSH authentication can be found <a href="https://help.github.com/articles/generating-ssh-keys/">here</a>. 
+  * If you haven't already download and install the <a href="http://www.rstudio.com/products/rstudio/">R Studio</a> IDE.
+  * In R Studio click File> New Project > Version Conrol > Git
+  * Enter the clone URL from the forked version of the project (e.g. https://github.com/[your\_account\_name]/rvcstats.git). If you want to use the SSH authentication, make sure you have <a href="https://help.github.com/articles/generating-ssh-keys/">set up SSH authentication</a> and have selected the SSH clone URL (e.g. git@github.com:[your\_account\_name]/rvcstats.git).
+  * Save the project to wherever you would like on your computer
+3. Making changes
+  * You can make whatever changes you would like to the R package on your computer. To push those changes to your GitHub account click the Git tab in R studio (in the right top pane), stage the changes by pressing the checkbox under staged, and then click the push bottom (green up arrow). If you are adding any functions to the package, make sure to install devtools (install.packages('devtools')) and document the functions using 'roxygen2' style comments. If this is the first time you are working on an R package, I recommend reading Hadley Wickham's book on writing R packages available for free online at <a href="http://r-pkgs.had.co.nz/">http://r-pkgs.had.co.nz/</a>. 
+
+4. Making a pull request
+  * After making all the changes you would like to make and pushing them to your forked version of the rvcstats repository, you can merge the changes with the main repository by making a pull request
+  * Sign in to github and navigate to your forked version of the rvcstats repsotiory
+  * Click the pull-requests button (top right) and then click "New Pull Request"
