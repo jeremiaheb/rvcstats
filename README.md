@@ -104,6 +104,8 @@ Optional arguments are:
 5. getSampleData(species, year, region, stratum, protected, when_present, server): a lower-level function which retrieves the sample data from the server
 6. getStratumData(year, region, stratum, protected, server): a lower-level
 function which retrieves the stratum data from the server
+7. getDiversityData(year, region, stratum, server): a lower-level function which retrieves species richness data from the server
+8. getBenthicData(year, region, stratum, server): a lower-level function which retrieves benthic data from the server
 
 ## How to contribute to the rvcstats package
 
