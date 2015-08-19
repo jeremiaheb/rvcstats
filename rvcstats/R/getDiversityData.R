@@ -5,7 +5,7 @@
 #' unit for the provided year and region
 #' @inheritParams rvcData
 getDiversityData  <- function(year, region, stratum = NULL, 
-                            server = "http://localhost:3000"){
+                            server = "http://www.sefsc.noaa.gov/rvc_analysis/"){
   # Reformat parameters
   region = toupper(region);
   stratum = if(!is.null(stratum)){

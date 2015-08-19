@@ -23,7 +23,7 @@
 #' @examples
 #' ## Retrieves life history parameters for Black Grouper
 #' bg  <- getLhp(species = "Myc Bona")
-getLhp  <- function(species, server='http://localhost:3000'){
+getLhp  <- function(species, server='http://www.sefsc.noaa.gov/rvc_analysis/'){
   # Convert species to species code
   species = toSpcCd(species)
   # Put together URL and request

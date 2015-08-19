@@ -29,7 +29,7 @@
 #' 'fla keys', protected = TRUE)
 getSampleData  <- function(species, year, region, stratum=NULL,
                            protected=NULL, when_present=NULL, 
-                           server = "http://localhost:3000"){
+                           server = "http://www.sefsc.noaa.gov/rvc_analysis/"){
   ## Reformat all parameters
   species = toSpcCd(species);
   region = toupper(region);

@@ -11,7 +11,7 @@
 #' region = 'fla keys', protected = TRUE);
 getStratumData  <- function(year, region, stratum=NULL,
                                protected=NULL, 
-                            server = "http://localhost:3000") { 
+                            server = "http://www.sefsc.noaa.gov/rvc_analysis/") { 
  # Reformat parameters
   region = toupper(region);
   stratum = if(!is.null(stratum)){

@@ -5,7 +5,7 @@
 \title{Retrieves Diversity data from the server}
 \usage{
 getDiversityData(year, region, stratum = NULL,
-  server = "http://localhost:3000")
+  server = "http://www.sefsc.noaa.gov/rvc_analysis/")
 }
 \arguments{
 \item{year}{A numeric vector of the years to select from data.}

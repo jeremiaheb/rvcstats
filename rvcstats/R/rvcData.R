@@ -36,7 +36,7 @@
 #' function to break it into smaller manageable bits. This reduces the 
 #' time spent downloading it from the server. 
 rvcData = function(species, year, region,
-                   server = 'http://localhost:3000'){  
+                   server = 'http://www.sefsc.noaa.gov/rvc_analysis/'){  
   ## Parse full scientific names are trucated to SPECIES_CD
   species <- toSpcCd(species);
   ## Make region codes upper case if not already
