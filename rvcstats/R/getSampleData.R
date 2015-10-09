@@ -42,21 +42,35 @@ getSampleData  <- function(species, year, region, stratum=NULL,
   when_present = if(!is.null(when_present)){
     as.numeric(protected);
   }
-  # Put together URL and request
-  url  <- paste(server, '/api/samples.json', 
-          toQuery(species = species, year = year, region = region,
-                   stratum = stratum, prot = protected, 
-                   present = when_present),
-          sep='');
-  # Get data and convert JSON to list, 
-  # if not connected return error
-  message("starting to retrieve data from server, this could
-          take a few minutes ... ")
-  j  <- getData(url);
-  message("... completed retrieving data")
-  ## Check that data was returned
-  if(length(j)==0){stop("no sample data returned from server")}
-  # Turn list into data.frame 
-  out  <- toDataFrame(j);
+  # Base case: one or fewer species
+  if(length(species) <= 1){
+    # Put together URL and request
+    url  <- paste(server, '/api/samples.json', 
+            toQuery(species = species, year = year, region = region,
+                     stratum = stratum, prot = protected, 
+                     present = when_present),
+            sep='');
+    # Get data and convert JSON to list, 
+    # if not connected return error
+    msg <- paste0("dowloading data for species: ", species, ", year(s): ", paste(year, collapse =", "), 
+                   ", and region: ", region, ".\n", "This could take a few minutes ...\n", sep ="");
+    message(msg);
+    j  <- getData(url);
+    ## Check that data was returned
+    if(length(j)==0){stop("no sample data returned from server")}
+    # Turn list into data.frame 
+    out  <- toDataFrame(j);
+  } 
+  ## Recursive case: More than one species
+  else {
+    out = rbind(
+      getSampleData(species[1], year, region, stratum,
+                    protected, when_present, 
+                    server),
+      getSampleData(species[-1], year, region, stratum,
+                    protected, when_present, 
+                    server)
+          );
+  }
   return(out)
 }

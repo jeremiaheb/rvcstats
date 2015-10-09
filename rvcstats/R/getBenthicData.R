@@ -20,12 +20,9 @@ getBenthicData  <- function(year, region, stratum = NULL,
   
   # Get data and convert JSON to list, 
   # if not connected return error
-  message("starting to retrieve data from server, this could
-          take a few minutes ... ")
   j  <- getData(url);
-  message("... completed retrieving data")
   ## Check that data was returned
-  if(length(j)==0){stop("no benthiv data returned from server")}
+  if(length(j)==0){stop("no benthic data returned from server")}
   # Turn list into data.frame 
   out  <- toDataFrame(j);
   return(out)
